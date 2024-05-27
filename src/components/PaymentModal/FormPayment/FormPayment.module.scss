@@ -45,7 +45,7 @@
     padding-right: 40px;
     gap: 10px;
     position: relative;
-    margin: 0 auto;
+
     @media (min-width: 420px) {
       gap: 16px;
       padding-right: 40px;
@@ -60,7 +60,6 @@
       background: none;
       color: var.$secondary-white;
       outline: 0;
-      width: min-content;
       max-width: 72vw;
       overflow: hidden;
       text-align: end;

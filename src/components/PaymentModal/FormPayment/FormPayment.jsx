@@ -92,6 +92,7 @@ export default function FormPayment({handleThank}) {
         className={styles.input}
         ref={inputRef}
         size={ amount.length < 1 ? 1 : amount.length } 
+        maxLength={amount.length < 1 ? 2 : amount.length+1 }
         onInput={(e)=>{isValidate(e.target.value)}}
         onBlur={(e)=>{fixedAmount(e)}}
         readOnly={readOnly}
