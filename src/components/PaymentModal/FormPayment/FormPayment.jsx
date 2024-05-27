@@ -86,22 +86,17 @@ export default function FormPayment({handleThank}) {
     <div className={clsx(styles.amount, amount.length > 1 && !readOnly && styles._active)}>
     
       <input 
-        id='amount'
         value={amount} 
         type = "text"
         inputMode="numeric"
         className={styles.input}
         ref={inputRef}
-         //size={ amount.length < 1 ? 1 : amount.length } 
          size={4}
-        // maxLength={amount.length < 1 ? 1 : amount.length+1 }
         onInput={(e)=>{isValidate(e.target.value)}}
         onBlur={(e)=>{fixedAmount(e)}}
         readOnly={readOnly}
         autoComplete="off"
       />
-    {/* <label className={styles.label} htmlFor='amount'>
-     <Icon name='currency'/></label> */}
       <div className={styles.label}><span>{amount}</span><Icon name='currency'/></div>
       {error && <p
         className={clsx(styles.error, error?.length > 2 && styles._message)}>{error}</p>
