@@ -1,0 +1,39 @@
+@use "../../styles/variables" as var;
+@use "../../styles/mixins.scss" as mx;
+
+.mainErr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+  max-height: 100vh;
+
+  h2 {
+    @include mx.apply-font-styles(var.$h2-font);
+
+    font-size: 130px;
+    color: var.$secondary-gray;
+    margin-bottom: 32px;
+
+    @include mx.media-q("md") {
+      font-size: 200px;
+    }
+  }
+
+  p {
+    @include mx.apply-font-styles(var.$h2-font);
+
+    font-size: 20px;
+
+    font-weight: 700;
+    color: var.$secondary-white;
+
+    margin-bottom: 48px;
+    text-align: center;
+
+    @include mx.media-q("md") {
+      font-size: 24px;
+    }
+  }
+}

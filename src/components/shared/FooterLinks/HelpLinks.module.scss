@@ -1,0 +1,8 @@
+.helpList {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  > *:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}

@@ -1,0 +1,39 @@
+@use "../../styles/variables" as var;
+@use "../../styles/mixins.scss" as mx;
+
+.mainErr {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  min-height: 90vh;
+  padding: 10px;
+  gap: 48px;
+  gap: 8vh;
+
+  p {
+    @include mx.apply-font-styles(var.$h2-font);
+    font-weight: 700;
+    text-align: center;
+    font-size: 30px;
+    color: var.$secondary-gray;
+    & span{
+      font-size: 36px;
+    }
+
+    @media (min-width: 420px) {
+      font-size: 34px;
+      & span{
+        font-size: 42px;
+      }
+    }
+    
+    @include mx.media-q("md") {
+      font-size: 46px;
+      & span{
+        font-size: 52px;
+      }
+    }
+  }
+}

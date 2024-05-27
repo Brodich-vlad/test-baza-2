@@ -1,0 +1,90 @@
+@use "../../../styles/variables" as var;
+@use "../../../styles/mixins" as mixin;
+
+.link {
+  @include mixin.apply-font-styles(var.$h3-font);
+  position: relative;
+  padding: 3px 0;
+  color: var.$secondary-white;
+  transition: all var.$transition-duration-base var.$transition-timing-base 0s;
+  @media (any-hover: hover) {
+    &:hover,
+    &:focus {
+      color: var.$primary-hover;
+    }
+  }
+
+  &--default {
+    &::before {
+      content: "";
+      width: 0;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: var.$primary-hover;
+      transition: all 0.3s ease 0s;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        color: var.$primary-hover;
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+    &.active {
+      color: var.$primary-hover;
+      &::before {
+        width: 100%;
+      }
+    }
+  }
+
+  &--help {
+    border-bottom: 1px solid var.$secondary-white;
+    @media (any-hover: hover) {
+      &:hover,
+      &:focus {
+        border-bottom: 1px solid var.$primary-hover;
+      }
+      &:active {
+        border-bottom: 1px solid var.$secondary-white;
+      }
+    }
+  }
+
+  &--footer {
+    @media (any-hover: hover) {
+      &:active {
+        text-decoration: underline;
+      }
+    }
+  }
+  &--burger {
+    @include mixin.apply-font-styles(var.$text-20-font);
+    position: relative;
+    display: block;
+    font-weight: 700;
+    line-height: 1.2;
+    padding-left: 14px;
+    height: 100%;
+    &.active {
+      color: var.$primary-hover;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background-color: var.$primary-hover;
+      }
+    }
+  }
+  @media (max-width: 696px) {
+    font-size: 14px;
+    line-height: 140%;
+    letter-spacing: 0.01em;
+  }
+}

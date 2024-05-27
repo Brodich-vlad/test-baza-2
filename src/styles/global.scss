@@ -1,0 +1,34 @@
+@use "./_variables.scss" as var;
+@use "./mixins" as mx;
+@use "./null";
+
+body {
+  background-color: var.$primary-fon;
+  &.lock {
+    overflow: hidden;
+    touch-action: none;
+    overscroll-behavior: none;
+  }
+}
+
+[class*="container"] {
+  max-width: 1238px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  @supports (overflow: clip) {
+    overflow: clip;
+  }
+  > main {
+    flex: 1 1 auto;
+  }
+  > * {
+    min-width: 0;
+  }
+}

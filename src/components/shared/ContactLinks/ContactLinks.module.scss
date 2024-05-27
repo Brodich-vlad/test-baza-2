@@ -1,0 +1,26 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.text {
+  @include apply-font-styles($h3-font);
+  color: $secondary-white;
+
+  margin-left: 8px;
+  @media (max-width: 696px) {
+    font-size: 14px;
+  }
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+}
+.mail {
+  stroke: $secondary-white;
+}

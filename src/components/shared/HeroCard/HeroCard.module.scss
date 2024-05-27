@@ -1,0 +1,85 @@
+@use "../../../styles/variables" as var;
+@use "../../../styles/mixins.scss" as mx;
+
+.card {
+  position: relative;
+  height: clamp(220px, 86vh, 860px);
+
+  @include mx.media-q("md") {
+    height: clamp(220px, 90vh, 860px);
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(30%);
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  z-index: 3;
+  padding: 10px;
+  color: var.$secondary-white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+
+  @include mx.media-q("md") {
+    padding-bottom: 50px;
+    gap: 24px;
+  }
+
+  @include mx.media-q("xl") {
+    padding-bottom: 5%;
+    gap: 40px;
+  }
+
+  h2 {
+    @include mx.apply-font-styles(var.$h1-font);
+    font-weight: 700;
+    font-size: 24px;
+    background: var.$icons-gradient;
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    @media (min-width: 420px) {
+      font-size: 32px;
+    }
+
+    @include mx.media-q("md") {
+      font-size: 48px;
+    }
+
+    @include mx.media-q("xl") {
+      font-size: 54px;
+    }
+  }
+
+  p {
+    @include mx.apply-font-styles(var.$h2-font);
+    font-size: 16px;
+    width: clamp(280px, 95%, 830px);
+
+    @media (min-width: 420px) {
+      font-size: 20px;
+    }
+
+    @include mx.media-q("md") {
+      font-size: 24px;
+    }
+
+    @include mx.media-q("xl") {
+      font-size: 28px;
+    }
+  }
+}

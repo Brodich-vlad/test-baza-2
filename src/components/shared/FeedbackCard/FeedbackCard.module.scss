@@ -1,0 +1,96 @@
+@import "../../../styles/variables";
+@import "../../../styles/mixins";
+
+.card {
+  display: flex;
+  justify-content: center;
+  gap: 189px;
+  padding: 12px 0;
+  @media (max-width: 1366px) {
+    gap: 167px;
+    padding: 25px 0;
+  }
+  @media (max-width: 608px) {
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (max-width: 420px) {
+    align-items: start;
+    padding: 10px 16px;
+  }
+}
+
+.person {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.imageContainer {
+  position: relative;
+  width: 173px;
+  height: 173px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  & > img {
+    object-fit: cover;
+  }
+}
+
+.profile {
+  position: absolute;
+  left: 144px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: rgba(210, 210, 210, 0.5);
+  text-align: left;
+  @media (max-width: 1366px) {
+    top: -25px;
+  }
+  @media (max-width: 420px) {
+    top: 39px;
+  }
+}
+
+.personInfo {
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+
+.name {
+  @include apply-font-styles($h3-font);
+  letter-spacing: 0.01em;
+  color: $secondary-black;
+}
+
+.role {
+  @include apply-font-styles($text-16-font);
+  letter-spacing: 0.01em;
+  color: $secondary-black;
+}
+
+.date {
+  @include apply-font-styles($text-16-font);
+  letter-spacing: 0.01em;
+  color: $secondary-text;
+}
+
+.text {
+  @include apply-font-styles($text-16-font);
+  color: $secondary-white;
+  max-width: 600px;
+  text-align: left;
+  padding: 10px 0;
+  @media (max-width: 1366px) {
+    font-size: 18px;
+  }
+  @media (max-width: 608px) {
+    font-size: 16px;
+    padding: 10px 50px;
+  }
+  @media (max-width: 420px) {
+    padding: 0;
+  }
+}
