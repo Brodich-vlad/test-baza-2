@@ -3,6 +3,7 @@
 
 .card {
   position: relative;
+  overflow: hidden;
   height: clamp(220px, 86vh, 860px);
 
   @include mx.media-q("md") {
@@ -31,6 +32,11 @@
   justify-content: center;
   height: 100%;
   gap: 16px;
+  transform: translateY(-10%);
+
+  @media (min-width: 992px) {
+    transform:none;
+  }
 
   @include mx.media-q("md") {
     padding-bottom: 50px;
@@ -46,11 +52,11 @@
     @include mx.apply-font-styles(var.$h1-font);
     font-weight: 700;
     font-size: 24px;
-    background: var.$icons-gradient;
-    background-clip: text;
-    color: transparent;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    // background: var.$icons-gradient;
+    // background-clip: text;
+    // color: transparent;
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
 
     @media (min-width: 420px) {
       font-size: 32px;
