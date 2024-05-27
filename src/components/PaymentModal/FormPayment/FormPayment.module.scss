@@ -9,7 +9,7 @@
   justify-content: center;
   padding: 32px 5px;
   gap: 16px;
-
+  overflow: hidden;
   @include mx.media-q("md") {
     padding: 24px 16px;
     gap: 32px;
