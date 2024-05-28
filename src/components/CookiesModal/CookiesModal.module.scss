@@ -4,13 +4,14 @@
 .wrapper{
   position: fixed;
   left: 2%;
-  top: 96px;
+  //top: 96px;
+  bottom: 2%;
   z-index: 1000;
   padding: 5px 0;
 
   @include mx.media-q("md") {
     left: 5%;
-    top: auto;
+    //top: auto;
     bottom: 5%;
   }
 
