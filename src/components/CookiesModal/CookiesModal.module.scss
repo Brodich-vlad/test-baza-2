@@ -4,13 +4,17 @@
 .wrapper{
   position: fixed;
   left: 2%;
-  bottom: 2%;
+  bottom: 14%;
   z-index: 1000;
   padding: 5px 0;
 
+  @media (min-width: 410px) {
+    left: 2%;
+    bottom: 8%;
+  }
+
   @include mx.media-q("md") {
     left: 5%;
-    bottom: 5%;
   }
 
   .modal{
@@ -23,7 +27,8 @@
     flex-direction: column;
     gap: 16px;
     position: relative;
-    box-shadow: inset 0 2px 12px 0 rgba(154, 149, 153, 0.3);
+    box-shadow: inset 0 2px 12px 0 rgba(154, 149, 153, 0.25);
+
     @include mx.media-q("md") {
       padding: 24px;
     }
@@ -56,7 +61,7 @@
       }
       
       @include mx.media-q("xl") {
-        padding: 20px;
+        font-size: 20px;
       }
 
       .lick{
