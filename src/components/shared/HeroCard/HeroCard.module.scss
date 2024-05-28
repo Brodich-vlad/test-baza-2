@@ -30,8 +30,8 @@
   text-align: center;
   width: 100%;
   height: 100%;
-  padding: 18px 0px;
-  gap: 14px;
+  padding: 16px 3px;
+  gap: 16px;
 
   @media (min-width: 410px) {
     padding: 26px 10px 20px 10px;
@@ -41,7 +41,6 @@
   @media (min-width: 992px) {
     justify-content: center;
     padding: 10px;
-    // transform: none;
   }
 
   @include mx.media-q("md") {
@@ -59,14 +58,13 @@
     font-weight: 700;
     font-size: 34px;
     padding: 0 5px;
-    // background: var.$icons-gradient;
-    // background-clip: text;
-    // color: transparent;
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
 
     @media (min-width: 410px) {
       font-size: 36px;
+    }
+
+    @media (min-width: 420px) {
+      font-size: 38px;
     }
 
     @include mx.media-q("md") {
@@ -84,12 +82,16 @@
     width: clamp(280px, 95%, 830px);
 
     @media (min-width: 410px) {
+      font-size: 22px;
+    }
+
+    @media (min-width: 420px) {
       font-size: 24px;
     }
 
-    @include mx.media-q("md") {
-      font-size: 24px;
-    }
+    // @include mx.media-q("md") {
+    //   font-size: 24px;
+    // }
 
     @include mx.media-q("xl") {
       font-size: 28px;
