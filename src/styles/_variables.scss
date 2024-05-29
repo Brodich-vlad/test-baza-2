@@ -10,19 +10,32 @@ $primary-fon: #0f031f;
 $primary-fon-card: #180530;
 $primary-border: #ff62ce;
 //====Gradient Button====================================================================================================================================================
-$button-gradient1: #6c2276;
-$button-gradient2: #682d78;
-$button-gradient3: #643579;
-$button-gradient4: #613b7a;
-$button-gradient5: #5d447c;
+$button-hover-gradient1: #6c2276;
+$button-hover-gradient2: #682d78;
+$button-hover-gradient3: #643579;
+$button-hover-gradient4: #613b7a;
+$button-hover-gradient5: #5d447c;
+
+$button-hover-gradient: linear-gradient(
+  130deg,
+  $button-hover-gradient1 0%,
+  $button-hover-gradient2 32%,
+  $button-hover-gradient3 56%,
+  $button-hover-gradient4 75%,
+  $button-hover-gradient5 91%
+);
+
+$button-gradient1: #e37cc1;
+$button-gradient2: #e231a8 ;
+$button-gradient3: #9d2f79 ;
+$button-gradient4: #851a62;
 
 $button-gradient: linear-gradient(
-  130deg,
+  160deg,
   $button-gradient1 0%,
-  $button-gradient2 32%,
-  $button-gradient3 56%,
-  $button-gradient4 75%,
-  $button-gradient5 91%
+  $button-gradient2 36.5%,
+  $button-gradient3 76%,
+  $button-gradient4 100%,
 );
 //=Gradient Icons=======================================================================================================================================================
 $icon-gradient1: #e37cc1;
@@ -42,15 +55,15 @@ $fon-gradient1: #db97c5;
 $fon-gradient2: #cc4fa3;
 $fon-gradient3: #a03a7e;
 $fon-gradient4: #6d2656;
-$fon-gradient4: #490735;
+$fon-gradient5: #490735;
 
 $primary-gradient: linear-gradient(
-  90deg,
+  139deg,
   $fon-gradient1 0%,
-  $fon-gradient2 17%,
-  $fon-gradient3 40%,
-  $fon-gradient4 79%,
-  $fon-gradient4 100%
+  $fon-gradient2 16.91%,
+  $fon-gradient3 39.6%,
+  $fon-gradient4 78.5%,
+  $fon-gradient5 100%
 );
 //=Secondary colors=======================================================================================================================================================
 $secondary-black: #030110;
@@ -105,14 +118,14 @@ $h3-font: (
 );
 
 $h4-font: (
-"font-family": (
-  "Montserrat", 
-  sans-serif,
-),
-"font-weight": 700,
-"font-size": 24px,
-"line-height": 1.5,
-"letter-spacing": 0.01em,
+  "font-family": (
+    "Montserrat",
+    sans-serif,
+  ),
+  "font-weight": 700,
+  "font-size": 24px,
+  "line-height": 1.5,
+  "letter-spacing": 0.01em,
 );
 
 $button: $h3-font;
@@ -140,29 +153,26 @@ $text-16-font: (
   "line-height": 150%,
 );
 
-
 $text-14-font: (
-
-"font-family": (
-"Montserrat", 
-sans-serif,
-),
-"font-weight": 400,
-"font-size": 14px,
-"line-height": 1.5,
-"letter-spacing": 0.01em,
+  "font-family": (
+    "Montserrat",
+    sans-serif,
+  ),
+  "font-weight": 400,
+  "font-size": 14px,
+  "line-height": 1.5,
+  "letter-spacing": 0.01em,
 );
 
 $text-18-font: (
-
-"font-family": (
-"Montserrat", 
-sans-serif,
-),
-"font-weight": 400,
-"font-size": 18px,
-"line-height": 1.5,
-"letter-spacing": 0.01em,
+  "font-family": (
+    "Montserrat",
+    sans-serif,
+  ),
+  "font-weight": 400,
+  "font-size": 18px,
+  "line-height": 1.5,
+  "letter-spacing": 0.01em,
 );
 $breakpoints: (
   "tn": 320px,
