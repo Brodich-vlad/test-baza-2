@@ -126,28 +126,30 @@ const RegistrationFormModal=()=>{
 
   return (
     <Modal isOpen handleClose={onClose}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={onClose}>
-          <Icon name="close" width={20} height={20} />
-        </button>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>{t("title_mentor")}</h2>
-          <ul className={styles.list}>
-            {inputFields.map((field) => (
-              <div key={field.id}>
-                <InputField {...field} />
-              </div>
-            ))}
-          </ul>
-          <MainButton
-            type="submit"
-            disabled={!isDirty || !isValid}
-            className={styles.submit}
-            variant={"modal"}
-          >
-            {t("btn_send")}
-          </MainButton>
-        </form>
+      <div className={styles.wrapper}>
+        <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+          <button className={styles.closeButton} onClick={onClose}>
+            <Icon name="close" width={20} height={20} />
+          </button>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h2>{t("title_mentor")}</h2>
+            <ul className={styles.list}>
+              {inputFields.map((field) => (
+                <div key={field.id}>
+                  <InputField {...field} />
+                </div>
+              ))}
+            </ul>
+            <MainButton
+              type="submit"
+              disabled={!isDirty || !isValid}
+              className={styles.submit}
+              variant={"modal"}
+            >
+              {t("btn_send")}
+            </MainButton>
+          </form>
+        </div>
       </div>
     </Modal>
   );
