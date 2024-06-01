@@ -47,6 +47,14 @@
       flex-direction: column-reverse;
       justify-content: center;
       align-items: center;
+      @media (min-width: 660px) {
+        align-items: self-start;
+      }
+      @media (min-width: 1024px) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
 
       @media (min-width: 1280px) {
         flex-direction: row;
@@ -67,7 +75,7 @@
       border-radius: 16px;
       padding: 20px;
       width: 100%;
-      max-width: 607px;
+      //max-width: 607px;
       position: relative;
       transform: translateY(-7vw);
       @include mx.apply-font-styles(var.$text-20-font);
@@ -77,12 +85,18 @@
 
       @media (min-width: 660px) {
         transform: translateY(-60px);
+        width: 85%;
       }
 
       @include mx.media-q("md") {
         font-size: 20px;
+        //max-width: 90%;
       }
-
+      @media (min-width: 1024px) {
+        width: 50%;
+        max-width: 607px;
+        transform: translate(15px, 20px);
+      }
       @media (min-width: 1280px) {
         transform: translate(15px, 20px);
       }
@@ -103,8 +117,12 @@
 
       @media (min-width: 660px) {
         transform: translateY(20px);
+        align-self: flex-end;
       }
-
+      @media (min-width: 1024px) {
+        transform: translateX(-15px);
+        align-self: center;
+      }
       @media (min-width: 1280px) {
         transform: translateX(-15px);
       }
