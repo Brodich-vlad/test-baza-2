@@ -17,7 +17,7 @@ export const heroCardItems = [
   { 
     title: "slide_4.title", 
     desc:'slide_4.text',
-    img:'/images/hero_section/slide_4.jpg'
+    img:'/images/hero_section/slide_41.jpg'
   },
   { 
     title: "slide_5.title", 
