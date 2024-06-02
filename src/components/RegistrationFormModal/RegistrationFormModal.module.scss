@@ -3,13 +3,12 @@
 
 .wrapper{
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 64px 10px;
-  margin-bottom: 65px;
+  overflow-y: auto;
   .modal {
     background: #180530;
     padding: 48px 32px 32px 32px;
@@ -20,7 +19,6 @@
     border-color: #ff62ce;
     position: relative;
     width: 689px;
-    height: 1305px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -43,10 +41,10 @@
       position: absolute;
       top: 18px;
       right: 18px;
-      background: transparent;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
+      // background: transparent;
+      // border: none;
+      // font-size: 24px;
+      // cursor: pointer;
     }
     .list {
       display: flex;

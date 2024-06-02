@@ -1,7 +1,7 @@
 @use "../../styles/mixins" as mx;
 @use "../../styles/variables" as var;
 
-.mentor{
+.mentor {
   padding: 32px 16px;
 
   @include mx.media-q("md") {
@@ -47,14 +47,6 @@
       flex-direction: column-reverse;
       justify-content: center;
       align-items: center;
-      @media (min-width: 660px) {
-        align-items: self-start;
-      }
-      @media (min-width: 1024px) {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-      }
 
       @media (min-width: 1280px) {
         flex-direction: row;
@@ -75,33 +67,27 @@
       border-radius: 16px;
       padding: 20px;
       width: 100%;
-      //max-width: 607px;
+      max-width: 607px;
       position: relative;
-      transform: translateY(-7vw);
+      transform: translateY(-10vw);
       @include mx.apply-font-styles(var.$text-20-font);
       font-weight: 400;
       font-size: 14px;
       z-index: 3;
 
       @media (min-width: 660px) {
-        transform: translateY(-60px);
-        width: 85%;
+        transform: translateY(-80px);
       }
 
       @include mx.media-q("md") {
         font-size: 20px;
-        //max-width: 90%;
-      }
-      @media (min-width: 1024px) {
-        width: 50%;
-        max-width: 607px;
-        transform: translate(15px, 20px);
-      }
-      @media (min-width: 1280px) {
-        transform: translate(15px, 20px);
       }
 
-      .text_mb{
+      @media (min-width: 1280px) {
+        transform: translate(15px, 10px);
+      }
+
+      .text_mb {
         margin-bottom: 21px;
         @include mx.media-q("md") {
           margin-bottom: 30px;
@@ -109,20 +95,17 @@
       }
     }
 
-    .wrapper_img{
+    .wrapper_img {
       position: relative;
       width: clamp(288px, 92vw, 573px);
       height: clamp(282px, 87vw, 550px);
-      transform: translateY(5vw);
+      transform: translateY(9vw);
+      flex-shrink: 0;
 
       @media (min-width: 660px) {
-        transform: translateY(20px);
-        align-self: flex-end;
+        transform: translateY(40px);
       }
-      @media (min-width: 1024px) {
-        transform: translateX(-15px);
-        align-self: center;
-      }
+
       @media (min-width: 1280px) {
         transform: translateX(-15px);
       }
@@ -133,27 +116,21 @@
         object-fit: contain;
         object-position: center;
       }
-      .image_mobile{
+      .image_mobile {
         display: block;
         height: 100%;
         object-fit: contain;
         object-position: center;
       }
 
-      @media (min-width: 1280px)  {
+      @media (min-width: 1280px) {
         .image {
           display: block;
         }
-        .image_mobile{
+        .image_mobile {
           display: none;
         }
       }
     }
   }
 }
-
-
-
-
-
-

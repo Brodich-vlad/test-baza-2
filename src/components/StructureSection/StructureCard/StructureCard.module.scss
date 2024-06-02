@@ -13,15 +13,15 @@
   border-bottom: 1px solid #2e0535;
   padding: 0px 0px 8px 0px;
   
-    // .ellipseWrapper {
-    //   width: 70%;
-    //   height: 80%;
-    //   position: absolute;
-    //   background-color: rgba(226, 185, 213, 0);
-    //   border-radius: 100%;
-    //   fill: #e2b9d5;
-    //   filter: blur(30px);
-    // }
+    .ellipseWrapper {
+      width: 70%;
+      height: 80%;
+      position: absolute;
+      background-color: rgba(226, 185, 213, 0);
+      border-radius: 100%;
+      fill: #e2b9d5;
+      filter: blur(30px);
+    }
     .cardWrapper {
       width: fit-content;
       height: fit-content;
@@ -29,76 +29,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
- 
     }
     .svgWrapper {
       width: 80%;
       height: 100%;
-      //position: relative; 
-      // &::after{
-      //   content: '';
-      //   top: 0;
-      //   right: 0;
-
-      //   width: 70%;
-      //   height: 80%;
-
-      //   width: 100px;
-      //   height: 100px;
-      //   z-index: 2;
-      //   position: absolute;
-      //   background-color: rgba(226, 185, 213, 0);
-      //   border-radius: 100%;
-      //   fill: #e2b9d5;
-      //   filter: blur(30px);
-      //   background-color: aqua;
-      // }
-
-
-      .imgWrapper{
-        // width: 100%;
-        // height: 100%;
-        position: relative;
-        //background-color: #2e0535;
-      &::after{
-        content: '';
-        top: 0;
-        right: 0;
-
-        width: 70%;
-        height: 80%;
-
-        width: 100px;
-        height: 100px;
-        z-index: 2;
-        position: absolute;
-        background-color: rgba(226, 185, 213, 0);
-        border-radius: 100%;
-        fill: #e2b9d5;
-        filter: blur(30px);
-        background-color: aqua;
-      }
-        // .ellipseWrapper {
-        //   width: 100%;
-        //   height: 100%;
-        //   top: 0;
-        //   left: 0;
-        //   position: absolute;
-        //   background-color: rgba(226, 185, 213, 0);
-        //   border-radius: 100%;
-        //   fill: #e2b9d5;
-        //   filter: blur(30px);
-        // }
-
-      }
-      .image {
-        display: none;
-        height: 100%;
-        object-fit: contain;
-        object-fit: cover;
-        object-position: center;
-      }
-
+      position: relative; 
     }
    
    
