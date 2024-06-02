@@ -17,10 +17,10 @@
   object-fit: cover;
   //object-position: center;
   object-position: right;
-  filter: brightness(35%);
+  filter: brightness(30%);
 
   @media (min-width: 410px) {
-    object-position: center
+    object-position: center;
   }
 }
 
