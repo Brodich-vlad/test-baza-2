@@ -50,7 +50,7 @@
 
       @media (min-width: 1280px) {
         flex-direction: row;
-        //align-items: end;
+        //align-items: start;
         margin-bottom: 48px;
       }
 
@@ -85,7 +85,8 @@
       }
 
       @media (min-width: 1280px) {
-        transform: translate(15px, 12px);
+        transform: translateX(15px) translateY(15px);
+        //align-self: center;
       }
 
       .text_mb {
@@ -108,7 +109,7 @@
       }
 
       @media (min-width: 1280px) {
-        transform: translate(-15px, 10px);
+        transform: translateX(-15px);
       }
 
       .image {
