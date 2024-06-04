@@ -90,7 +90,7 @@ export default function FormPayment({handleThank}) {
       <input 
         value={amount} 
         type = "text"
-        inputMode={isMobile() ? 'text' : "numeric"}
+        inputMode={isMobile() ? "none" : "numeric"}
         className={styles.input}
         ref={inputRef}
         size={4}
