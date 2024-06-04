@@ -77,6 +77,8 @@ export default function FormPayment({handleThank}) {
  // Перемикач стилів кнопок.
   const activeStyle = id => (readOnly && amount === id) || (!readOnly && id === 'another');
 
+  function isMobile(){if (navigator.userAgent.match(/Safari|Opera Mini|iPhone|iPad|iPod/i)==null)return true; else return false;}
+
   return <form className={styles.form} 
     onSubmit={(e)=>{
       e.preventDefault()
@@ -88,7 +90,7 @@ export default function FormPayment({handleThank}) {
       <input 
         value={amount} 
         type = "text"
-        inputMode="numeric"
+        inputMode={isMobile() ? 'text' : "numeric"}
         className={styles.input}
         ref={inputRef}
         size={4}
