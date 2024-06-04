@@ -87,18 +87,32 @@ export default function FormPayment({handleThank}) {
     <p>{t('amount')} <Icon className={styles.icon} name='donate-modal-icon'/></p>
 
     <div className={styles.amount}>
-      <input 
+
+  {readOnly ?  <input 
         value={amount} 
         type = "text"
         // inputMode={isMobile() ? "none" : "numeric"}
         className={styles.input}
         ref={inputRef}
         size={4}
+        // onInput={(e)=>{isValidate(e.target.value)}}
+        // onBlur={(e)=>{fixedAmount(e)}}
+        readOnly={readOnly}
+        autoComplete="off"
+      />:
+      <input 
+        value={amount} 
+        type = "text"
+        // inputMode={isMobile() ? "none" : "numeric"}
+        className={styles.input}
+        ref={inputRef}
+        onFocus={true}
+        size={4}
         onInput={(e)=>{isValidate(e.target.value)}}
         onBlur={(e)=>{fixedAmount(e)}}
         readOnly={readOnly}
         autoComplete="off"
-      />
+      />}
       <label className={styles.label}><span>{amount}</span><Icon name='currency'/></label>
       
       {error && <p

@@ -28,8 +28,8 @@ export default function PaymentModal() {
   }, [thank]);
 
   return <Modal isOpen={isOpen} handleClose={handleClose}>
-    <div className={styles.wrapper}>
-      <div className={styles.card}>
+    <div className={styles.wrapper} onClick={handleClose}>
+      <div className={styles.card} onClick={(e)=>e.stopPropagation()}>
         {thank?
         <ThanksCard handleClose={handleClose}/>:
         <FormPayment handleThank={handleThank}/>
