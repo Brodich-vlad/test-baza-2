@@ -77,8 +77,6 @@ export default function FormPayment({handleThank}) {
  // Перемикач стилів кнопок.
   const activeStyle = id => (readOnly && amount === id) || (!readOnly && id === 'another');
 
-  // function isMobile(){if (navigator.userAgent.match(/Safari|Opera Mini|iPhone|iPad|iPod/i)==null)return true; else return false;}
-
   return <form className={styles.form} 
     onSubmit={(e)=>{
       e.preventDefault()
@@ -87,32 +85,22 @@ export default function FormPayment({handleThank}) {
     <p>{t('amount')} <Icon className={styles.icon} name='donate-modal-icon'/></p>
 
     <div className={styles.amount}>
-
-  {readOnly ?  <input 
+      {/* <input 
         value={amount} 
         type = "text"
-        // inputMode={isMobile() ? "none" : "numeric"}
+        //inputMode="numeric"
         className={styles.input}
-        ref={inputRef}
+        //ref={inputRef}
         size={4}
-        // onInput={(e)=>{isValidate(e.target.value)}}
-        // onBlur={(e)=>{fixedAmount(e)}}
-        readOnly={readOnly}
+        //onInput={(e)=>{isValidate(e.target.value)}}
+        //onBlur={(e)=>{fixedAmount(e)}}
+        //readOnly={readOnly}
+        readOnly={true}
         autoComplete="off"
-      />:
-      <input 
-        value={amount} 
-        type = "text"
-        // inputMode={isMobile() ? "none" : "numeric"}
-        className={styles.input}
-        ref={inputRef}
-        onFocus={true}
-        size={4}
-        onInput={(e)=>{isValidate(e.target.value)}}
-        onBlur={(e)=>{fixedAmount(e)}}
-        readOnly={readOnly}
-        autoComplete="off"
-      />}
+      /> */}
+          <p className={styles.input}
+        >{amount} </p>
+      
       <label className={styles.label}><span>{amount}</span><Icon name='currency'/></label>
       
       {error && <p
@@ -120,7 +108,7 @@ export default function FormPayment({handleThank}) {
       }
     </div>
 
-    <ul className={styles.btns}>
+    {/* <ul className={styles.btns}>
       {btnItems.map((el)=>{
         return <li key={createKey()}>
           <MainButton 
@@ -128,15 +116,114 @@ export default function FormPayment({handleThank}) {
             variant='modal' 
             onClick={(ev)=>{
               'another' === el.id ?
-              another():
+              ev.preventDefault():
+              //another():
               fixedAmount(ev, el.id)
             }}>
               {el.text}{t(el.currency)}
+              {'another' === el.id && 
+              <input type='text' 
+                value={amount} 
+                className={styles.input_hide} 
+                autoComplete="off" 
+                ref={inputRef}
+                onInput={(e)=>{isValidate(e.target.value)}}
+                onClick={()=>{
+                  another()
+                  //fixedAmount(ev, el.id)
+                }}
+              />}
           </MainButton>
         </li>
       })}
-    </ul>
+    </ul> */}
 
+    <ul className={styles.btns}>
+      <li>
+        <MainButton 
+          variant='modal' 
+          className={clsx(styles.btn, activeStyle('100') && styles._active, styles._hide)}
+          onClick={(ev)=>{
+            fixedAmount(ev, '100')
+          }}>
+            {`+100 ${t('UAH')}`}
+        </MainButton>
+      </li>
+      <li>
+        <MainButton 
+          variant='modal' 
+          className={clsx(styles.btn, activeStyle('200') && styles._active, styles._hide)}
+          onClick={(ev)=>{
+            fixedAmount(ev, '200')
+          }}>
+            {`+200 ${t('UAH')}`}
+        </MainButton>
+      </li>
+      <li>
+        <MainButton 
+          variant='modal' 
+          className={clsx(styles.btn, activeStyle('500') && styles._active, styles._hide)}
+          onClick={(ev)=>{
+            fixedAmount(ev, '500')
+          }}>
+            {`+500 ${t('UAH')}`}
+        </MainButton>
+      </li>
+      <li>
+        <MainButton 
+          variant='modal' 
+          className={clsx(styles.btn, activeStyle('another') && styles._active, styles._hide)}
+          // onClick={()=>{
+          //   another()
+          // }}
+          >
+            {`+${t('another_amount')}`}
+            <input type='text' 
+                value={amount} 
+                className={styles.input_hide} 
+                autoComplete="off" 
+                ref={inputRef}
+                inputMode="numeric"
+               // readOnly={readOnly}
+                onInput={(e)=>{isValidate(e.target.value)}}
+                onBlur={(e)=>{fixedAmount(e)}}
+                onClick={()=>{
+                  another()
+                  //fixedAmount(ev, el.id)
+                }}
+              />
+
+        </MainButton>
+      </li>
+
+      {/* {btnItems.map((el)=>{
+        return <li key={createKey()}>
+          <MainButton 
+            className={clsx(styles.btn, activeStyle(el.id) && styles._active, el.id === '500' && styles._hide)}
+            variant='modal' 
+            onClick={(ev)=>{
+              'another' === el.id ?
+              ev.preventDefault():
+              //another():
+              fixedAmount(ev, el.id)
+            }}>
+              {el.text}{t(el.currency)}
+              {'another' === el.id && 
+              <input type='text' 
+                value={amount} 
+                className={styles.input_hide} 
+                autoComplete="off" 
+                ref={inputRef}
+                onInput={(e)=>{isValidate(e.target.value)}}
+                onClick={()=>{
+                  another()
+                  //fixedAmount(ev, el.id)
+                }}
+              />}
+          </MainButton>
+        </li>
+      })} */}
+    </ul>
     <MainButton className={styles.btn_submit} 
       type="submit" 
       disabled={isDisabled(amount)}>
