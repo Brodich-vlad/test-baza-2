@@ -1,8 +1,6 @@
 import { useRef, useState } from 'react';
 import { useTranslations } from "next-intl";
 import { Icon } from "../../shared/Icon/Icon";
-import { btnItems } from "../btnItems";
-import { createKey } from "@/src/lib/utils/createKey";
 import MainButton from "../../shared/MainButton/MainButton";
 import styles from './FormPayment.module.scss';
 import clsx from "clsx";
@@ -85,58 +83,17 @@ export default function FormPayment({handleThank}) {
     <p>{t('amount')} <Icon className={styles.icon} name='donate-modal-icon'/></p>
 
     <div className={styles.amount}>
-      {/* <input 
-        value={amount} 
-        type = "text"
-        //inputMode="numeric"
-        className={styles.input}
-        //ref={inputRef}
-        size={4}
-        //onInput={(e)=>{isValidate(e.target.value)}}
-        //onBlur={(e)=>{fixedAmount(e)}}
-        //readOnly={readOnly}
-        readOnly={true}
-        autoComplete="off"
-      /> */}
-          <p className={styles.input}
-        >{amount} </p>
-      
-      <label className={styles.label}><span>{amount}</span><Icon name='currency'/></label>
+
+      <p className={styles.text}>{amount}</p>
+
+      {!readOnly && <span className={styles.vertical_line}></span>}
+
+      <Icon name='currency'className={styles.currency}/>
       
       {error && <p
         className={clsx(styles.error, error?.length > 2 && styles._message)}>{error}</p>
       }
     </div>
-
-    {/* <ul className={styles.btns}>
-      {btnItems.map((el)=>{
-        return <li key={createKey()}>
-          <MainButton 
-            className={clsx(styles.btn, activeStyle(el.id) && styles._active, el.id === '500' && styles._hide)}
-            variant='modal' 
-            onClick={(ev)=>{
-              'another' === el.id ?
-              ev.preventDefault():
-              //another():
-              fixedAmount(ev, el.id)
-            }}>
-              {el.text}{t(el.currency)}
-              {'another' === el.id && 
-              <input type='text' 
-                value={amount} 
-                className={styles.input_hide} 
-                autoComplete="off" 
-                ref={inputRef}
-                onInput={(e)=>{isValidate(e.target.value)}}
-                onClick={()=>{
-                  another()
-                  //fixedAmount(ev, el.id)
-                }}
-              />}
-          </MainButton>
-        </li>
-      })}
-    </ul> */}
 
     <ul className={styles.btns}>
       <li>
@@ -172,57 +129,25 @@ export default function FormPayment({handleThank}) {
       <li>
         <MainButton 
           variant='modal' 
-          className={clsx(styles.btn, activeStyle('another') && styles._active)}
-          // onClick={()=>{
-          //   another()
-          // }}
-          >
+          className={clsx(styles.btn, activeStyle('another') && styles._active)}>
             {`+${t('another_amount')}`}
+            
             <input type='text' 
-                value={amount} 
-                className={styles.input_hide} 
-                autoComplete="off" 
-                ref={inputRef}
-                inputMode="numeric"
-               // readOnly={readOnly}
-                onInput={(e)=>{isValidate(e.target.value)}}
-                onBlur={(e)=>{fixedAmount(e)}}
-                onClick={()=>{
-                  another()
-                  //fixedAmount(ev, el.id)
-                }}
-              />
+              value={amount} 
+              className={styles.input} 
+              autoComplete="off" 
+              ref={inputRef}
+              inputMode="numeric"
+              readOnly={readOnly}
+              onInput={(e)=>{isValidate(e.target.value)}}
+              onBlur={(e)=>{fixedAmount(e)}}
+              onClick={()=>{
+                another()
+              }}
+            />
 
         </MainButton>
       </li>
-
-      {/* {btnItems.map((el)=>{
-        return <li key={createKey()}>
-          <MainButton 
-            className={clsx(styles.btn, activeStyle(el.id) && styles._active, el.id === '500' && styles._hide)}
-            variant='modal' 
-            onClick={(ev)=>{
-              'another' === el.id ?
-              ev.preventDefault():
-              //another():
-              fixedAmount(ev, el.id)
-            }}>
-              {el.text}{t(el.currency)}
-              {'another' === el.id && 
-              <input type='text' 
-                value={amount} 
-                className={styles.input_hide} 
-                autoComplete="off" 
-                ref={inputRef}
-                onInput={(e)=>{isValidate(e.target.value)}}
-                onClick={()=>{
-                  another()
-                  //fixedAmount(ev, el.id)
-                }}
-              />}
-          </MainButton>
-        </li>
-      })} */}
     </ul>
     <MainButton className={styles.btn_submit} 
       type="submit" 
