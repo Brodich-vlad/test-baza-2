@@ -142,7 +142,7 @@ export default function FormPayment({handleThank}) {
       <li>
         <MainButton 
           variant='modal' 
-          className={clsx(styles.btn, activeStyle('100') && styles._active, styles._hide)}
+          className={clsx(styles.btn, activeStyle('100') && styles._active)}
           onClick={(ev)=>{
             fixedAmount(ev, '100')
           }}>
@@ -152,7 +152,7 @@ export default function FormPayment({handleThank}) {
       <li>
         <MainButton 
           variant='modal' 
-          className={clsx(styles.btn, activeStyle('200') && styles._active, styles._hide)}
+          className={clsx(styles.btn, activeStyle('200') && styles._active)}
           onClick={(ev)=>{
             fixedAmount(ev, '200')
           }}>
@@ -172,7 +172,7 @@ export default function FormPayment({handleThank}) {
       <li>
         <MainButton 
           variant='modal' 
-          className={clsx(styles.btn, activeStyle('another') && styles._active, styles._hide)}
+          className={clsx(styles.btn, activeStyle('another') && styles._active)}
           // onClick={()=>{
           //   another()
           // }}
