@@ -138,7 +138,6 @@ export default function FormPayment({handleThank}) {
               autoComplete="off" 
               ref={inputRef}
               inputMode="numeric"
-              //readOnly={readOnly}
               onInput={(e)=>{isValidate(e.target.value)}}
               onBlur={(e)=>{fixedAmount(e)}}
               onClick={()=>{
