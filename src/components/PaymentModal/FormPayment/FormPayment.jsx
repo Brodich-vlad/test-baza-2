@@ -90,7 +90,8 @@ export default function FormPayment({ handleSubmit }) {
 
     <div className={styles.amount}>
 
-      <p className={styles.text}>{amount}</p>
+      {/* <p className={styles.text}>{amount}</p> */}
+      <label htmlFor='amount' className={styles.text}>{amount}</label>
 
       {!readOnly && <span className={styles.vertical_line}></span>}
 
@@ -139,6 +140,7 @@ export default function FormPayment({ handleSubmit }) {
             {`+${t('another_amount')}`}
             
             <input type='text' 
+              id='amount'
               value={amount} 
               className={styles.input} 
               autoComplete="off" 
