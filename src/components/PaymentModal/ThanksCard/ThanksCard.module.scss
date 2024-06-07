@@ -17,6 +17,7 @@
   }
 
   & > h2{
+    padding: 0 5px;
     @include mx.apply-font-styles(var.$h1-font);
     font-size: 20px;
     text-align: center;
@@ -31,6 +32,24 @@
 
     @include mx.media-q("xl") {
       font-size: 40px;
+    }
+  }
+
+  .error{
+    color: var.$secondary-error;
+    & span{
+      font-size: 24px;
+      @media (min-width: 420px) {
+        font-size: 32px;
+      }
+  
+      @include mx.media-q("md") {
+        font-size: 40px;
+      }
+  
+      @include mx.media-q("xl") {
+        font-size: 46px;
+      }
     }
   }
 }

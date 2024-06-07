@@ -1,8 +1,16 @@
+//import stateModalPayment from "@/src/state/stateModalPayment";
+//"use client";
+//import stateModalPayment from "@/src/state/stateModalPayment";
+
 // !! Логіка запиту на старий бекенд на отримання посилання сторінки оплати. !!
 const urlBase = 'https://baza-trainee-landing.vercel.app/api/v1';
 
-const usePaymentHandler = (payment, locale) => {
-	const paymentAmount = payment === "0" ? '1' : payment;
+
+
+function usePaymentHandler(payment, locale, startLoader,stoptLoader,addError,addThanks){
+	const paymentAmount = payment === "123" ? '0' : payment;
+  // const startLoader = stateModalPayment(state => state.startLoader);
+	// const stoptLoader = stateModalPayment(state => state.stoptLoader);
 
 	const paymentData = {
 		transactionType: 'CREATE_INVOICE',
@@ -20,8 +28,10 @@ const usePaymentHandler = (payment, locale) => {
 	};
 
 	const handlePayment = async () => {
+
 		if (Number(paymentAmount)) {
 			try {
+				startLoader()
 				const response = await fetch(`${urlBase}/payment`, {
 					method: 'POST',
 					headers: {
@@ -33,18 +43,26 @@ const usePaymentHandler = (payment, locale) => {
 				const checkoutUrl = await response.json();
 				if (checkoutUrl.invoiceUrl) {
 					window.location.href = checkoutUrl.invoiceUrl;
+					
+					addThanks()
 				}
+				
 			} catch (error) {
 				setErrorMessage('Error occurred while processing payment');
 				console.error(error);
-			}
+				addError()
+			} finally {stoptLoader()}
 		} else {
-			setErrorMessage('Please enter a valid payment amount');
+			//setErrorMessage('Please enter a valid payment amount');
+			stoptLoader()
+			addError()
 		}
+		//stoptLoader()
 	};
 	// Розкоментувати щоб побачити перехід на сторінку оплати.
 	// !!! Обержно платежі справжні !!!
 	handlePayment()
+
 	return paymentData
 };
 

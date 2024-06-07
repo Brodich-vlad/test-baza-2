@@ -4,14 +4,19 @@ import { Icon } from "../../shared/Icon/Icon";
 import MainButton from "../../shared/MainButton/MainButton";
 import styles from './FormPayment.module.scss';
 import clsx from "clsx";
-import usePaymentHandler from '../usePaymentHandler';
-import { useParams } from 'next/navigation';
+//import usePaymentHandler from '../usePaymentHandler';
+//import { useParams } from 'next/navigation';
+//import stateModalPayment from '@/src/state/stateModalPayment';
 
-export default function FormPayment({handleThank}) {
+export default function FormPayment({ handleSubmit }) {
   // Мова сторінки.
-  const { locale } = useParams();
+  //const { locale } = useParams();
   // контент.
   const t = useTranslations("Modal_support");
+
+  //const startLoader = stateModalPayment(state => state.startLoader);
+	//const stoptLoader = stateModalPayment(state => state.stoptLoader);
+
   // локальний стан.
   const [amount, setAmount] = useState('0');
   const [readOnly, setReadOnly] = useState(true);
@@ -31,8 +36,9 @@ export default function FormPayment({handleThank}) {
       return
     }
     // Тимчасовий вивід результату в консоь.
-    console.log(usePaymentHandler(amount, locale)) 
-    handleThank()
+    handleSubmit(amount)
+    //console.log(usePaymentHandler(amount, locale, startLoader,stoptLoader)) 
+    //handleThank()
   };
   // Перемикач Інша сума.
   const another = () => {
