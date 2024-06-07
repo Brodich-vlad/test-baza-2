@@ -179,10 +179,13 @@
   }
 
   .btn._active{
-    box-shadow: 0 4px 4px 0 rgba(91, 89, 93, 0.25);
+    // box-shadow: 0 4px 4px 0 rgba(91, 89, 93, 0.25);
     background: var.$secondary-hover;
     color: var.$secondary-black;
-    border: 2px solid var.$primary-border;
+    border: 1px solid var.$primary-border;
+    box-shadow:
+    inset 1px 1px var.$primary-border,
+    inset -1px -1px var.$primary-border;
     // box-shadow:
     // inset 3px 3px 3px rgba(77, 76, 76, 0.213),
     // inset -3px -3px 3px rgba(31, 31, 31, 0.532);
