@@ -77,9 +77,9 @@
 
 .btn_modal {
   @include mx.apply-font-styles(var.$text-20-font);
-  box-sizing: border-box;
   color: var.$secondary-white;
   padding: 15px 32px;
+  padding: 12px 28px;
   border: 1px solid var.$secondary-white;
   border-radius: 8px;
   cursor: pointer;
@@ -89,10 +89,8 @@
 
   &:hover,
   &:focus {
-    // box-shadow: 0 4px 4px 0 rgba(91, 89, 93, 0.25);
-    // background: var.$secondary-hover;
-    // color: var.$secondary-black;
-    // border: 1px solid var.$primary-border;
+    background: var.$secondary-hover;
+    color: var.$secondary-black;
     border: 1px solid var.$primary-border;
     box-shadow:
     inset 1px 1px var.$primary-border,

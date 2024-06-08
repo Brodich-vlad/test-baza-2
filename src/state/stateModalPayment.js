@@ -1,4 +1,5 @@
-// import { create } from 'zustand';
+import { create } from 'zustand'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 // const stateModalPayment = create((set) => ({
 //   isOpen: false,
@@ -6,47 +7,42 @@
 //   close: () => set({ isOpen: false }),
 // }))
 
-// export default stateModalPayment
-
-import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
-
 const stateModalPayment = create(
   persist(
-    (set, get) => ({
+    (set) => ({
       isOpen: false,
 
-      isLoader: false,
-      isError: false,
+      //isLoader: false,
+      //isError: false,
       isThanks: false,
       //fishes: 0,
       //addAFish: () => set({ fishes: get().fishes + 1 }),
 
       open: () => set({ isOpen: true }),
-      startLoader: () => set({ isLoader: true }),
-      stoptLoader: () => set({ isLoader: false }),
+      //startLoader: () => set({ isLoader: true }),
+      //stoptLoader: () => set({ isLoader: false }),
 
-      addError: () => set({ 
-        isError: true,
-        isThanks: false
-      }),
+      // addError: () => set({ 
+      //   isError: true,
+      //   isThanks: false
+      // }),
 
-      removeError: () => set({ 
-        isThanks: true,
-        isError: false,
-      }),
+      // removeError: () => set({ 
+      //   isThanks: true,
+      //   isError: false,
+      // }),
 
 
       addThanks: () => set({ 
         isThanks: true,
-        isError: false,
+        //isError: false,
       }),
 
 
       close: () => set({ 
         isOpen: false,
-        isLoader: false,
-        isError: false,
+        //isLoader: false,
+        //isError: false,
         isThanks: false 
       }),
     }),
@@ -56,4 +52,5 @@ const stateModalPayment = create(
     },
   ),
 )
+
 export default stateModalPayment

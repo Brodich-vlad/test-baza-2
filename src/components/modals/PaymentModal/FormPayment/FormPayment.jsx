@@ -1,22 +1,17 @@
 import { useRef, useState } from 'react';
 import { useTranslations } from "next-intl";
-import { Icon } from "../../shared/Icon/Icon";
-import MainButton from "../../shared/MainButton/MainButton";
 import styles from './FormPayment.module.scss';
 import clsx from "clsx";
 //import usePaymentHandler from '../usePaymentHandler';
 //import { useParams } from 'next/navigation';
-//import stateModalPayment from '@/src/state/stateModalPayment';
+import { Icon } from '@/src/components/shared/Icon/Icon';
+import MainButton from '@/src/components/shared/MainButton/MainButton';
 
-export default function FormPayment({ handleSubmit }) {
+export default function FormPayment({handleSubmit}) {
   // Мова сторінки.
   //const { locale } = useParams();
   // контент.
   const t = useTranslations("Modal_support");
-
-  //const startLoader = stateModalPayment(state => state.startLoader);
-	//const stoptLoader = stateModalPayment(state => state.stoptLoader);
-
   // локальний стан.
   const [amount, setAmount] = useState('0');
   const [readOnly, setReadOnly] = useState(true);
@@ -36,8 +31,8 @@ export default function FormPayment({ handleSubmit }) {
       return
     }
     // Тимчасовий вивід результату в консоь.
+    //console.log(usePaymentHandler(amount, locale)) 
     handleSubmit(amount)
-    //console.log(usePaymentHandler(amount, locale, startLoader,stoptLoader)) 
     //handleThank()
   };
   // Перемикач Інша сума.
@@ -90,8 +85,7 @@ export default function FormPayment({ handleSubmit }) {
 
     <div className={styles.amount}>
 
-      {/* <p className={styles.text}>{amount}</p> */}
-      <label htmlFor='amount' className={styles.text}>{amount}</label>
+      <div htmlFor='amount' className={styles.text}>{amount}</div>
 
       {!readOnly && <span className={styles.vertical_line}></span>}
 
@@ -134,13 +128,14 @@ export default function FormPayment({ handleSubmit }) {
         </MainButton>
       </li>
       <li>
-        <MainButton 
-          variant='modal' 
-          className={clsx(styles.btn, activeStyle('another') && styles._active)}>
+        <label
+          htmlFor='amount'
+          className={clsx(styles.label, activeStyle('another') && styles._active)}>
             {`+${t('another_amount')}`}
             
             <input type='text' 
               id='amount'
+              placeholder={`+${t('placeholder')}`}
               value={amount} 
               className={styles.input} 
               autoComplete="off" 
@@ -152,8 +147,7 @@ export default function FormPayment({ handleSubmit }) {
                 another()
               }}
             />
-
-        </MainButton>
+        </label>
       </li>
     </ul>
     <MainButton className={styles.btn_submit} 

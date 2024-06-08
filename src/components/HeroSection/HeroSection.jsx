@@ -18,10 +18,9 @@ export default function HeroSection() {
         prevEl={".prevElHero"}
         nextEl={".nextElHero"}
         delay={10000}
-        //speed={700}
         breakpoints={{
           992: {
-            sped:700,
+            sped:100,
           },
         }}
         renderItem={(item) => (
