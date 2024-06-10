@@ -44,7 +44,7 @@ export default function PaymentModal() {
     close()
   },[])
 
-  const handleThank = (res) => {
+  const handleResponse = (res) => {
     if(res==='ok'){
       setІuccess(true)
     }
@@ -56,7 +56,7 @@ export default function PaymentModal() {
   };
 
   const handleSubmit = (amount) => {
-    handlePayment(amount, locale, handleThank)
+    handlePayment(amount, locale, handleResponse)
     setIsLoader(true)
   };
 
