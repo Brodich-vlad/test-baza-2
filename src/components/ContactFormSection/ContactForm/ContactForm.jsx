@@ -3,12 +3,12 @@ import styles from "./ContactForm.module.scss";
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
+import handleSendContactForm from "@/src/lib/services/handleSendContactForm";
 import { formScheme } from "./formScheme";
+import { Icon } from "../../shared/Icon/Icon";
 import MainButton from "../../shared/MainButton/MainButton";
 import InputField from "../../shared/InputField/InputField";
-import { Icon } from "../../shared/Icon/Icon";
-import handleSendContactForm from "@/src/lib/services/handleSendContactForm";
-import { useState } from "react";
 import stateErrorAlert from "@/src/state/stateErrorAlert";
 import ErrorAlert from "../../shared/ErrorAlert/ErrorAlert";
 
@@ -25,7 +25,6 @@ export default function ContactForm() {
     reset
   } = useForm({ defaultValues: { ...formScheme.defaultValues } });
 
-
   const [isSubmit, setIsSubmit] = useState('error');
 
   const isError = (res) => {
@@ -33,15 +32,7 @@ export default function ContactForm() {
       open()
     }
     setIsSubmit(res)
-    // if(res.status === 200){
-    //   setIsSubmit('OK')
-    // }else setIsSubmit('ERROR')
-    // setTimeout(()=>{
-    //   setIsSubmit(null)
-    // },2000)
-    console.log(res);
   }
-
 
   const onSubmit = (data) => {
     handleSendContactForm( data, isError )
