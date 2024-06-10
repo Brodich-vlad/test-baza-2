@@ -17,14 +17,14 @@ export default function PaymentModal() {
 
   // Отримуємо стан.
   const isOpen = stateModalPayment(state => state.isOpen);
-  const isThanks = stateModalPayment(state => state.isThanks);
-  const addThanks = stateModalPayment(state => state.addThanks);
+  // const isThanks = stateModalPayment(state => state.isThanks);
+  // const addThanks = stateModalPayment(state => state.addThanks);
   const close = stateModalPayment(state => state.close);
 
   // контент.
   const t = useTranslations("Modal_support");
   // локальний стан.
-  //const [thank, setThank] = useState(false);
+  const [thank, setThank] = useState(false);
   const [isLoader, setIsLoader] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -37,7 +37,9 @@ export default function PaymentModal() {
   // })
 
   const handleClose = useCallback(() => {
-    //setThank(false)
+    setIsError(false)
+    setIsLoader(false)
+    setThank(false)
     close()
   },[])
 
@@ -47,22 +49,23 @@ export default function PaymentModal() {
 
   const handleThank = (res) => {
     console.log(res)
-    if(res.data){
-      window.location.href = res.data.invoiceUrl;
-      setTimeout(()=>{
-        //setIsLoader(false)
-        //setThank(true)
-        addThanks()
-      },700)
- 
-    }else {setIsLoader(false)}
-
-    if(res.error){
-      console.log(res)
-      setIsError(true)
-      setIsLoader(false)
-    } 
     //setIsLoader(false)
+    if(res==='ok'){
+      //window.location.href = res.data.invoiceUrl;
+      setTimeout(()=>{
+        setIsLoader(false)
+        setThank(true)
+        //addThanks()
+      },1000)
+ 
+    }
+
+    if(res==='error'){
+      //console.log(res)
+      setIsLoader(false)
+      setIsError(true)
+      //setIsLoader(false)
+    } 
   };
 
 
@@ -78,13 +81,13 @@ export default function PaymentModal() {
       <div className={styles.card}>
         {isLoader && <Loader/>}
         
-        {isError | isThanks ?
-        <MessageCard handleClose={handleClose} isError={isError}/>:
+        {isError | thank ?
+        <MessageCard handleClose={handleClose} isError={isError} isThanks={thank}/>:
         <FormPayment handleSubmit={handleSubmit}/>
         }
 
         <CloseBtn className={styles.close_btn}
-          ariaLabel={ isThanks ? 
+          ariaLabel={ thank ? 
             t('ariaLabel_btn_close_2') : 
             t('ariaLabel_btn_close_1')
           }
