@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import NextTopLoader from "nextjs-toploader";
 import "@/src/styles/global.scss";
+import ErrorAlert from "@/src/components/shared/ErrorAlert/ErrorAlert";
 
 export const metadata = {
   title: "Baza trainee 2",

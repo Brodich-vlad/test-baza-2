@@ -25,13 +25,12 @@ export default function handlePayment(payment="0", locale="ua", callback=()=>{})
   .then(function (response) {
 		if (response.data?.invoiceUrl) {
 			//window.location.href = response.data.invoiceUrl;
-
 			window.open(response.data.invoiceUrl);
 			callback('ok')
 		}else callback('error')
   })
   .catch(function (error) {
-    callback(error)
+		console.log(error)
 		callback('error')
   });
 }

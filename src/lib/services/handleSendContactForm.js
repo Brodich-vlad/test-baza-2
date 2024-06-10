@@ -18,9 +18,14 @@ export default function handleSendContactForm(data, callback=()=>{}) {
     ...body(data)
   })
   .then(function (response) {
+    if (response.status === 200) {
+
+			callback('ok')
+		}else callback('error')
     callback(response)
   })
   .catch(function (error) {
-    callback(error)
+    console.log(error)
+    callback('error')
   });
 }
