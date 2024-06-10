@@ -19,10 +19,8 @@ export default function handleSendContactForm(data, callback=()=>{}) {
   })
   .then(function (response) {
     if (response.status === 200) {
-
 			callback('ok')
 		}else callback('error')
-    callback(response)
   })
   .catch(function (error) {
     console.log(error)
