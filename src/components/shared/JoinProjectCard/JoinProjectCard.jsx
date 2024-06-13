@@ -13,10 +13,10 @@ export default function JoinProjectCard({ item = {}, i, progress, range, targetS
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ['start end', 'start end']
+    offset: ['start end', 'start start']
   });
 
-  const isMobile = useMediaQuery({ maxWidth: 1366 });
+  const isMobile = useMediaQuery({ maxWidth: 1365 });
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

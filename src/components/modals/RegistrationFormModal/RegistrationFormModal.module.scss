@@ -15,41 +15,22 @@
     border-radius: 12px;
     border-width: 1px;
     border-style: solid;
-    border-color: #ff62ce;
+    border-color: var.$primary-border;
+    border-color: var.$primary-border;
     position: relative;
-    width: 689px;
+    max-width: 689px;
+    max-width: 689px;
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-  
-      h2 {
-        @include mix.apply-font-styles(var.$h1-font);
-      }
-      .submit {
-        position: relative;
-      }
+    .title{
+      @include mix.apply-font-styles(var.$h1-font);
     }
   
     .closeButton {
       position: absolute;
       top: 18px;
       right: 18px;
-      // background: transparent;
-      // border: none;
-      // font-size: 24px;
-      // cursor: pointer;
-    }
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      padding-bottom: 20px;
     }
   }
 }
