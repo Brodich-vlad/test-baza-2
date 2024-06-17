@@ -10,8 +10,10 @@ export default function InputField({
   isValid,
   version,
   label = "default label",
+  className,
   options = {},
   control = {},
+  ...props
 }) {
   if (version === "checkBox") {
     const totalOptions = options.length;
@@ -80,7 +82,7 @@ export default function InputField({
   }
   if (version === "input") {
     return (
-      <div className={styles.item}>
+      <div className={clsx(styles.item, className)}>
         <label htmlFor={id}>
           {label} <span>*</span>
         </label>
@@ -93,6 +95,7 @@ export default function InputField({
           )}
           {...registerOptions}
           placeholder={placeholder}
+          {...props}
         />
       </div>
     );

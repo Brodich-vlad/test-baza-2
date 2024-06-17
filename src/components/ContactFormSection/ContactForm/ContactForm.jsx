@@ -2,32 +2,35 @@
 import styles from "./ContactForm.module.scss";
 import clsx from "clsx";
 import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import handlerSendContactForm from "@/src/lib/services/handlerSendContactForm";
-import { formScheme } from "./formScheme";
+import { FeedbackSchema, feedbackDefaultValues } from "./FeedbackSchema";
 import { Icon } from "../../shared/Icon/Icon";
 import MainButton from "../../shared/MainButton/MainButton";
 import InputField from "../../shared/InputField/InputField";
-import stateErrorAlert from "@/src/state/stateErrorAlert";
-import ErrorAlert from "../../shared/ErrorAlert/ErrorAlert";
+import stateUseAlert from "@/src/state/stateUseAlert";
+import UseAlert from "../../shared/UseAlert/UseAlert";
+import Loader from "../../shared/loader/Loader";
 
 export default function ContactForm() {
   const t = useTranslations("Main.feedback_form");
-  const isOpen = stateErrorAlert(state => state.isOpen);
-  const open = stateErrorAlert(state => state.open);
+  const isOpen = stateUseAlert(state => state.isOpen);
+  const open = stateUseAlert(state => state.open);
 
   const {
     register,
     handleSubmit,
-    trigger,
     formState: { errors, isValid, isDirty },
     reset
-  } = useForm({ defaultValues: { ...formScheme.defaultValues } });
+  } = useForm({ defaultValues: {...feedbackDefaultValues}, resolver: zodResolver(FeedbackSchema), mode: 'onBlur'});
 
-  const [isSubmit, setIsSubmit] = useState('error');
+  const [isSubmit, setIsSubmit] = useState(null);
+  const [loader, setIsLoader] = useState(false);
 
   const isError = (res) => {
+    setIsLoader(false)
     if(res === 'error'){
       open()
     }
@@ -35,7 +38,9 @@ export default function ContactForm() {
   }
 
   const onSubmit = (data) => {
+    setIsLoader(true)
     handlerSendContactForm( data, isError )
+    console.log(data)
     setIsSubmit(null)
     reset();
   };
@@ -50,52 +55,46 @@ export default function ContactForm() {
 
   return (
     <form className={styles.form} 
-    onSubmit={handleSubmit(onSubmit)}>
+      onSubmit={handleSubmit(onSubmit)}>
       <ul className={styles.list}>
         <li>
           <InputField
             id={"firstName"}
             placeholder={t("name")}
-            registerOptions={register("firstName", { ...formScheme.firstName, onBlur:() => {
-              trigger("firstName")
-            }})}
+            registerOptions={register("firstName", { ...FeedbackSchema.firstName})}
             isError={errors.firstName}
             isValid={isValid}
             version={"input"}
             label={t("name")}
           />
 
-          {errors.firstName && <span className={clsx(styles.error, styles._hide)}>{t("error_message.name")}</span>}
+          {errors.firstName && <span className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.firstName.message}`)}</span>}
         </li>
         <li>
           <InputField
             id={"email"}
             placeholder={"email@gmail.com"}
-            registerOptions={register("email", { ...formScheme.email,onBlur:() => {
-              trigger("email")
-            } })}
+            registerOptions={register("email", { ...FeedbackSchema.email })}
             isError={errors.email}
             isValid={isValid}
             version={"input"}
             label={t("email")}
           />
 
-          {errors.email && <span className={clsx(styles.error, styles._hide)}>{t("error_message.email")}</span>}
+          {errors.email && <span className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.email.message}`)}</span>}
         </li>
         <li>
           <InputField
             id={"message"}
             placeholder={t("message_placeholder")}
-            registerOptions={register("message", { ...formScheme.message,onBlur:() => {
-              trigger("message")
-            } })}
+            registerOptions={register("message", { ...FeedbackSchema.message })}
             isError={errors.message}
             isValid={isValid}
             version={"textArea"}
             label={t("message")}
           />
           
-          {errors.message && <span className={styles.error}>{t("error_message.message")}</span>}
+          {errors.message && <span className={styles.error}>{t(`error_message.${errors.message.message}`)}</span>}
         </li>
       </ul>
       
@@ -107,7 +106,9 @@ export default function ContactForm() {
         <Icon name='mail'/>
       </div>}
       
-      {isOpen && <ErrorAlert/>}
+      {isOpen && <UseAlert/>}
+
+      {loader && <Loader/>}
     </form>
   );
 }

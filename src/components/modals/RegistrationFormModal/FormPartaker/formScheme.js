@@ -4,6 +4,8 @@ export const formScheme = {
     lastName: "",
     email: "",
     phone:"",
+    country:'',
+    city:'',
     discord: "",
     linkedin: "",
     specialization:"",
@@ -43,6 +45,20 @@ export const formScheme = {
     maxLength:17,
     //pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(?!ru$|рф$)[A-Z]{2,}$/i
   },
+  country:{
+    required: true,
+    minLength:2, 
+    maxLength:30, 
+    // регуярний вираз блокує російські літери.
+     pattern: /^(?!.*[\u0401\u0451\u042B\u044B\u042D\u044D\u042A\u044A])[\p{L}](?:[\p{L} '-]{0,28}[\p{L}])?$/ugi
+  },
+  city:{
+    required: true,
+    minLength:2, 
+    maxLength:30, 
+    // регуярний вираз блокує російські літери.
+     pattern: /^(?!.*[\u0401\u0451\u042B\u044B\u042D\u044D\u042A\u044A])[\p{L}](?:[\p{L} '-]{0,28}[\p{L}])?$/ugi
+  },
   discord:{
     required: true,
     minLength:2,
@@ -74,15 +90,15 @@ const form = {
 }
 
 const form2 = {
-  // Форма учасника !?
+  // Форма учасника 
   firstName: 'string',
   lastName: 'string',
   specialization:'string', // UI\UX designer
+  phone:'string',
   email: 'string',  //email@gmail.com
+  country:'string',
   city:'string',
   discord: 'string',
-  linkedin: 'string',
-  experience:'boolean',  //  Наявність досвіду 'boolean' або 'string'?
-  motivation:'string',   // В чому мотивація створити продукт
-  saw_questionnaire:'string',  // Я побачив/побачила анкету
+  linkedin: 'string'
 }
+

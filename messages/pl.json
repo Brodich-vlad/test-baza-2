@@ -60,19 +60,19 @@
 			},
 			"slide_2": {
 				"title": "O nas",
-				"text": "Inicjatywa Baza Trainee Ukraine jako platforma edukacyjno-szkoleniowa jest odpowiedzią na zapotrzebowanie społeczne, które pojawiło się na Ukrainie w latach 2022—2023 na zatrudnienie w obszarze technologii informatycznych. Jest to strona internetowa, która łączy dwie grupy społeczne użytkowników."
+				"text": "Inicjatywa Baza Trainee Ukraine jako platforma edukacyjno-szkoleniowa jest odpowiedzią na zapotrzebowanie społeczne, które pojawiło się na Ukrainie w latach 2022-2023 na zatrudnienie w obszarze technologii informatycznych. Jest to strona internetowa, która łączy dwie grupy społeczne użytkowników."
 			},
 			"slide_3": {
 				"title": "Nasza grupa docelowa",
-				"text": "Ukraińcy, którzy opanowują specjalności w obszarze IT niezależnie od wieku i doświadczenia — trainee, juniorzy, switcherzy, mentorzy z jednej strony, oraz społeczności i wspólnoty Ukrainy w obszarze charytatywności, wolontariatu, inicjatyw społecznych z drugiej."
+				"text": "Ukraińcy, którzy opanowują specjalizacje IT bez względu na wiek i doświadczenie - stażyści, juniorzy, pocieszyciele, mentorzy z jednej strony, a ukraińskie społeczności i organizacje w dziedzinie działalności charytatywnej, wolontariatu i inicjatyw publicznych z drugiej strony."
 			},
 			"slide_4": {
 				"title": "Nasz cel",
-				"text": "Połączyć te kategorie w wspólnej działalności w taki sposób, aby obie strony odniosły korzyści. Dla pierwszej grupy jest to rzeczywiste praktyczne doświadczenie tworzenia projektu na żywo, dla drugiej — cyfrowy produkt, który funkcjonuje i wspiera rozwój inicjatyw społecznych."
+				"text": "Połączenie tych kategorii we wspólnych działaniach w sposób przynoszący korzyści obu stronom. Dla pierwszej grupy oznacza to zdobycie prawdziwego praktycznego doświadczenia w tworzeniu projektu na żywo, podczas gdy dla drugiej grupy oznacza to otrzymanie funkcjonalnego produktu cyfrowego, który działa i przyczynia się do rozwoju inicjatywy społecznej."
 			},
 			"slide_5": {
 				"title": "Zasada działania",
-				"text": "Trening uczestnika na podstawie obecnych technologii, którymi obecnie włada, i wspieranie jego zatrudnienia. Przy tworzeniu projektu stosować technologie, które chce rozwijać uczestnik, bez konieczności ponownego szkolenia. Zapewnić klientowi wysokiej jakości produkt cyfrowy."
+				"text": "Przeszkolenie uczestnika w obszarze technologii, które są mu już znane i ułatwienie mu zatrudnienia. Podczas realizacji projektu zastosuj technologie, w których uczestnik chce dalej się rozwijać. Najistotniejsze będzie dostarczenie klientowi rozwiązania wysokiej jakości."
 			}
 		},
 		"history_project_section": {
@@ -194,8 +194,16 @@
 			"btn_send": "Wyślać",
 			"error_message": {
 				"name": "Wpisz imię",
-				"email": "Proszę podać poprawny adres e-mail",
-				"message": "Wpisz wiadomość"
+				"name_min": "Nazwa musi mieć co najmniej 2 znaki",
+				"name_max": "Nazwa nie może przekraczać 30 znaków",
+				"incorrect_name": "Proszę wpisać prawidłowe imię",
+				"email": "Wprowadź swój email",
+				"incorrect_email": "Proszę podać poprawny adres e-mail",
+        "invalid_ru": "Domeny .ru i .by są niedozwolone",
+				"message": "Wpisz wiadomość",
+				"message_min": "Wiadomość musi zawierać co najmniej 10 znaków",
+				"message_max": "Prosimy o ograniczenie wiadomości do 300 znaków",
+				"incorrect_message": "Proszę wprowadzić poprawną wiadomość"
 			}
 		}
 	},
@@ -241,7 +249,10 @@
 		"lastName": "Nazwisko",
 		"specialization": "Specjalizacja",
 		"email": "E-mail",
-		"city": "Miasto (kraj)",
+		"city": "Miasto",
+		"city_placeholder": "Kijów",
+		"country": "Kraj",
+		"country_placeholder": "Ukraina",
 		"course_name": "Nazwa ukończonego kursu w specjalności i data zakończenia (jeżeli kurs jest aktualnie realizowany, należy zaznaczyć, że jest aktualny)",
 		"your answer": "Twoja odpowiedź",
 		"experience": "Dostępność doświadczenia",
@@ -269,14 +280,24 @@
 		"permit": "Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z ustawą Ukrainy «O ochronie danych osobowych»",
 		"btn_send": "Wysłać",
 		"error_message": {
-			"firstName": "Wpisz imię",
+			"firstName": "Wpisz swoje imię",
+			"firstName_min": "Nazwa musi mieć co najmniej 2 znaki",
+			"firstName_max": "Nazwa nie może przekraczać 30 znaków",
+			"incorrect_firstName": "Proszę wpisać prawidłowe imię",
 			"lastName": "Wpisz swoje nazwisko",
+			"lastName_min": "Nazwisko musi mieć co najmniej 2 znaki",
+			"lastName_max": "Nazwisko nie może przekraczać 50 znaków",
+			"incorrect_lastName": "Wpisz poprawne nazwisko",
 			"specialization": "Wybierz specjalizację",
 			"email": "Wprowadź swój email",
+			"incorrect_email": "Proszę podać poprawny adres e-mail",
+			"invalid_ru": "Domeny .ru i .by są niedozwolone",
 			"phone": "Wprowadź numer telefonu",
+			"incorrect_phone": "Proszę wpisać poprawny numer telefonu",
 			"discord": "Wpisz pseudonim na Discordzie",
 			"linkedin": "Wprowadź swój profil na Linkedin",
-			"convenient_time": "Wybierz godziny otwarcia",
+			"convenient_time": "Wybierz dogodny termin konsultacji",
+			"country": "Wprowadź kraj",
 			"city": "Wejdź do miasta",
 			"course_name": "Wpisz nazwę ukończonego kursu",
 			"experience": "Wybierz dostępność doświadczenia",
