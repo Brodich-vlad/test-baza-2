@@ -66,7 +66,7 @@ export default function ContactForm() {
             label={t("name")}
           />
 
-          {errors.firstName && <p className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.firstName.message}`)}</p>}
+          {errors.firstName && <span className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.firstName.message}`)}</span>}
         </li>
         <li>
           <InputField
@@ -79,7 +79,7 @@ export default function ContactForm() {
             label={t("email")}
           />
 
-          {errors.email && <p className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.email.message}`)}</p>}
+          {errors.email && <span className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.email.message}`)}</span>}
         </li>
         <li>
           <InputField
@@ -92,7 +92,7 @@ export default function ContactForm() {
             label={t("message")}
           />
           
-          {errors.message && <p className={styles.error}>{t(`error_message.${errors.message.message}`)}</p>}
+          {errors.message && <span className={styles.error}>{t(`error_message.${errors.message.message}`)}</span>}
         </li>
       </ul>
       

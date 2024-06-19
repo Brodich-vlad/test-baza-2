@@ -24,7 +24,7 @@ export default function FormPartaker() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     reset
   } = useForm({ defaultValues: {...partakerDefaultValues}, resolver: zodResolver(PartakerSchema), mode: 'onBlur'});
 
@@ -149,8 +149,7 @@ export default function FormPartaker() {
             placeholder={"+380 xx xxx xx xx"}
             value={phone}
             onFocus={()=>{setPhone(phone ? phone : '+380')}}
-            onInput={(e)=>{setPhone(e.target.value)}}
-            onChange={(e)=>{setPhone(formatPhoneNumber(e.target.value))}}
+            onInput={(e)=>{setPhone(formatPhoneNumber(e.target.value))}}
             registerOptions={register("phone", { ...PartakerSchema.phone })}
             isError={errors.phone}
             isValid={isValid}
@@ -221,15 +220,14 @@ export default function FormPartaker() {
               <label htmlFor={'yes'} className={styles.btn_option}>
                 <input 
                   type="radio" 
-                  {...register("experience", { ...PartakerSchema.experience })}
-                  id={'yes'} 
-                  name="experience" 
-                  value={t("yes")} 
-                  onClick={()=>{setExperience('yes')}}/>
-                  <span className={clsx(styles.check, experience==='yes' && styles._active)}>
-                    <Icon name={'check'}/>
-                  </span>
-                  {t("yes")}
+                    {...register("experience", { ...PartakerSchema.experience })}
+                    id={'yes'} name="experience" 
+                    value={t("yes")} 
+                    onClick={()=>{setExperience('yes')}}/>
+                      <span className={clsx(styles.check, experience==='yes' && styles._active)}>
+                        <Icon name={'check'}/>
+                      </span>
+                      {t("yes")}
               </label>
               <label htmlFor={'no'} className={styles.btn_option}>
                 <input 
@@ -347,10 +345,17 @@ export default function FormPartaker() {
             {errors.agree && <p className={styles.error_partaker}>{t("error_message.permit")}</p>}
           </div>
         </li>
+          {/* {inputFields.map((field) => (
+            <div key={field.id}>
+              <InputField {...field} />
+              {field.isError && <p>{t(`error_message.${field.id}`)}</p>}
+            </div>
+          ))} */}
       </ul>
 
       <MainButton
         type="submit"
+        // disabled={!isDirty || !isValid}
         className={styles.submit}
       >
         {t("btn_send")}
