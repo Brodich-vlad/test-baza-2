@@ -1,19 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import styles from './FormMentor.module.scss';
 import clsx from "clsx";
 
 import { useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import { MentorSchema, formatPhoneNumber, mentorDefaultValues } from "./mentorScheme";
+import { MentorSchema, mentorDefaultValues } from "./formMentorScheme";
 import MainButton from "../../../shared/MainButton/MainButton";
 import InputField from "../../../shared/InputField/InputField";
 import { optionsSpec, optionsTime } from "./options";
 import { Icon } from "@/src/components/shared/Icon/Icon";
+import Loader from "@/src/components/shared/loader/Loader";
+import stateUseAlert from "@/src/state/stateUseAlert";
+import { formatPhoneNumber } from "@/src/lib/utils/formatPhoneNumber";
+import { createKey } from "@/src/lib/utils/createKey";
 
 export default function FormMentor({handleClose}) {
   const t = useTranslations("Modal_form");
+
+  const open = stateUseAlert(state => state.open);
 
   const {
     register,
@@ -26,15 +32,33 @@ export default function FormMentor({handleClose}) {
   const [ phone, setPhone ] = useState('');
   const [ convenientTime, setConvenientTime ] = useState('');
   const [ agree, setAgree ] = useState(false);
+  const [loader, setIsLoader] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const resetForm = () => {
     setSpecialization('')
     setPhone('')
     setConvenientTime('')
     setAgree(false)
+    setIsLoader(false)
     reset();
     handleClose()
+  }
+  const isSubmitted = (res) => {
+    setIsLoader(false)
+    if(res === 'error'){
+      open('error')
+    }
+    open('success')
+    resetForm()
+  }
+
+  const onSubmit = (data) => {
+    setIsLoader(true)
+    // Імітація відправки форми
+    setTimeout(()=>{
+      isSubmitted('success')
+      console.log(data);
+    },3000)
   };
 
   return (
@@ -63,7 +87,7 @@ export default function FormMentor({handleClose}) {
             className={styles.item}
             placeholder={t("lastName")}
             registerOptions={register("lastName", { ...MentorSchema.lastName})}
-            isError={errors.firstName}
+            isError={errors.lastName}
             isValid={isValid}
             version={"input"}
             label={t("lastName")}
@@ -78,7 +102,7 @@ export default function FormMentor({handleClose}) {
             <div className={styles.select}>
               {optionsSpec.map((option)=>{
                 return(
-                  <label htmlFor={option.id} className={styles.btn_option} key={option.id}>
+                  <label htmlFor={option.id} className={styles.btn_option} key={createKey()}>
                   <input 
                   type="radio" 
                   {...register("specialization", { ...MentorSchema.specialization })}
@@ -118,11 +142,10 @@ export default function FormMentor({handleClose}) {
             className={styles.item}
             placeholder={"+380 xx xxx xx xx"}
             value={phone}
-            onFocus={()=>{setPhone('+380')}}
+            onFocus={()=>{setPhone(phone ? phone : '+380')}}
             onInput={(e)=>{setPhone(e.target.value)}}
-            onBlur={()=>{setPhone(formatPhoneNumber(phone))}}
-            registerOptions={register("phone", { ...MentorSchema.phone
-              })}
+            onChange={(e)=>{setPhone(formatPhoneNumber(e.target.value))}}
+            registerOptions={register("phone", { ...MentorSchema.phone })}
             isError={errors.phone}
             isValid={isValid}
             version={"input"}
@@ -142,7 +165,7 @@ export default function FormMentor({handleClose}) {
             version={"input"}
             label={t("discord")}
           />
-          {errors.discord && <p className={styles.error_modal}>{t("error_message.discord")}</p>}
+          {errors.discord && <p className={styles.error_modal}>{t(`error_message.${errors.discord.message}`)}</p>}
         </li>
 
         <li>
@@ -156,7 +179,7 @@ export default function FormMentor({handleClose}) {
             version={"input"}
             label={t("linkedin")}
           />
-          {errors.linkedin && <p className={styles.error_modal}>{t("error_message.linkedin")}</p>}
+          {errors.linkedin && <p className={styles.error_modal}>{t(`error_message.${errors.linkedin.message}`)}</p>}
         </li>
 
         <li>
@@ -165,13 +188,13 @@ export default function FormMentor({handleClose}) {
             <div className={styles.select}>
               {optionsTime.map((option)=>{
                 return(
-                  <label htmlFor={option.id} className={clsx(styles.btn_option,styles[option.id])} key={option.id}>
+                  <label htmlFor={option.id} className={clsx(styles.btn_option,styles[option.id])} key={createKey()}>
                   <input
                   type="radio" 
                   {...register("convenient_time", { ...MentorSchema.convenient_time })}
                   id={option.id} 
                   name="convenient_time" 
-                  value={option.label} 
+                  value={option.label=== "anytime"? t("anytime"):option.label} 
                   onClick={()=>{setConvenientTime(option.label)}}/>
                     <span className={clsx(styles.check, convenientTime === option.label && styles._active)}>
                       <Icon name={'check'}/>
@@ -212,11 +235,14 @@ export default function FormMentor({handleClose}) {
 
       <MainButton
         type="submit"
-        disabled={!isDirty || !isValid}
+        //disabled={!isDirty || !isValid}
         className={styles.submit}
+        //variant={"modal"}
       >
         {t("btn_send")}
       </MainButton>
+
+      {loader && <Loader/>}
     </form>
   )
 }

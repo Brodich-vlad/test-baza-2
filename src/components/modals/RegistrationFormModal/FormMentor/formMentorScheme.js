@@ -1,5 +1,6 @@
-import { patternEmail, patternName, patternPhone } from "@/src/constants/regulars";
 import { z } from "zod";
+import { patternEmail, patternName, patternNikDiscord, patternPhone, patternUrlLinkedin } from "@/src/constants/regulars";
+import { formatPhoneNumber } from "@/src/lib/utils/formatPhoneNumber";
 
 export const mentorDefaultValues= {
   firstName: "",
@@ -11,19 +12,6 @@ export const mentorDefaultValues= {
   specialization:"",
   convenient_time:"",
   agree: false,
-}
- 
-export function formatPhoneNumber(number) {
-if( /^\+380[\s]\d{2}[\s]\d{3}[\s]\d{2}[\s]\d{2}$/.test(number)){return number}
-
-  let formattedNumber = '';
-  let numberString = number;
-  formattedNumber += numberString.slice(0, 4) + ' ';
-  formattedNumber += numberString.slice(4, 6) + ' ';
-  formattedNumber += numberString.slice(6, 9) + ' ';
-  formattedNumber += numberString.slice(9, 11) + ' ';
-  formattedNumber += numberString.slice(11);
-  return formattedNumber;
 }
 
 export const MentorSchema = z
@@ -56,15 +44,18 @@ export const MentorSchema = z
     .trim()
     .min(1, { message: 'phone' })
     .regex(patternPhone, { message: 'incorrect_phone' })
-    .transform(value=> formatPhoneNumber(value)),
+    .transform(value=>  formatPhoneNumber(value)),
 
     discord: z.string()
     .trim()
-    .min(1, { message: 'discord' }),
+    .min(1, { message: 'discord' })
+    .regex(patternNikDiscord, { message: 'incorrect_discord' }),
 
     linkedin: z.string()
     .trim()
-    .min(1, { message: 'linkedin' }),
+    .min(1, { message: 'linkedin' })
+    .url({ message: "invalid_url" })
+    .regex(patternUrlLinkedin, { message: 'invalid_url' }),
 
     convenient_time: z.string()
     .trim()
@@ -73,7 +64,7 @@ export const MentorSchema = z
     agree: z.boolean().refine(value => value === true, "You must agree to the terms and conditions")
 	});
 
-// const form = {
+// Форма ментора{
 //   firstName: 'string',
 //   lastName: 'string',
 //   email: 'string',  //email@gmail.com
@@ -83,17 +74,3 @@ export const MentorSchema = z
 //   specialization:'string', // UI\UX designer
 //   convenient_time:'string',// 18.00-21.00
 // }
-
-// const form2 = {
-//   // Форма учасника 
-//   firstName: 'string',
-//   lastName: 'string',
-//   specialization:'string', // UI\UX designer
-//   phone:'string',
-//   email: 'string',  //email@gmail.com
-//   country:'string',
-//   city:'string',
-//   discord: 'string',
-//   linkedin: 'string'
-// }
-
