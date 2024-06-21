@@ -126,7 +126,7 @@
       }
     }
     
-    .error_modal{
+    .error._modal{
       @include mix.apply-font-styles(var.$text-16-font);
       font-size: 14px;
       color: var.$secondary-error;
