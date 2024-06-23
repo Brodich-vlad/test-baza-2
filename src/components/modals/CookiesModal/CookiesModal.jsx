@@ -43,10 +43,11 @@ export default function CookiesModal() {
     <div className={styles.modal}>
       <h3 className={styles.title}>Cookies<Icon name={"cookies"}/></h3>
 
-      <p className={styles.text}>{t("text")} <button type='button'
+      <p className={styles.text}>{t("text")}  <button
+        type="button"
         className={styles.linck}
-        onClick={()=>{downloadPdf('/documents/privacy _policy.pdf')}}
-        >{t('privacy_policy')}</button>  
+        onClick={()=>{downloadPdf('/documents/privacy_policy.pdf')}}
+        >{t('privacy_policy')}</button> 
       </p>
 
       <MainButton className={styles.btn} 
