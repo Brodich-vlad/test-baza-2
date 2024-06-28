@@ -8,12 +8,14 @@ const ScrollToTopBtn = () => {
   useEffect(() => {
     const toggleVisible = () => {
       const scrolled = window.scrollY;
+
       if (scrolled > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
+    toggleVisible();
 
     window.addEventListener("scroll", toggleVisible);
 
@@ -21,7 +23,6 @@ const ScrollToTopBtn = () => {
       window.removeEventListener("scroll", toggleVisible);
     };
   }, []);
-
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

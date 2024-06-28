@@ -15,6 +15,7 @@ import Loader from "@/src/components/shared/loader/Loader";
 import { formatPhoneNumber } from "@/src/lib/utils/formatPhoneNumber";
 import { createKey } from "@/src/lib/utils/createKey";
 import downloadPdf from "@/src/lib/hooks/downloadPdf";
+import { regInputPhone } from "@/src/constants/regulars";
 
 
 export default function FormPartaker() {
@@ -25,7 +26,7 @@ export default function FormPartaker() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid, isDirty },
+    formState: {  errors, isValid, isDirty },
     reset
   } = useForm({ defaultValues: {...partakerDefaultValues}, resolver: zodResolver(PartakerSchema), mode: 'onBlur'});
 
@@ -48,7 +49,7 @@ export default function FormPartaker() {
     setIsLoader(false)
     reset();
   }
-  
+
   const isSubmitted = (res) => {
     setIsLoader(false)
     if(res === 'error'){
@@ -67,6 +68,19 @@ export default function FormPartaker() {
     },3000)
   };
 
+  const isDisabled = () => {
+    if (Object.keys(errors).length > 0) {
+      return true;
+    } else if (isDirty && !isValid) {
+      return true;
+    } else return false;
+  };
+  // Валідація символів номеру телефону
+  const inputValidPhone = (event) =>{
+    if(regInputPhone.test(event.target.value)){
+      setPhone(formatPhoneNumber(event.target.value))
+    }else event.preventDefault()
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form_partaker}>
@@ -133,6 +147,7 @@ export default function FormPartaker() {
         <li>
           <InputField
             id={"email"}
+            type='email'
             className={styles.item}
             placeholder={"email@gmail.com"}
             registerOptions={register("email", { ...PartakerSchema.email })}
@@ -149,9 +164,10 @@ export default function FormPartaker() {
             id={"phone"}
             className={styles.item}
             placeholder={"+380 xx xxx xx xx"}
+            type='tel'
             value={phone}
             onFocus={()=>{setPhone(phone ? phone : '+380')}}
-            onInput={(e)=>{setPhone(formatPhoneNumber(e.target.value))}}
+            onInput={(e)=>{inputValidPhone(e)}}
             registerOptions={register("phone", { ...PartakerSchema.phone })}
             isError={errors.phone}
             isValid={isValid}
@@ -202,6 +218,7 @@ export default function FormPartaker() {
           />
           {errors.discord && <p className={styles.error_partaker}>{t(`error_message.${errors.discord.message}`)}</p>}
         </li>
+
         <li>
           <InputField
             id={"linkedin"}
@@ -291,6 +308,7 @@ export default function FormPartaker() {
             {errors.sawQuestionnaire && <p className={clsx(styles.error_partaker, styles._list)}>{t("error_message.saw_questionnaire")}</p>}
           </div>
         </li>
+
         <li>
           <div className={styles.item}>
             <h4>{t("rules_participation")} <span>*</span></h4>
@@ -300,6 +318,7 @@ export default function FormPartaker() {
               type="button" >Baza_Trainee_Ukraine.pdf</button>
           </div>
         </li>
+
         <li>
           <div className={styles.item}>
             <h4>{t("acquainted")} <span>*</span></h4>
@@ -358,7 +377,7 @@ export default function FormPartaker() {
 
       <MainButton
         type="submit"
-        // disabled={!isDirty || !isValid}
+        disabled={isDisabled()}
         className={styles.submit}
       >
         {t("btn_send")}

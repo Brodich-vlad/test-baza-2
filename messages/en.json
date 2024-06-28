@@ -10,6 +10,31 @@
 	"Internship": {
 		"invite_participate": {
 			"title": "We invite you to participate",
+			"card_1": {
+				"text1": "UI/UX designers specialize in the usability and appearance of applications and websites. They create convenient, attractive, and intuitive designs that allow users to navigate and utilize the product clearly and efficiently.",
+				"text2": "A web designer is a specialist who creates the visual representation of a brand on the internet. They design the interfaces of websites, online stores, landing pages, and applications for clients. They handle both the logical and visual aspects of the product."
+			},
+			"card_2": {
+				"text1": "A front-end developer is a programmer who develops the client-side part of a product—the elements of websites, programs, and applications that allow users to interact with them. They are responsible for creating a user-friendly and aesthetically pleasing appearance of web pages across various devices and implementing animations and other effects.",
+				"text2": "A front-end developer writes code and builds the part of the page that the user sees and interacts with. For example, every image, button, and text on this site was created by a front-end developer based on a designer's layout. It is an interesting job because each new line of code enhances the appearance and functionality of the site."
+			},
+			"card_3": {
+				"text1": "A back-end developer is responsible for creating and configuring the server-side of an application, including data processing logic, interaction with databases, API development, and ensuring information security.",
+				"text2": "A back-end developer is also responsible for developing and integrating components such as authentication systems, authorization, caching, message queues, and other elements that ensure the functionality and performance of the entire application. They create the 'core' of the project—writing the pathways that make everything work."
+			},
+			"card_4": {
+				"text1": "Fullstack developers have programming skills in both frontend (client-side) and backend (server-side) development. They are capable of developing a complete product from start to finish and are highly valued in the market as versatile professionals.",
+				"text2": "Fullstack developers create websites and web applications, responsible for both their frontend and backend. The frontend is the part of the website or application that users see in their browser. It includes headings, subheadings, images, links, and buttons. The backend, on the other hand, is the logic and functionality behind the operation of the website or application. It encompasses everything hidden under the hood—the mechanics of actions, data storage, and more."
+			},
+			"card_5": {
+				"text1": "A QA engineer is responsible for developing testing plans for applications and websites. They identify issues in the functionality of the product, and most importantly, they help prevent these issues from occurring in the future.",
+				"text2": "A tester improves programs but doesn't write code. They find errors (bugs), describe them, and report them to developers. Simply put, a tester ensures that everything works correctly and meets the requirements."
+			},
+			"card_6": {
+				"text1": "UI/UX-дизайнери спеціалізуються на зручності і зовнішньому вигляді програм і сайтів. Саме вони створюють зручний, привабливий і зрозумілий дизайн, який дозволяє ясно і ефективно користуватись продуктом",
+				"text2": "Вебдизайнер – це фахівець, який створює візуальне оформлення бренду в інтернеті. Він проєктує інтерфейси вебсайтів, інтернет-магазинів, лендингів, програм для замовника. Займається логічною та візуальною частиною продукту."
+			},
+			"card_link": "Read more",
 			"btn_text": "Join the community"
 		},
 		"join_project_section": {
@@ -225,7 +250,7 @@
 	},
 	"Alert": {
 		"title": "Sorry, something went wrong",
-		"title_success": "Sent successfully",
+		"title_success": "Your data has been sent successfully",
 		"text": "Try again later",
 		"btn_home": "Try again"
 	},
@@ -241,7 +266,7 @@
 		"ariaLabel_btn_close_2": "closes the thank you modal window",
 		"ariaLabel_btn_close_3": "closes the error modal window",
 		"error_message": "Max 4 signs!",
-		"error_message_pay": "Sorry, an error occurred :("
+		"error_message_pay": "Sorry, an error occurred"
 	},
 	"Modal_form": {
 		"title": "Registration for participation in the Baza Trainee Ukraine project",
@@ -299,9 +324,15 @@
 			"invalid_url": "Enter a valid Linkedin profile link",
 			"convenient_time": "Choose a convenient consultation time",
 			"country": "Enter the country",
+			"country_max": "Назва країни повинна бути не більше 30 знаків",
+			"incorrect_country": "Введіть коректну назву країни",
 			"city": "Enter the city",
+			"city_max": "Назва міста повинна бути не більше 30 знаків",
+			"incorrect_city": "Введіть коректну назву міста",
 			"experience": "Choose the availability of experience",
 			"motivation": "State your motivation",
+			"motivation_max": "Текст має бути не більше 50 знаків",
+			"incorrect_motivation": "Введіть коректний текст",
 			"saw_questionnaire": "Choose where you saw the questionnaire",
 			"agree": "Get acquainted with the conditions of participation",
 			"permit": "Give consent to the processing of personal data"

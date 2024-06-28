@@ -4,8 +4,8 @@ import clsx from "clsx";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from "next-intl";
-import { useState } from "react";
-import handlerSendContactForm from "@/src/lib/services/handlerSendContactForm";
+import { useMutation } from "@tanstack/react-query";
+import { ContactFormService } from "@/src/api/contact-form-service";
 import { FeedbackSchema, feedbackDefaultValues } from "./formFeedbackSchema";
 import { Icon } from "../../shared/Icon/Icon";
 import MainButton from "../../shared/MainButton/MainButton";
@@ -24,27 +24,23 @@ export default function ContactForm() {
     reset
   } = useForm({ defaultValues: {...feedbackDefaultValues}, resolver: zodResolver(FeedbackSchema), mode: 'onBlur'});
 
-  const [isSubmit, setIsSubmit] = useState(null);
-  const [loader, setIsLoader] = useState(false);
-
-  const isSubmitted = (res) => {
-    setIsLoader(false)
-    if(res === 'error'){
+  const { mutate, isPending, isSuccess } = useMutation({
+    mutationFn: (data) => {
+      return ContactFormService(data)
+    }, 
+    onError: () => {
       open('error')
-    }
-    setIsSubmit(res)
-  }
+    },
+  })
 
   const onSubmit = (data) => {
-    setIsLoader(true)
-    handlerSendContactForm( data, isSubmitted )
+    mutate(data)
     console.log(data)
-    setIsSubmit(null)
     reset();
   };
 
   const isDisabled = () => {
-    if (errors.firstName || errors.email || errors.message) {
+    if (Object.keys(errors).length > 0) {
       return true;
     } else if (isDirty && !isValid) {
       return true;
@@ -72,6 +68,7 @@ export default function ContactForm() {
           <InputField
             id={"email"}
             placeholder={"email@gmail.com"}
+            type='email'
             registerOptions={register("email", { ...FeedbackSchema.email })}
             isError={errors.email}
             isValid={isValid}
@@ -100,11 +97,11 @@ export default function ContactForm() {
         {t("btn_send")}
       </MainButton>
       
-     {isSubmit && <div className={styles.send}>
+     {isSuccess && <div className={styles.send}>
         <Icon name='mail'/>
       </div>}
 
-      {loader && <Loader/>}
+      {isPending && <Loader/>}
     </form>
   );
 }

@@ -11,14 +11,18 @@ const MainLink = ({
   type = linkTypes.DEFAULT,
   className,
   handleClose,
-  openInNewTab = false,
+  openInNewTab,
   ...rest
 }) => {
   const pathname = usePathname();
   const isCurrentPage = pathname === url;
 
-  const scrollToBottom = (event) => {
+  const handleClick = (event) => {
     if (type === linkTypes.BURGER) handleClose();
+    if (type === linkTypes.HELP) {
+      event.preventDefault();
+      return;
+    }
     if (url === "/contacts") {
       event.preventDefault();
       window.scrollTo({
@@ -35,16 +39,17 @@ const MainLink = ({
       isCurrentPage && styles.active,
       className
     ),
-    onClick: scrollToBottom,
+    onClick: handleClick,
     ...rest,
   };
+
 
   if (openInNewTab) {
     linkProps.target = "_blank";
     linkProps.rel = "noopener noreferrer";
   }
-
-  if (url === "/contacts") {
+  
+  if (type === linkTypes.HELP || url === "/contacts") {
     return <button {...linkProps}>{children}</button>;
   }
 
