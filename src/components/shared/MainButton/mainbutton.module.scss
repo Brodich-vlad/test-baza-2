@@ -12,8 +12,10 @@
   z-index: 2;
   box-shadow: none;
   border: none;
-  transition: all var.$transition-duration-base var.$transition-timing-base;
-
+  
+  @media (any-hover: hover){
+    transition: all var.$transition-duration-base var.$transition-timing-base;
+  }
   @include mx.media-q("md") {
     padding: 14px 24px;
   }
