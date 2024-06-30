@@ -9,10 +9,10 @@ import clsx from "clsx";
 
 import { useTranslations } from "next-intl";
 import styles from "./PartnerSection.module.scss";
-import { partnerCardItems } from "./partnerCardItems";
+//import { partnerCardItems } from "./partnerCardItems";
 
 import { useQuery } from "@tanstack/react-query";
-import { getAllPartners } from "@/src/api/partners-services";
+import { getAllPartners } from "@/src/api/partners";
 
 const PartnerSection = () => {
 

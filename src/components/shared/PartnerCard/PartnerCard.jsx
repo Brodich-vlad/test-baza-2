@@ -17,7 +17,7 @@ export default function PartnerCard({ item }) {
       <div className={styles.img_wrap}>
         <Image
           className={styles.img}
-          //src={imgUrl}
+          //src={imageUrl}
           src={`https://baza-trainee.tech/api/v1/files/${imageUrl}`}
           alt={name}
           fill

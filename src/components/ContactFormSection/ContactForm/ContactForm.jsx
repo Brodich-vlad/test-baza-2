@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from "next-intl";
 import { useMutation } from "@tanstack/react-query";
-import { ContactFormService } from "@/src/api/contact-form-service";
+import { ContactFormService } from "@/src/api/contact-form";
 import { FeedbackSchema, feedbackDefaultValues } from "./formFeedbackSchema";
 import { Icon } from "../../shared/Icon/Icon";
 import MainButton from "../../shared/MainButton/MainButton";
@@ -62,7 +62,7 @@ export default function ContactForm() {
             label={t("name")}
           />
 
-          {errors.firstName && <span className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.firstName.message}`)}</span>}
+          {errors.firstName && <p className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.firstName.message}`)}</p>}
         </li>
         <li>
           <InputField
@@ -76,7 +76,7 @@ export default function ContactForm() {
             label={t("email")}
           />
 
-          {errors.email && <span className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.email.message}`)}</span>}
+          {errors.email && <p className={clsx(styles.error, styles._hide)}>{t(`error_message.${errors.email.message}`)}</p>}
         </li>
         <li>
           <InputField
@@ -89,7 +89,7 @@ export default function ContactForm() {
             label={t("message")}
           />
           
-          {errors.message && <span className={styles.error}>{t(`error_message.${errors.message.message}`)}</span>}
+          {errors.message && <p className={styles.error}>{t(`error_message.${errors.message.message}`)}</p>}
         </li>
       </ul>
       
