@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { useSwiperSlide } from 'swiper/react';
 
 export default function PartnerCard({ item }) {
-  const { homeUrl={}, imageUrl, name } = item;
+  const { homeUrl={}, imgUrl, name } = item;
   const swiperSlide = useSwiperSlide();
 
   return (
@@ -17,8 +17,8 @@ export default function PartnerCard({ item }) {
       <div className={styles.img_wrap}>
         <Image
           className={styles.img}
-          //src={imageUrl}
-          src={`https://baza-trainee.tech/api/v1/files/${imageUrl}`}
+          src={imgUrl}
+          //src={`https://baza-trainee.tech/api/v1/files/${imageUrl}`}
           alt={name}
           fill
           sizes="100%"
