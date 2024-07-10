@@ -104,9 +104,9 @@ export default function PDFViewer({file,onClose}) {
 
   if(isMobile && isMIUI){
     return (
-    <div>
-      <h3>Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
-      <button type="button" onClick={onLoadError}>Download PDF document</button>
+    <div className={styles.miui_error}>
+      <h3>Помилка ваш: {browserName} не підтримує перегляд файлів PDF</h3>
+      <button type="button" onClick={onLoadError}>Завантажити PDF документ</button>
       <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
     </div>
     )
