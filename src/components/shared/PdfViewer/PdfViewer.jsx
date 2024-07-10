@@ -92,7 +92,7 @@ export default function PDFViewer({file}) {
   //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
   // }
-//return <h3>Помилка ваш брузер не підтримує файли пдф </h3>
+return <h3>Помилка ваш брузер не підтримує файли пдф </h3>
 
   return (
     <Document className={clsx(styles.document)}
