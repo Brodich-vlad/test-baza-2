@@ -5,6 +5,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import Loader from "../loader/Loader";
 import { createKey } from "@/src/lib/utils/createKey";
 import downloadPdf from "@/src/lib/hooks/downloadPdf";
+import clsx from "clsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
@@ -48,19 +49,19 @@ export default function PDFViewer({file}) {
   }
 
   return (
-    <Document className={styles.document}
+    <Document className={clsx(styles.document)}
       loading={<Loader />}
       file={file} 
       onLoadError={(err)=>onLoadError(err)}
       onLoadSuccess={onDocumentLoadSuccess}>
 
         <Page
-            loading=''
+            //loading=''
             key={createKey()}
             pageNumber={1}
             renderAnnotationLayer={false}
             renderTextLayer={false}
-            className={styles.page}
+            className={clsx(styles.page)}
             width={width}
           />
 
