@@ -1,38 +1,31 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from './PDFViewer.module.scss';
-// import default react-pdf entry
 import { Document, Page, pdfjs } from "react-pdf";
 import Loader from "../loader/Loader";
-// import pdf worker as a url, see `next.config.js` and `pdf-worker.js`
-//import workerSrc from "../pdf-worker";
+import { createKey } from "@/src/lib/utils/createKey";
+import downloadPdf from "@/src/lib/hooks/downloadPdf";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
-//pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
 
-export default function PDFViewer({file="/documents/privacy_policy.pdf"}) {
-    //const [file, setFile] = useState("/documents/privacy_policy.pdf");
+export default function PDFViewer({file}) {
 
-  // const [file, setFile] = useState("/documents/privacy_policy.pdf");
-   const [numPages, setNumPages] = useState(null);
-
-  // function onFileChange(event) {
-  //   setFile(event.target.files[0]);
-  // }
-
-  // function onDocumentLoadSuccess({ numPages: nextNumPages }) {
-  //   setNumPages(nextNumPages);
-  // }
+  const [pages, setPages] = useState(null);
   const [width, setWidth] = useState(0);
 
   function onDocumentLoadSuccess({ numPages }){
-    setNumPages(numPages);
+    const array = [];
+    for (let index = 0; index < numPages; index++) {
+      array.push(index+1)
+    }
+    //setNumPages(numPages);
+    setPages(array);
   }
-
   useEffect(() => {
     const getWidth = () => {
       const windowInnerWidth = window.innerWidth
       if(windowInnerWidth > 1200){return 1000}
-       else if(window.innerWidth <= 1200 && window.innerWidth > 768){return window.innerWidth - 130}else {return window.innerWidth - 40}
+       else if(window.innerWidth <= 1200 && window.innerWidth > 768){return window.innerWidth - 130}else {return window.innerWidth - 60}
     }
 
     const handleResize = () => {
@@ -49,42 +42,45 @@ export default function PDFViewer({file="/documents/privacy_policy.pdf"}) {
     };
   }, []);
 
-  return (
+  const onLoadError = (err) => {
+    console.log(err.message)
+    downloadPdf(file)
+  }
 
+  return (
     <Document className={styles.document}
       loading={<Loader />}
-    //error={<div className="text-3xl font-bold">{error}</div>}
       file={file} 
-      onLoadSuccess={onDocumentLoadSuccess} >
-        {Array.from(new Array(numPages), (_, index) => (
+      onLoadError={(err)=>onLoadError(err)}
+      onLoadSuccess={onDocumentLoadSuccess}>
+        {pages && pages.map((e)=>{
+          return (
+            <Page
+            loading=''
+            key={createKey()}
+            pageNumber={e}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+            className={styles.page}
+            width={width}
+          />
+          )
+        })
+      }
+      
+        
+
+        {/* {numPages && Array.from(new Array(numPages), (_, index) => (
           <Page
             loading=''
-            key={`page_${index + 1}`}
+            key={createKey()}
             pageNumber={index + 1}
             renderAnnotationLayer={false}
             renderTextLayer={false}
             className={styles.page}
             width={width}
           />
-        ))}
+        ))} */}
     </Document>
-    // <div>
-    //   <div>
-    //     <label htmlFor="file">Load from file:</label>{" "}
-    //     <input onChange={onFileChange} type="file" />
-    //   </div>
-    //   <div>
-    //     <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
-    //       {Array.from({ length: numPages }, (_, index) => (
-    //         <Page
-    //           key={`page_${index + 1}`}
-    //           pageNumber={index + 1}
-    //           renderAnnotationLayer={false}
-    //           renderTextLayer={false}
-    //         />
-    //       ))}
-    //     </Document>
-    //   </div>
-    // </div>
   );
 }

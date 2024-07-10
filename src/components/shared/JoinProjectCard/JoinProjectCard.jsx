@@ -1,4 +1,4 @@
-"use client";
+"use cpent";
 
 import styles from './JoinProjectCard.module.scss';
 import { useTranslations } from "next-intl";
@@ -16,11 +16,11 @@ export default function JoinProjectCard({ item = {}, i, progress, range, targetS
     offset: ['start end', 'start start']
   });
 
-  const isMobile = useMediaQuery({ maxWidth: 1365 });
-  const [isClient, setIsClient] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const [isCpent, setIsCpent] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
+    setIsCpent(true);
   }, []);
 
   const svgScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
@@ -28,38 +28,36 @@ export default function JoinProjectCard({ item = {}, i, progress, range, targetS
 
   return (
     <div ref={container} className={styles.cardContainer}>
-      <motion.div style={{ scale: isClient ? (isMobile ? 1 : scale) : 1, top: `calc(-10% + ${i * 50}px)` }} className={styles.card}>
-        <motion.div style={{ scale: isClient ? (isMobile ? 1 : svgScale) : 1 }} className={styles.svgWrapper}>
+      <motion.div style={{ scale: isCpent ? (isMobile ? 1 : scale) : 1, top: `calc(-10% + ${i * 50}px)` }} className={styles.card}>
+        <div  className={styles.svgWrapper}>
           <img
             className={styles.iconNumber}
-            height={250}
-            width={100}
             src={icon}>
           </img>
-        </motion.div>
+        </div>
         <div className={styles.textCard}>
-          <div className={styles.titleWrapper}>
+          <h3 className={styles.titleWrapper}>
             {t(title)}
             <img
               className={styles.iconTitle}
               src={image}>
             </img>
-          </div>
+          </h3>
           <div className={styles.text}>
             <div >
-              <Icon className={styles.checkboxWrapper} name="check" width={24} height={24} />
+              <Icon  name="check" width={24} height={24} />
             </div>
             {t(text_1)}
           </div>
           <div className={styles.text}>
-            <div >
-              <Icon className={styles.checkboxWrapper} name="check" width={24} height={24} />
+            <div>
+              <Icon name="check" width={24} height={24} />
             </div>
             {t(text_2)}
           </div>
           <div className={styles.text}>
             <div >
-              <Icon className={styles.checkboxWrapper} name="check" width={24} height={24} />
+              <Icon name="check" width={24} height={24} />
             </div>
             {t(text_3)}
           </div>
