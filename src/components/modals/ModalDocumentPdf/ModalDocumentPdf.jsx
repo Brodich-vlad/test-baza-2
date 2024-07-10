@@ -1,6 +1,6 @@
 "use client";
 import styles from './ModalDocumentPdf.module.scss'
-import dynamic from "next/dynamic";
+//import dynamic from "next/dynamic";
 import CloseBtn from '../../shared/CloseBtn/CloseBtn';
 import LayoutModal from '../LayoutModal/LayoutModal';
 import stateModalDocumentPdf from '@/src/state/stateModalDocumentPdf';
@@ -25,7 +25,7 @@ export default function ModalDocumentPdf() {
         <div className={styles.modal} >
           <CloseBtn className={styles.closeButton}
           onClick={onClose}/>
-          <PDFViewer file={file}/>
+       {   <PDFViewer file={file}/>}
         </div>
       </div>
     </LayoutModal>

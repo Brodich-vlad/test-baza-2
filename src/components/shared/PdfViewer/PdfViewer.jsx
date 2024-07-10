@@ -92,45 +92,45 @@ export default function PDFViewer({file}) {
   //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
   // }
-return <h3>Помилка ваш брузер не підтримує файли пдф </h3>
+//return <h3>Помилка ваш брузер не підтримує файли пдф </h3>
 
-  // return (
-  //   <Document className={clsx(styles.document)}
-  //     loading={<Loader />}
-  //     file={file} 
-  //     onLoadError={(err)=>onLoadError(err)}
-  //     onLoadSuccess={onDocumentLoadSuccess}>
-
-  //     <h3>Помилка ваш брузер не підтримує файли пдф </h3>
-  //         {/* <Page
-  //           //loading=''
-  //           key={createKey()}
-  //           pageNumber={1}
-  //           renderAnnotationLayer={false}
-  //           renderTextLayer={false}
-  //           className={clsx(styles.page)}
-  //           width={width}
-  //         /> */}
+  return (
+    <Document className={clsx(styles.document)}
+      loading={<Loader />}
+      file={file} 
+      onLoadError={(err)=>onLoadError(err)}
+      onLoadSuccess={onDocumentLoadSuccess}>
 
 
-  //       {/* {pages && pages.map((e)=>{
-  //         return (
-  //           <Page
-  //           loading=''
-  //           key={createKey()}
-  //           pageNumber={e}
-  //           renderAnnotationLayer={false}
-  //           renderTextLayer={false}
-  //           className={styles.page}
-  //           width={width}
-  //         />
-  //         )
-  //       })
-  //     } */}
+        {/* <Page
+          //loading=''
+          key={createKey()}
+          pageNumber={1}
+          renderAnnotationLayer={false}
+          renderTextLayer={false}
+          className={clsx(styles.page)}
+          width={width}
+        /> */}
+
+
+        {pages && pages.map((e)=>{
+          return (
+            <Page
+            loading=''
+            key={createKey()}
+            pageNumber={e}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+            className={styles.page}
+            width={width}
+          />
+          )
+        })
+      }
       
         
 
-  //       {/* {numPages && Array.from(new Array(numPages), (_, index) => (
+        {/* {numPages && Array.from(new Array(numPages), (_, index) => (
   //         <Page
   //           loading=''
   //           key={createKey()}
@@ -140,7 +140,7 @@ return <h3>Помилка ваш брузер не підтримує файли
   //           className={styles.page}
   //           width={width}
   //         />
-  //       ))} */}
-  //   </Document>
-  // );
+       ))} */}
+    </Document>
+);
 }
