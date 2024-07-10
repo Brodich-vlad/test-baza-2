@@ -92,7 +92,7 @@ export default function PDFViewer({file}) {
   //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
   // }
-return <h3>Помилка ваш брузер не підтримує файли пдф </h3>
+//return <h3>Помилка ваш брузер не підтримує файли пдф </h3>
 
   return (
     <Document className={clsx(styles.document)}
@@ -101,7 +101,7 @@ return <h3>Помилка ваш брузер не підтримує файли
       onLoadError={(err)=>onLoadError(err)}
       onLoadSuccess={onDocumentLoadSuccess}>
 
-
+<h3>Помилка ваш брузер не підтримує файли пдф </h3>
         {/* <Page
           //loading=''
           key={createKey()}
@@ -113,7 +113,7 @@ return <h3>Помилка ваш брузер не підтримує файли
         /> */}
 
 
-        {pages && pages.map((e)=>{
+        {/* {pages && pages.map((e)=>{
           return (
             <Page
             loading=''
@@ -126,7 +126,7 @@ return <h3>Помилка ваш брузер не підтримує файли
           />
           )
         })
-      }
+        } */}
       
         
 
