@@ -6,7 +6,7 @@ import LayoutModal from '../LayoutModal/LayoutModal';
 import stateModalDocumentPdf from '@/src/state/stateModalDocumentPdf';
 import { useBodyLock } from '@/src/lib/hooks/useBodyLock';
 //import PDFViewer from '../../shared/PdfViewer/PdfViewer';
-import { browserName, CustomView } from 'react-device-detect';
+//import { browserName, CustomView } from 'react-device-detect';
 const PDFViewer = dynamic(() => import("@/src/components/shared/PdfViewer/PdfViewer"), {
   ssr: false
 });
@@ -25,7 +25,7 @@ export default function ModalDocumentPdf() {
         <div className={styles.modal} >
           <CloseBtn className={styles.closeButton}
           onClick={onClose}/>
-          <h2>{browserName}</h2>
+          
           <PDFViewer file={file}/>
         </div>
       </div>

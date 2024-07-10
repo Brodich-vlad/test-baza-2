@@ -6,6 +6,8 @@ import Loader from "../loader/Loader";
 import { createKey } from "@/src/lib/utils/createKey";
 import downloadPdf from "@/src/lib/hooks/downloadPdf";
 import clsx from "clsx";
+
+import { browserName, CustomView } from 'react-device-detect';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
@@ -92,7 +94,7 @@ export default function PDFViewer({file}) {
   //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
   // }
-//return <h3>Помилка ваш брузер не підтримує файли пдф </h3>
+return <h3>Помилка ваш {browserName} брузер не підтримує файли пдф </h3>
 
   return (
     <Document className={clsx(styles.document)}
