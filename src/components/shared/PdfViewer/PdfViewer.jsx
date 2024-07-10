@@ -53,7 +53,18 @@ export default function PDFViewer({file}) {
       file={file} 
       onLoadError={(err)=>onLoadError(err)}
       onLoadSuccess={onDocumentLoadSuccess}>
-        {pages && pages.map((e)=>{
+
+        <Page
+            loading=''
+            key={createKey()}
+            pageNumber={1}
+            renderAnnotationLayer={false}
+            renderTextLayer={false}
+            className={styles.page}
+            width={width}
+          />
+
+        {/* {pages && pages.map((e)=>{
           return (
             <Page
             loading=''
@@ -66,7 +77,7 @@ export default function PDFViewer({file}) {
           />
           )
         })
-      }
+      } */}
       
         
 
