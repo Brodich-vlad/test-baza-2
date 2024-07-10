@@ -7,7 +7,7 @@ import { createKey } from "@/src/lib/utils/createKey";
 import downloadPdf from "@/src/lib/hooks/downloadPdf";
 import clsx from "clsx";
 
-import { browserName, isMobile, BrowserTypes} from 'react-device-detect';
+import { browserName, isMobile, BrowserTypes, isMIUI} from 'react-device-detect';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
@@ -92,17 +92,17 @@ export default function PDFViewer({file,onClose}) {
   // } catch (err) {
   
   //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>MIUI Browser
-  console.log(BrowserTypes)
+  //console.log(isMIUI)
   // }
-  return (
-    <div>
-      <h3>{`${isMobile}`}  {`${browserName =='MIUI Browser'}`}  {`${browserName}`}     Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
-      <button type="button" onClick={onLoadError}>Download PDF document</button>
-      <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
-    </div>
-    )
+  // return (
+  //   <div>
+  //     <h3>{`${isMobile}`}  {`${browserName =='MIUI Browser'}`}  {`${browserName}`}     Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
+  //     <button type="button" onClick={onLoadError}>Download PDF document</button>
+  //     <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
+  //   </div>
+  //   )
 
-  if(isMobile && browserName ==='MIUI'){
+  if(isMobile && isMIUI){
     return (
     <div>
       <h3>Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
