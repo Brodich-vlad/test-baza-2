@@ -89,7 +89,7 @@ export default function PDFViewer({file}) {
   
   } catch (err) {
   
-    return <h3>Помилка ваш брузер не підтримує файли пдф</h3>
+    return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
   }
 
