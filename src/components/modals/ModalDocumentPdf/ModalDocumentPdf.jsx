@@ -5,10 +5,11 @@ import CloseBtn from '../../shared/CloseBtn/CloseBtn';
 import LayoutModal from '../LayoutModal/LayoutModal';
 import stateModalDocumentPdf from '@/src/state/stateModalDocumentPdf';
 import { useBodyLock } from '@/src/lib/hooks/useBodyLock';
+import PDFViewer from '../../shared/PdfViewer/PdfViewer';
 
-const PDFViewer = dynamic(() => import("@/src/components/shared/PdfViewer/PdfViewer"), {
-  ssr: false
-});
+// const PDFViewer = dynamic(() => import("@/src/components/shared/PdfViewer/PdfViewer"), {
+//   ssr: false
+// });
 
 export default function ModalDocumentPdf() {
  // Отримуємо стан.
