@@ -94,6 +94,13 @@ export default function PDFViewer({file,onClose}) {
   //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
   // }
+  return (
+    <div>
+      <h3>{`${isMobile}`}  {`${browserName ==='MIUI'}`}     Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
+      <button type="button" onClick={onLoadError}>Download PDF document</button>
+      <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
+    </div>
+    )
 
   if(isMobile && browserName ==='MIUI'){
     return (
