@@ -47,51 +47,51 @@ export default function PDFViewer({file}) {
     console.log(err.message)
     downloadPdf(file)
   }
-  try {
+  // try {
 
-    return (
-      <Document className={clsx(styles.document)}
-        loading={<Loader />}
-        file={file} 
-        onLoadError={(err)=>onLoadError(err)}
-        onLoadSuccess={onDocumentLoadSuccess}>
+  //   return (
+  //     <Document className={clsx(styles.document)}
+  //       loading={<Loader />}
+  //       file={file} 
+  //       onLoadError={(err)=>onLoadError(err)}
+  //       onLoadSuccess={onDocumentLoadSuccess}>
   
-          {pages && pages.map((e)=>{
-            return (
-              <Page
-              loading=''
-              key={createKey()}
-              pageNumber={e}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-              className={styles.page}
-              width={width}
-            />
-            )
-          })
-        }
+  //         {pages && pages.map((e)=>{
+  //           return (
+  //             <Page
+  //             loading=''
+  //             key={createKey()}
+  //             pageNumber={e}
+  //             renderAnnotationLayer={false}
+  //             renderTextLayer={false}
+  //             className={styles.page}
+  //             width={width}
+  //           />
+  //           )
+  //         })
+  //       }
         
           
   
-          {/* {numPages && Array.from(new Array(numPages), (_, index) => (
-            <Page
-              loading=''
-              key={createKey()}
-              pageNumber={index + 1}
-              renderAnnotationLayer={false}
-              renderTextLayer={false}
-              className={styles.page}
-              width={width}
-            />
-          ))} */}
-      </Document>
-    );
+  //         {/* {numPages && Array.from(new Array(numPages), (_, index) => (
+  //           <Page
+  //             loading=''
+  //             key={createKey()}
+  //             pageNumber={index + 1}
+  //             renderAnnotationLayer={false}
+  //             renderTextLayer={false}
+  //             className={styles.page}
+  //             width={width}
+  //           />
+  //         ))} */}
+  //     </Document>
+  //   );
   
-  } catch (err) {
+  // } catch (err) {
   
-    return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
+  //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
-  }
+  // }
 
 
   return (
@@ -101,8 +101,8 @@ export default function PDFViewer({file}) {
       onLoadError={(err)=>onLoadError(err)}
       onLoadSuccess={onDocumentLoadSuccess}>
 
-
-          <Page
+      <h3>Помилка ваш брузер не підтримує файли пдф </h3>
+          {/* <Page
             //loading=''
             key={createKey()}
             pageNumber={1}
@@ -110,7 +110,7 @@ export default function PDFViewer({file}) {
             renderTextLayer={false}
             className={clsx(styles.page)}
             width={width}
-          />
+          /> */}
 
 
         {/* {pages && pages.map((e)=>{
