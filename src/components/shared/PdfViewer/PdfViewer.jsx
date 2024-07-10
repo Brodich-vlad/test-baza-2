@@ -7,7 +7,7 @@ import { createKey } from "@/src/lib/utils/createKey";
 import downloadPdf from "@/src/lib/hooks/downloadPdf";
 import clsx from "clsx";
 
-import { browserName, CustomView } from 'react-device-detect';
+import { browserName, isMobile } from 'react-device-detect';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
@@ -94,7 +94,17 @@ export default function PDFViewer({file}) {
   //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>
   
   // }
-return <h3>Помилка ваш {browserName} брузер не підтримує файли пдф </h3>
+
+  if(isMobile && browserName ==='MIUI'){
+    return (
+    <div>
+      <h3>Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
+      <button type="button">Download PDF document</button>
+      <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
+    </div>
+    )
+  }
+
 
   return (
     <Document className={clsx(styles.document)}
@@ -103,7 +113,6 @@ return <h3>Помилка ваш {browserName} брузер не підтрим�
       onLoadError={(err)=>onLoadError(err)}
       onLoadSuccess={onDocumentLoadSuccess}>
 
-<h3>Помилка ваш брузер не підтримує файли пдф </h3>
         {/* <Page
           //loading=''
           key={createKey()}
@@ -115,7 +124,7 @@ return <h3>Помилка ваш {browserName} брузер не підтрим�
         /> */}
 
 
-        {/* {pages && pages.map((e)=>{
+        {pages && pages.map((e)=>{
           return (
             <Page
             loading=''
@@ -128,7 +137,7 @@ return <h3>Помилка ваш {browserName} брузер не підтрим�
           />
           )
         })
-        } */}
+        }
       
         
 
