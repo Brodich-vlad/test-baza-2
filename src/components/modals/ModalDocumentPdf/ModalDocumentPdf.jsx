@@ -1,15 +1,15 @@
 "use client";
 import styles from './ModalDocumentPdf.module.scss'
-//import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import CloseBtn from '../../shared/CloseBtn/CloseBtn';
 import LayoutModal from '../LayoutModal/LayoutModal';
 import stateModalDocumentPdf from '@/src/state/stateModalDocumentPdf';
 import { useBodyLock } from '@/src/lib/hooks/useBodyLock';
-import PDFViewer from '../../shared/PdfViewer/PdfViewer';
+//import PDFViewer from '../../shared/PdfViewer/PdfViewer';
 
-// const PDFViewer = dynamic(() => import("@/src/components/shared/PdfViewer/PdfViewer"), {
-//   ssr: false
-// });
+const PDFViewer = dynamic(() => import("@/src/components/shared/PdfViewer/PdfViewer"), {
+  ssr: false
+});
 
 export default function ModalDocumentPdf() {
  // Отримуємо стан.
@@ -25,7 +25,7 @@ export default function ModalDocumentPdf() {
         <div className={styles.modal} >
           <CloseBtn className={styles.closeButton}
           onClick={onClose}/>
-       {   <PDFViewer file={file}/>}
+          <PDFViewer file={file}/>
         </div>
       </div>
     </LayoutModal>
