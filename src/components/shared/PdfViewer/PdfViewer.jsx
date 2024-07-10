@@ -11,7 +11,7 @@ import { browserName, isMobile } from 'react-device-detect';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
-export default function PDFViewer({file}) {
+export default function PDFViewer({file,onClose}) {
 
   const [pages, setPages] = useState(null);
   const [width, setWidth] = useState(0);
@@ -45,9 +45,9 @@ export default function PDFViewer({file}) {
     };
   }, []);
 
-  const onLoadError = (err) => {
-    console.log(err.message)
+  const onLoadError = () => {
     downloadPdf(file)
+    onClose()
   }
   // try {
 
@@ -99,7 +99,7 @@ export default function PDFViewer({file}) {
     return (
     <div>
       <h3>Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
-      <button type="button">Download PDF document</button>
+      <button type="button" onClick={onLoadError}>Download PDF document</button>
       <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
     </div>
     )
