@@ -1,4 +1,9 @@
 {
+	"TitlePage": {
+		"title_main": "Baza Trainee Ukraine",
+		"title_internship": "Internship",
+		"title_blog": "Blog"
+	},
 	"Header": {
 		"main": "Home",
 		"internship": "Internship",
@@ -11,7 +16,7 @@
 		"invite_participate": {
 			"title": "We invite you to participate",
 			"card_1": {
-				"text1": "UI/UX designers specialize in the usability and appearance of applications and websites. They create convenient, attractive, and intuitive designs that allow users to navigate and utilize the product clearly and efficiently.",
+				"text1": "UI\\UX designers specialize in the usability and appearance of applications and websites. They create convenient, attractive, and intuitive designs that allow users to navigate and utilize the product clearly and efficiently.",
 				"text2": "A web designer is a specialist who creates the visual representation of a brand on the internet. They design the interfaces of websites, online stores, landing pages, and applications for clients. They handle both the logical and visual aspects of the product."
 			},
 			"card_2": {
@@ -31,8 +36,8 @@
 				"text2": "A tester improves programs but doesn't write code. They find errors (bugs), describe them, and report them to developers. Simply put, a tester ensures that everything works correctly and meets the requirements."
 			},
 			"card_6": {
-				"text1": "UI/UX-дизайнери спеціалізуються на зручності і зовнішньому вигляді програм і сайтів. Саме вони створюють зручний, привабливий і зрозумілий дизайн, який дозволяє ясно і ефективно користуватись продуктом",
-				"text2": "Вебдизайнер – це фахівець, який створює візуальне оформлення бренду в інтернеті. Він проєктує інтерфейси вебсайтів, інтернет-магазинів, лендингів, програм для замовника. Займається логічною та візуальною частиною продукту."
+				"text1": "A project manager manages the product development process from inception to release, being responsible for both team work and customer contacts.",
+				"text2": "A complex role requires many skills: understanding the development process and technical details of the project, the ability to manage risks, and communicate with various groups involved in the creation of the product. There are no limits to improvement in this field, as you can grow both in terms of product complexity and management."
 			},
 			"card_link": "Read more",
 			"btn_text": "Join the project"
@@ -252,7 +257,9 @@
 		"title_error": "Sorry, something went wrong",
 		"title_success": "Your data has been sent successfully",
 		"title_info": "Sorry, site under development",
-		"text": "Try again later",
+		"text_error": "Try again later",
+		"title_infoMiui": "This browser does not support some features.",
+		"text_infoMiui": "Use a different browser for the correct operation of the site.",
 		"btn_home": "Try again"
 	},
 	"Modal_support": {
@@ -299,6 +306,8 @@
 		"agree": "I agree",
 		"phone": "Phone",
 		"discord": "Nick on Discord",
+		"discord_tooltip_text": "WARNING! Copy the discord username and send in the correct form",
+		"discord_tooltip_example": "Example:",
 		"linkedin": "Linkedin profile",
 		"linkedin_placeholder": "Link to profile",
 		"convenient_time": "A convenient time for consultation",
@@ -320,13 +329,14 @@
 			"invalid_ru": ".ru and .by domains are not allowed",
 			"phone": "Enter a phone number",
 			"incorrect_phone": "Please enter a valid phone number",
-			"discord": "Enter a nickname in Discord",
-			"incorrect_discord": "Enter a valid nickname in Discord",
+			"discord": "Enter your Discord username",
+			"incorrect_discord": "Enter a valid Discord username",
 			"linkedin": "Enter your Linkedin profile",
 			"invalid_url": "Enter a valid Linkedin profile link",
 			"convenient_time": "Choose a convenient consultation time",
 			"country_max": "The name of the country should not exceed 30 characters",
 			"incorrect_country": "Enter the correct country name",
+			"city": "Enter the city",
 			"city_max": "The name of the city should not exceed 30 characters",
 			"incorrect_city": "Enter the correct city name",
 			"experience": "Choose the availability of experience",
@@ -361,6 +371,23 @@
 				"text": "Про старт проєкту, його розвиток, результати і статистику, про плани і цілі - в матеріалі інтернет-видання MC Today. Про старт проєкту, його розвиток, результати і статистику, про плани і цілі - в матеріалі інтернет-видання MC TodayПро старт проєкту, його розвиток, результати і статистику, про плани і цілі - в матеріалі інтернет-видання MC Today"
 			},
 			"btn_read_article": "Читати матеріал"
+		}
+	},
+	"Projects": {
+		"title": "Projects",
+		"card": {
+			"status": {
+				"done": "Completed",
+				"in_progress": "Development",
+				"team_formation": "Team formation"
+			},
+			"info": {
+				"start": "Project start",
+				"duration": "Duration",
+				"weeks": "{count, plural, =1 {# week} other {# weeks}}",
+				"complexity": "Complexity"
+			},
+			"team": "Project team"
 		}
 	},
 	"sorryModal": {

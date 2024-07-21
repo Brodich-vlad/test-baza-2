@@ -1,0 +1,169 @@
+@use "../../../styles/variables" as var;
+@use "../../../styles/mixins.scss" as mx;
+
+.wrapp{
+  min-width: 220px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+ 
+  background: var.$primary-fon-card;
+  transition: all .5s;
+
+  .skroll{
+    max-height: 700px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    
+    }
+    padding-bottom: 20px;
+
+    @media (min-height: 850px) {
+      padding-bottom: 30px;
+    }
+
+  }
+
+  &._hide{
+    min-width: 80px;
+    .logo{
+      display: block;
+      // width: 30px;
+      // height: 30px;
+      & svg{
+        // display: block;
+        // width: 100%;
+        // height: 100%;
+      }
+    }
+    .header{
+      padding: 12px;
+      //background: #2e0535;
+    }
+    .link{
+      justify-content: center;
+    }
+    .btn_exit{
+      width: 50px;
+      padding: 15px 0;
+    }
+
+
+  }
+  .header{
+    padding: 12px 34px;
+    background: #2e0535;
+    transition: all .5s;
+  }
+
+  .btn{
+    //float: right;
+    margin-left: auto;
+    margin-bottom: 20px;
+    min-height: 40px;
+    border-radius: 4px 0 0 4px;
+    padding: 13px 16px;
+    & .icon {
+      transform: rotate(180deg);
+      display: block;
+      width: 8px;
+      height: 14px;
+      fill: #fff;
+      transition: all .5s;
+      // transition: fill var.$transition-duration-base var.$transition-timing-base;
+
+      &._active{
+        transform: rotate(0);
+      }
+
+      @media (min-height: 850px) {
+        margin-bottom: 40px;
+      }
+    }
+  }
+  .list{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 10px;
+    
+    @media (min-height: 850px) {
+      padding-bottom: 40px;
+    }
+  }
+  .link{
+    @include mx.apply-font-styles(var.$text-16-font);
+    transition: all .5s;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px;
+    position: relative;
+    &::before {
+      content: "";
+      width: 0;
+      height: 2px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: var.$primary-hover;
+      transition: all 0.3s ease 0s;
+    }
+
+    &._active,
+    &:hover  {
+      color: var.$primary-hover;
+      & > svg{
+        opacity: .5;
+      }
+
+      &::before {
+        width: 100%;
+      }
+    }
+
+    .icon{
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-bottom: 2px;
+    }
+    .text._hide{
+      display: none;
+    }
+    
+  }
+
+  .btn_exit{
+    width: 80%;
+   // min-width: 60px;
+    //@include mx.apply-font-styles(var.$h3-font);
+    //border: 3px solid  #c0a4b7;
+   // padding: 15px 5px;
+    margin: 0 auto;
+    //background: none;
+    // font-weight: 600;
+    // font-size: 18px;
+    // box-shadow: inset 3px 3px 4px 0 rgba(0, 0, 0, 0.25);
+    // transition: all .5s;
+    & > svg{
+      width: 24px;
+      height: 24px;
+    }
+    .text._hide{
+      display: none;
+    }
+
+    // .btn_exit:hover{
+    //   color: #fff;
+    //   background: none;
+    //   opacity: .5;
+    // }
+  }
+}

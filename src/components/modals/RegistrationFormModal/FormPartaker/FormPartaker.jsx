@@ -15,6 +15,7 @@ import Loader from "@/src/components/shared/loader/Loader";
 import { formatPhoneNumber } from "@/src/lib/utils/formatPhoneNumber";
 import { createKey } from "@/src/lib/utils/createKey";
 import stateModalDocumentPdf from "@/src/state/stateModalDocumentPdf";
+import TooltipText from "../TooltipText/TooltipText";
 
 
 export default function FormPartaker({handleClose}) {
@@ -25,7 +26,7 @@ export default function FormPartaker({handleClose}) {
   const {
     register,
     handleSubmit,
-    formState: {  errors, isValid },
+    formState: {  errors, isValid, isDirty },
     reset
   } = useForm({ defaultValues: {...partakerDefaultValues}, resolver: zodResolver(PartakerSchema), mode: 'onBlur'});
 
@@ -71,7 +72,7 @@ export default function FormPartaker({handleClose}) {
   const isDisabled = () => {
     if (Object.keys(errors).length > 0) {
       return true;
-    } else if (!isValid) {
+    } else if (isDirty && !isValid) {
       return true;
     } else return false;
   };
@@ -149,7 +150,7 @@ export default function FormPartaker({handleClose}) {
           <InputField
             id={"email"}
             maxLength={55}
-            type='email'
+            //type='email'
             className={styles.item}
             placeholder={"email@gmail.com"}
             registerOptions={register("email", { ...PartakerSchema.email })}
@@ -212,7 +213,7 @@ export default function FormPartaker({handleClose}) {
           {errors.country && <p className={styles.error_partaker}>{t(`error_message.${errors.country.message}`)}</p>}
         </li>
 
-        <li>
+        <li className={styles.tooltip}>
           <InputField
             id={"discord"}
             maxLength={35}
@@ -224,6 +225,9 @@ export default function FormPartaker({handleClose}) {
             version={"input"}
             label={t("discord")}
           />
+
+          <TooltipText className={styles._active}/>
+
           {errors.discord && <p className={styles.error_partaker}>{t(`error_message.${errors.discord.message}`)}</p>}
         </li>
 
@@ -318,10 +322,10 @@ export default function FormPartaker({handleClose}) {
             {errors.sawQuestionnaire && <p className={clsx(styles.error_partaker, styles._list)}>{t("error_message.saw_questionnaire")}</p>}
           </div>
         </li>
-
+        {/* <span>*</span> */}
         <li>
           <div className={styles.item}>
-            <h4>{t("rules_participation")} <span>*</span></h4>
+            <h4>{t("rules_participation")}</h4>
             <button 
               className={styles.linck} 
               onClick={ ()=>{openPdf('rules')} }

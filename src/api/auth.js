@@ -1,37 +1,84 @@
 import instanceBaza2 from './config/instance-baza2';
 
-const token = {
-  set: (token) => {
-    instanceBaza2.defaults.headers.common.Authorization = `${token}`;
+
+// instanceBaza2.interceptors.request.use(
+//   (config) => {
+//     const token = token.get()
+//     const auth = token ? `Bearer ${token}` : '';
+//     config.headers.common['Authorization'] = auth;
+//     return config;
+//   },
+//   (error) => Promise.reject(error),
+// );
+
+
+
+// Управління access_token
+export const token = {
+  get:()=>{
+    const token = sessionStorage.getItem('access_token');
+    return token
   },
+
+  set: (token) => {
+    sessionStorage.setItem(
+      'access_token',
+      token
+    )
+    instanceBaza2.defaults.headers.common['Authorization'] = `${token}`;
+    //console.log(instanceBaza2.defaults.headers.common.Authorization)
+  },
+
   reset: () => {
-    instanceBaza2.defaults.headers.common.Authorization = '';
+    sessionStorage.removeItem('access_token')
+    instanceBaza2.defaults.headers.common['Authorization'] = '';
   },
 };
 
+const authEndpoint = '/auth'
 
 export const getInfoUser = async () => {
-  const res = await instanceBaza2.get(`/auth/user`);
+  const res = await instanceBaza2.get(`${authEndpoint}/user`,);
   return res;
 }
+// {
+//   "email": "user@example.com",
+//   "password": "password123"
+// }
+export const logIn = async ({ email, password }) => {
+  try{
+    const response = await instanceBaza2.post(`${authEndpoint}/login`, {
+      email,
+      password,
+    });
 
-export const logIn= async ({ email, password }) => {
-  const response = await instanceBaza2.post(`/auth/login`, {
-    email,
-    password,
-  });
+    token.set(response.data.token);
+    console.log(response)
+    return response;
+   
+  } catch (error) {
+    throw new Error(error)
+  }
 
-  token.set(response.data.token);
-  return response;
 }
+	
+// Response body
+// {
+//   "_id": "66784417e8df71a9ba2e74df",
+//   "name": "John",
+//   "email": "user@example.com",
+//   "passwordHash": "$2b$10$tmyQubyZG8zK3VvFKJi2fOCOkybnGCPK9UajrU9NxP.6N5nr6k0YG",
+//   "__v": 0,
+//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Njc4NDQxN2U4ZGY3MWE5YmEyZTc0ZGYiLCJpYXQiOjE3MjA4NTQwODYsImV4cCI6MTcyMzQ0NjA4Nn0.d2zhoKsLjUSaYRDo-4sjWdKUVqYVMgrk1jzgDS4YM8E"
+// }
 
-
-export const register= async ({
+export const registerAdmin = async ({
     name,
     email,
     password,
   }) => {
-    const response = await instanceBaza2.post(`/auth/register`, {
+  try{
+    const response = await instanceBaza2.post(`${authEndpoint}/register`, {
       email,
       password,
       name,
@@ -39,39 +86,62 @@ export const register= async ({
 
     token.set(response.data.token);
     return response;
-  }
-  export const changePassword = async ({
+  } catch (error) {
+    throw new Error(error)
+  }  
+}
+  // {
+  //   "email": "user@example.com",
+  //   "password": "password123",
+  //   "name": "John"
+  // }
+
+
+export const changePassword = async ({
+  oldPassword,
+  newPassword,
+}) => {
+  try{
+  const response = await instanceBaza2.patch(`${authEndpoint}/changePassword`, {
     oldPassword,
     newPassword,
-  }) => {
-    const response = await instanceBaza2.patch(`/auth/changePassword`, {
-      oldPassword,
-      newPassword,
-    });
+  });
 
-    token.set(response.data.token);
-    return response;
-  }
-  export const passwordRequestReset = async ({
+  token.set(response.data.token);
+  return response;
+  } catch (error) {
+    throw new Error(error)
+  } 
+}
+
+export const passwordRequestReset = async ({
+  email,
+}) => {
+  try{
+    const response = await instanceBaza2.post(`${authEndpoint}/passwordRequestReset`, {
     email,
-  }) => {
-    const response = await instanceBaza2.post(`/auth/passwordRequestReset`, {
-      email,
     });
 
-    token.set(response.data.token);
+    //token.set(response.data.token);
     return response;
-  }
+  } catch (error) {
+    throw new Error(error)
+  } 
+}
 
 export const passwordReset = async ({
     userId,
     token,
     password,
   })=> {
-    const response = await instanceBaza2.post(`/auth/passwordReset`, {
+  try{  
+    const response = await instanceBaza2.post(`${authEndpoint}/passwordReset`, {
       userId,
       token,
       password,
     });
     return response;
-  }
+  } catch (error) {
+    throw new Error(error)
+  }   
+}

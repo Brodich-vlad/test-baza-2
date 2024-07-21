@@ -25,7 +25,7 @@ export default function FormMentor({handleClose}) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isDirty },
     reset
   } = useForm({ defaultValues: {...mentorDefaultValues}, resolver: zodResolver(MentorSchema), mode: 'onBlur'});
 
@@ -61,10 +61,11 @@ export default function FormMentor({handleClose}) {
       console.log(data);
     },3000)
   };
+  
   const isDisabled = () => {
     if (Object.keys(errors).length > 0) {
       return true;
-    } else if (!isValid) {
+    } else if (isDirty && !isValid) {
       return true;
     } else return false;
   };
@@ -142,7 +143,7 @@ export default function FormMentor({handleClose}) {
             id={"email"}
             maxLength={55}
             className={styles.item}
-            type='email'
+            //type='email'
             placeholder={"email@gmail.com"}
             registerOptions={register("email", { ...MentorSchema.email })}
             isError={errors.email}
@@ -185,18 +186,8 @@ export default function FormMentor({handleClose}) {
             label={t("discord")}
           />
 
-<TooltipText className={styles._active}/>
+          <TooltipText className={styles._active}/>
 
-          {/* <div className={styles.tooltiptext}>
-            <p>Ім'я користувача в discord. 
-Увага! Скопіюйте свій нік і надішліть в правильному вигляді! 
-На скріні - приклад!!!</p>
-              <div className={styles.wrapp_img}>
-                <Image src={'/images/forms/screenshot_discord.png'} alt="screenshot discord" 
-                fill
-                sizes="100%"/>
-              </div>
-          </div> */}
           {errors.discord && <p className={styles.error_modal}>{t(`error_message.${errors.discord.message}`)}</p>}
         </li>
 
@@ -269,13 +260,10 @@ export default function FormMentor({handleClose}) {
       <MainButton
         type="submit"
         disabled={isDisabled()}
-        //disabled={!isDirty || !isValid}
         className={styles.submit}
-        //variant={"modal"}
       >
         {t("btn_send")}
       </MainButton>
-
       {loader && <Loader/>}
     </form>
   )

@@ -7,7 +7,7 @@ import stateUseAlert from '@/src/state/stateUseAlert';
 import { useEffect } from 'react';
 import { createPortal } from "react-dom";
 
-export default function UseAlert(){
+export default function UseAlert({title='',text=''}){
   const t = useTranslations("Alert");
   const isOpen = stateUseAlert(state => state.isOpen);
   const type = stateUseAlert(state => state.type);
@@ -23,19 +23,18 @@ export default function UseAlert(){
     }
   },[isOpen, autoClose])
 
+  const isText = (type) => {
+    if(type === 'info'|| type === 'success'){return false}else return true
+  }
+
   if(!isOpen){return null}
 
   return createPortal(
     <div className={styles.wrapper}>
     <div className={clsx(styles.alert, styles[type])}>
-      { type === 'error' ? 
-        <>
-          <h2>{t(`title_${type}`)}</h2> 
-          <p>{t('text')}</p> 
-        </>:
+        <h2>{title ? title : t(`title_${type}`)}</h2> 
+        { isText(type) && <p>{text ? text : t(`text_${type}`)}</p> }
 
-        <h2>{t(`title_${type}`)}</h2>
-      }
       <CloseBtn className={styles.close_btn} onClick={close}/>
     </div>
   </div>, document.body

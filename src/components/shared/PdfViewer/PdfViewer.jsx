@@ -5,25 +5,19 @@ import { Document, Page, pdfjs } from "react-pdf";
 import Loader from "../loader/Loader";
 import { createKey } from "@/src/lib/utils/createKey";
 import downloadPdf from "@/src/lib/hooks/downloadPdf";
-import clsx from "clsx";
 
-import { browserName, isMobile, BrowserTypes, isMIUI} from 'react-device-detect';
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 // pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
-export default function PDFViewer({file,onClose}) {
+export default function PDFViewer({file, onClose}) {
 
   const [pages, setPages] = useState(null);
   const [width, setWidth] = useState(0);
 
   function onDocumentLoadSuccess({ numPages }){
-    const array = [];
-    for (let index = 0; index < numPages; index++) {
-      array.push(index+1)
-    }
-    //setNumPages(numPages);
-    setPages(array);
+    setPages(numPages);
   }
+
   useEffect(() => {
     const getWidth = () => {
       const windowInnerWidth = window.innerWidth
@@ -49,116 +43,27 @@ export default function PDFViewer({file,onClose}) {
     downloadPdf(file)
     onClose()
   }
-  // try {
-
-  //   return (
-  //     <Document className={clsx(styles.document)}
-  //       loading={<Loader />}
-  //       file={file} 
-  //       onLoadError={(err)=>onLoadError(err)}
-  //       onLoadSuccess={onDocumentLoadSuccess}>
-  
-  //         {pages && pages.map((e)=>{
-  //           return (
-  //             <Page
-  //             loading=''
-  //             key={createKey()}
-  //             pageNumber={e}
-  //             renderAnnotationLayer={false}
-  //             renderTextLayer={false}
-  //             className={styles.page}
-  //             width={width}
-  //           />
-  //           )
-  //         })
-  //       }
-        
-          
-  
-  //         {/* {numPages && Array.from(new Array(numPages), (_, index) => (
-  //           <Page
-  //             loading=''
-  //             key={createKey()}
-  //             pageNumber={index + 1}
-  //             renderAnnotationLayer={false}
-  //             renderTextLayer={false}
-  //             className={styles.page}
-  //             width={width}
-  //           />
-  //         ))} */}
-  //     </Document>
-  //   );
-  
-  // } catch (err) {
-  
-  //   return <h3>Помилка ваш брузер не підтримує файли пдф {err}</h3>MIUI Browser
-  //console.log(isMIUI)
-  // }
-  // return (
-  //   <div>
-  //     <h3>{`${isMobile}`}  {`${browserName =='MIUI Browser'}`}  {`${browserName}`}     Помилка ваш {browserName} брузер не підтримує перегляд файлів PDF</h3>
-  //     <button type="button" onClick={onLoadError}>Download PDF document</button>
-  //     <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
-  //   </div>
-  //   )
-
-  if(isMobile && isMIUI){
-    return (
-    <div className={styles.miui_error}>
-      <h3>Помилка ваш: {browserName} не підтримує перегляд файлів PDF</h3>
-      <button type="button" onClick={onLoadError}>Завантажити PDF документ</button>
-      <p>або скористайтесь іншим браузером Chrome/Opera/Firefox</p>
-    </div>
-    )
-  }
-
 
   return (
-    <Document className={clsx(styles.document)}
+    <Document className={styles.document}
       loading={<Loader />}
       file={file} 
       onLoadError={(err)=>onLoadError(err)}
+      onError={onLoadError}
       onLoadSuccess={onDocumentLoadSuccess}>
-
-        {/* <Page
-          //loading=''
-          key={createKey()}
-          pageNumber={1}
-          renderAnnotationLayer={false}
-          renderTextLayer={false}
-          className={clsx(styles.page)}
-          width={width}
-        /> */}
-
-
-        {pages && pages.map((e)=>{
-          return (
-            <Page
+      
+        {pages && Array.from(new Array(pages), (_, index) => (
+          <Page
             loading=''
+            onError={onLoadError}
             key={createKey()}
-            pageNumber={e}
+            pageNumber={index + 1}
             renderAnnotationLayer={false}
             renderTextLayer={false}
             className={styles.page}
             width={width}
           />
-          )
-        })
-        }
-      
-        
-
-        {/* {numPages && Array.from(new Array(numPages), (_, index) => (
-  //         <Page
-  //           loading=''
-  //           key={createKey()}
-  //           pageNumber={index + 1}
-  //           renderAnnotationLayer={false}
-  //           renderTextLayer={false}
-  //           className={styles.page}
-  //           width={width}
-  //         />
-       ))} */}
+        ))}
     </Document>
-);
+  );
 }

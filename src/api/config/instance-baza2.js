@@ -7,7 +7,7 @@ const instanceBaza2 = axios.create({
 	// baseURL: process.env.api,
 	baseURL:BASE_URL2,
 	headers: {
-		'Content-Type': 'application/json'
+		'Content-Type': 'application/json',
 	}
 })
 

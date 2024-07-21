@@ -1,16 +1,16 @@
 import instanceBaza2 from './config/instance-baza2';
 // Example Value Schema
 
-const reviews = '/reviews'
+const reviewsEndpoint = '/reviews'
 
-export async function  getAllReviews({ page, query, limit }){
+export async function  getAllReviews({ page, search, limit }){
 	const params = new URLSearchParams();
 	if (page) params.append('page', page.toString());
-	if (query) params.append('query', query);
+	if (search) params.append('search', search);
 	if (limit) params.append('limit', limit.toString());
 
 	try {
-		const res = await instanceBaza2.get(`${reviews}?${params.toString()}`)
+		const res = await instanceBaza2.get(`${reviewsEndpoint}?${params.toString()}`)
 		return res.data
 	} catch (error) {
 		throw new Error(error?.response?.data?.message)
@@ -19,7 +19,7 @@ export async function  getAllReviews({ page, query, limit }){
 
 export async function  createNewReview(newReview){
 	try {
-		const res = await instanceBaza2.post(reviews, newReview, {
+		const res = await instanceBaza2.post(reviewsEndpoint, newReview, {
 			headers: { 'Content-Type': 'multipart/form-data' }})
 		return res
 	} catch (error) {
@@ -29,7 +29,7 @@ export async function  createNewReview(newReview){
 
 export async function  getReviewById(id){
 	try {
-		const res = await instanceBaza2.get(`${reviews}/${id}`)
+		const res = await instanceBaza2.get(`${reviewsEndpoint}/${id}`)
 		return res.data
 	} catch (error) {
 		throw new Error(error?.response?.data?.message)
@@ -38,7 +38,7 @@ export async function  getReviewById(id){
 
 export async function  deleteReviewById(id){
 	try {
-		const res = await instanceBaza2.delete(`${reviews}/${id}`)
+		const res = await instanceBaza2.delete(`${reviewsEndpoint}/${id}`)
 		return res.data
 	} catch (error) {
 		throw new Error(error?.response?.data?.message)
@@ -47,7 +47,7 @@ export async function  deleteReviewById(id){
 
 export async function  updateReviewById(id, updReview){
 	try {
-		const res = await instanceBaza2.patch(`${reviews}/${id}`, updReview, {
+		const res = await instanceBaza2.patch(`${reviewsEndpoint}/${id}`, updReview, {
 		  headers: { 'Content-Type': 'multipart/form-data' },
      })
 		return res.data
