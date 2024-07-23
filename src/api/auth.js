@@ -1,6 +1,5 @@
 import instanceBaza2 from './config/instance-baza2';
 
-
 // instanceBaza2.interceptors.request.use(
 //   (config) => {
 //     const token = token.get()
@@ -25,12 +24,18 @@ export const token = {
       'access_token',
       token
     )
-    instanceBaza2.defaults.headers.common['Authorization'] = `${token}`;
+    // Cookies.set('token', `${token}`, {
+    //   expires: 1 / 48,
+    // });
+    //instanceBaza2.defaults.headers['Cookie'] = `${token}`
+
+    instanceBaza2.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     //console.log(instanceBaza2.defaults.headers.common.Authorization)
   },
 
   reset: () => {
     sessionStorage.removeItem('access_token')
+    //instanceBaza2.defaults.headers['Cookie'] = ''
     instanceBaza2.defaults.headers.common['Authorization'] = '';
   },
 };
@@ -38,7 +43,7 @@ export const token = {
 const authEndpoint = '/auth'
 
 export const getInfoUser = async () => {
-  const res = await instanceBaza2.get(`${authEndpoint}/user`,);
+  const res = await instanceBaza2.get(`${authEndpoint}/user`)
   return res;
 }
 // {
@@ -53,7 +58,6 @@ export const logIn = async ({ email, password }) => {
     });
 
     token.set(response.data.token);
-    console.log(response)
     return response;
    
   } catch (error) {
@@ -61,7 +65,7 @@ export const logIn = async ({ email, password }) => {
   }
 
 }
-	
+
 // Response body
 // {
 //   "_id": "66784417e8df71a9ba2e74df",
