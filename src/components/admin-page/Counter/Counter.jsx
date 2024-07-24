@@ -55,6 +55,7 @@ export default function Counter() {
     queryFn: getInfoUser 
   });
 
+ // console.log(employed.data)
 
 // if(!employed.data){return null}
   //console.log(employed.data)
