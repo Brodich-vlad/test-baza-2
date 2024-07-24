@@ -17,7 +17,7 @@ export default function WithAuthProvider({
       queryKey: ['InfoUser'], 
       queryFn: getInfoUser 
     });
-
+    console.log(isAuth)
   useEffect(() => {
     const getAdmin = () => {
       if (!token.get()) {
