@@ -13,25 +13,26 @@ export default function JoinProjectCard({ item = {}, i, progress, range, targetS
   const t = useTranslations("Internship.join_project_section");
   const { title, icon, image, texts, name } = item;
   const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ['start end', 'start start']
-  });
 
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [isCpent, setIsCpent] = useState(false);
+
+  const isMobile = useMediaQuery({ minWidth: 990 });
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsCpent(true);
+    setIsClient(true);
   }, []);
 
-  // const svgScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
+
+
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
     <div ref={container} className={styles.cardContainer}>
-      <motion.div style={{ scale: isCpent ? (isMobile ? 1 : scale) : 1, top: `calc(-10% + ${i * 50}px)` }} className={styles.card}>
-        <div className={styles.svgWrapper}>
+      <motion.div style={{
+    scale: isClient ? (isMobile ? scale : 1) : 1,
+    top: `calc(-10% + ${i * 25}px)`
+  }} className={styles.card}>
+        <div  className={styles.svgWrapper}>
           <img
             className={styles.iconNumber}
             src={icon}

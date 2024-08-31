@@ -1,59 +1,49 @@
 import instance from './config/instance';
+import instanceBaza2 from './config/instance-baza2';
 
 const projectsEndpoint = '/projects'
+
+export async function  getAllProjects2({ page, search, limit }){
+	const params = new URLSearchParams();
+	if (page) params.append('page', page.toString());
+	if (search) params.append('search', search);
+	if (limit) params.append('limit', limit.toString());
+
+		const res = await instanceBaza2.get(`${projectsEndpoint}?${params.toString()}`)
+		return res.data
+}
 
 export async function  getAllProjects({ page, search, limit }){
 	const params = new URLSearchParams();
 	if (page) params.append('page', page.toString());
 	if (search) params.append('search', search);
 	if (limit) params.append('limit', limit.toString());
-	console.log(params.toString())
 
-	try {
-		const res = await instance.get(`${projectsEndpoint}?${params.toString()}`)
+	const res = await instance.get(`${projectsEndpoint}?${params.toString()}`)
 		return res.data
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
 }
 
 export async function  createNewProject(newProject){
-	try {
-		const res = await instance.post(projectsEndpoint, newProject, {
-			headers: { 'Content-Type': 'multipart/form-data' }})
+	const res = await instanceBaza2.post(projectsEndpoint, newProject, {
+		headers: { 'Content-Type': 'multipart/form-data' }})
 		return res
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
 }
 
 export async function  getProjectById(id){
-	try {
-		const res = await instance.get(`${projectsEndpoint}/${id}`)
+	const res = await instanceBaza2.get(`${projectsEndpoint}/${id}`)
 		return res.data
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
 }
 
 export async function  deleteProjectById(id){
-	try {
-		const res = await instance.delete(`${projectsEndpoint}/${id}`)
-		return res.data
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
+	const res = await instanceBaza2.delete(`${projectsEndpoint}/${id}`)
+		return res
 }
 
 export async function  updateProjectById(id, updProject){
-	try {
-		const res = await instance.patch(`${projectsEndpoint}/${id}`, updProject, {
+	const res = await instanceBaza2.put(`${projectsEndpoint}/${id}`, updProject, {
 		  headers: { 'Content-Type': 'multipart/form-data' },
      })
 		return res.data
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
 }
 
 // Example Value Schema

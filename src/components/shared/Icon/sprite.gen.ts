@@ -3,10 +3,12 @@ export interface SpritesMap {
     | "arrow-back"
     | "baza-skill-logo"
     | "blog"
+    | "calendar_dark"
     | "calendar"
     | "carousel-arrow"
     | "check"
     | "clock"
+    | "close_dark"
     | "close"
     | "closed_eye"
     | "complexity"
@@ -15,8 +17,11 @@ export interface SpritesMap {
     | "counter"
     | "documents"
     | "donate-modal-icon"
+    | "download"
+    | "edit_black"
     | "edit"
     | "facebook"
+    | "full_screen"
     | "go_out"
     | "internship-benefits-1"
     | "internship-benefits-2"
@@ -28,17 +33,24 @@ export interface SpritesMap {
     | "linkedin"
     | "logo"
     | "mail"
+    | "normal_screen"
     | "onboarding"
     | "open_eye"
     | "partners"
+    | "pdf-placeholder"
     | "phone"
+    | "plus_black"
+    | "plus_icon"
     | "press_about"
     | "projects"
+    | "remove"
     | "reviews"
     | "scroll-top-arrow"
     | "search"
     | "settings"
     | "slider"
+    | "specialization"
+    | "team_admin"
     | "team"
     | "telegram";
 }
@@ -47,10 +59,12 @@ export const SPRITES_META: {
     | "arrow-back"
     | "baza-skill-logo"
     | "blog"
+    | "calendar_dark"
     | "calendar"
     | "carousel-arrow"
     | "check"
     | "clock"
+    | "close_dark"
     | "close"
     | "closed_eye"
     | "complexity"
@@ -59,8 +73,11 @@ export const SPRITES_META: {
     | "counter"
     | "documents"
     | "donate-modal-icon"
+    | "download"
+    | "edit_black"
     | "edit"
     | "facebook"
+    | "full_screen"
     | "go_out"
     | "internship-benefits-1"
     | "internship-benefits-2"
@@ -72,17 +89,24 @@ export const SPRITES_META: {
     | "linkedin"
     | "logo"
     | "mail"
+    | "normal_screen"
     | "onboarding"
     | "open_eye"
     | "partners"
+    | "pdf-placeholder"
     | "phone"
+    | "plus_black"
+    | "plus_icon"
     | "press_about"
     | "projects"
+    | "remove"
     | "reviews"
     | "scroll-top-arrow"
     | "search"
     | "settings"
     | "slider"
+    | "specialization"
+    | "team_admin"
     | "team"
     | "telegram"
   >;
@@ -91,10 +115,12 @@ export const SPRITES_META: {
     "arrow-back",
     "baza-skill-logo",
     "blog",
+    "calendar_dark",
     "calendar",
     "carousel-arrow",
     "check",
     "clock",
+    "close_dark",
     "close",
     "closed_eye",
     "complexity",
@@ -103,8 +129,11 @@ export const SPRITES_META: {
     "counter",
     "documents",
     "donate-modal-icon",
+    "download",
+    "edit_black",
     "edit",
     "facebook",
+    "full_screen",
     "go_out",
     "internship-benefits-1",
     "internship-benefits-2",
@@ -116,17 +145,24 @@ export const SPRITES_META: {
     "linkedin",
     "logo",
     "mail",
+    "normal_screen",
     "onboarding",
     "open_eye",
     "partners",
+    "pdf-placeholder",
     "phone",
+    "plus_black",
+    "plus_icon",
     "press_about",
     "projects",
+    "remove",
     "reviews",
     "scroll-top-arrow",
     "search",
     "settings",
     "slider",
+    "specialization",
+    "team_admin",
     "team",
     "telegram",
   ],

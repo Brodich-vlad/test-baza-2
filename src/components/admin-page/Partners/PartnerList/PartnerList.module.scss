@@ -1,0 +1,45 @@
+@use "../../../../styles/mixins" as mix;
+@use "../../../../styles/variables" as var;
+
+.list{
+  width: 100%;
+ display: flex;
+ flex-wrap: wrap;
+  gap: 14px;
+  .card{
+    min-width: 320px;
+    height: 180px;
+  }
+
+  .item{
+    min-width: 320px;
+    width: 33%;
+    max-width: 350px;
+    position: relative;
+
+    .btns{
+      width: 100%;
+      min-height: 100px;
+      padding: 8px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      justify-content: flex-end;
+      .btn{
+        background-color: black;
+        border: 1px solid white;
+        border-radius: 4px;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        margin: 0;
+      }
+
+    }
+
+  }
+}

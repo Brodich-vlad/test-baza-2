@@ -1,0 +1,48 @@
+@use "../../../../styles/variables" as var;
+@use "../../../../styles/mixins" as mx;
+
+.wrapper {
+  position: relative;
+  height: 44px;
+  max-width: 625px;
+  input {
+    @include mx.apply-font-styles(var.$text-16-font);
+    color: var.$secondary-black;
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    padding-right: 68px;
+    border-radius: 8px;
+  }
+  // button {
+  //   transition: opacity var.$transition-duration-base
+  //     var.$transition-timing-base;
+  //   &:hover {
+  //     opacity: 0.8;
+  //   }
+  // }
+  .close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 3px;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    transition: all 0.3s ease 0s;
+    opacity: 0;
+    pointer-events: none;
+    &.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+  .submit {
+    height: 100%;
+    width: 44px;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

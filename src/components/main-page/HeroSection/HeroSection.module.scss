@@ -1,0 +1,49 @@
+@use "../../../styles/variables" as var;
+@use "../../../styles/mixins.scss" as mx;
+
+.section {
+  //компенсує висоту хедер
+  margin-top: 80px;
+  position: relative;
+  min-height: 450px;
+
+  .buttons {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0%, -50%);
+    padding: 0 3.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 3;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+
+    @include mx.media-q("xxxl") {
+      padding: 0 6.25%;
+    }
+  }
+  .pagination {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 3;
+    gap: 8px;
+    @include mx.media-q("md") {
+      gap: 16px;
+      bottom: 40px;
+    }
+
+    @include mx.media-q("xl") {
+      bottom: 12%;
+    }
+  }
+}
+.prevEl {
+  transform: rotate(180deg);
+}

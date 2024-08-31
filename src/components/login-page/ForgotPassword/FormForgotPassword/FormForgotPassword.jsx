@@ -3,7 +3,7 @@ import styles from './FormForgotPassword.module.scss'
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from '@/src/navigation';
-import InputField from '../../../shared/InputField/InputField';
+import InputField from '../../../shared/inputs/InputField/InputField';
 import MainButton from '../../../shared/MainButton/MainButton';
 import { forgotPasswordDefaultValues, forgotPasswordSchema } from './forgotPasswordScheme';
 
@@ -34,36 +34,34 @@ export default function FormForgotPassword({ handleMutate }) {
         <li>
           <InputField
             id={"email"}
+            type='email'
             maxLength={55}
             className={styles.item}
             required={false}
-            //type='email'
             placeholder={"Електронна пошта"}
             registerOptions={register("email", { ...forgotPasswordSchema.email })}
             isError={errors.email}
             isValid={isValid}
-            version={"input"}
+            version={"input_admin"}
             label={'Електронна пошта'}
           />
-          {errors.email && <p className={styles.error_modal}>{errors.email.message}</p>}
         </li>
-          <li className={styles.btns}>
-            <MainButton
-              type="submit"
-              disabled={isDisabled()}
-            >
-              {'Підтвердити'}
-            </MainButton>
+        <li className={styles.btns}>
+          <MainButton
+            type="submit"
+            disabled={isDisabled()}
+          >
+            {'Підтвердити'}
+          </MainButton>
 
-            <MainButton
-              variant='admin'
-              className={styles.btn_cancel}
-              onClick={()=>{router.replace('/admin/login')}}
-            >
-              {'Скасувати'}
-            </MainButton>
-
-          </li>
+          <MainButton
+            variant='admin'
+            className={styles.btn_cancel}
+            onClick={()=>{router.replace('/admin/login')}}
+          >
+            {'Скасувати'}
+          </MainButton>
+        </li>
       </ul>
     </form>
   )

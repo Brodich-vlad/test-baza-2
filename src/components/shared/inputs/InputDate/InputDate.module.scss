@@ -1,0 +1,92 @@
+@use "../../../../styles/variables" as var;
+@use "../../../../styles/mixins.scss" as mx;
+
+.input_admin{
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+
+  .wrapper{
+    position: relative;
+    .input{
+      width: 100%;
+      @include mx.apply-font-styles(var.$text-16-font);
+      color: var.$secondary-black;
+      border: 2px solid transparent;
+      border-radius: 8px;
+
+      padding: 8px 10px;
+      outline: 0;
+      background: var.$secondary-white;
+      transition: all var.$transition-duration-base var.$transition-timing-base;
+    }
+
+    .input::-webkit-calendar-picker-indicator{
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      transition: opacity .3s;
+    }
+    .input::-webkit-calendar-picker-indicator:hover{
+      opacity: .8;
+    }
+    .input._error {
+      border: 2px solid var.$secondary-error;
+    }
+    .input._success {
+      border: 2px solid var.$secondary-positive;
+    }
+
+    .icon{
+      position: absolute;
+      width: 50px;
+      height: 80%;
+      right: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 0;
+      & > p{
+        font-weight: 600;
+        font-size: 20px;
+        text-transform: uppercase;
+        color: #000;
+        padding: 5px;
+      }
+      .btn{
+        margin: 10px;
+        transition: all var.$transition-duration-base var.$transition-timing-base;
+      }
+      .btn:hover{
+        opacity: .7;
+      }
+    }
+ 
+  }
+  &._disabled{
+    opacity: .6;
+  }
+  .label{
+    @include mx.apply-font-styles(var.$text-20-font);
+    font-weight: 600;
+    font-size: 18px;
+    & > span {
+      color: var.$secondary-error;
+    }
+    &._hide{
+      visibility: hidden;
+    }
+  }
+
+  .error{
+    min-height: 18px;
+    @include mx.apply-font-styles(var.$text-16-font);
+    font-size: 14px;
+    line-height: normal;
+    color: var.$secondary-error;
+  }
+}

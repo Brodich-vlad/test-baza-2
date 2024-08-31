@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { patternEmail, patternName, patternNikDiscord, patternPhone, patternUrlLinkedin, patternText, patternEmailNonRu, patternCountry, patternСity} from "@/src/constants/regulars";
+import { patternEmail, patternName, patternNikDiscord, patternPhone, patternUrlLinkedin, patternText, patternCountry, patternСity} from "@/src/constants/regulars";
 import { formatPhoneNumber } from "@/src/lib/utils/formatPhoneNumber";
 
 export const partakerDefaultValues= {
@@ -44,13 +44,22 @@ export const PartakerSchema = z
     .min(2, { message: 'email' })
     .email({ message: 'incorrect_email' })
     .regex(patternEmail, { message: 'incorrect_email' })
-    .regex(patternEmailNonRu, { message: 'invalid_ru' }),
+    .refine(
+      (value) => value.split('@')[0].length > 1,
+      {
+        message: 'incorrect_email',
+      })
+    .refine(
+      (value) => !/(.ru|.by)$/.test(value.split('@')[1]),
+      {
+        message: 'invalid_ru',
+      }),
 
     phone: z.string()
     .trim()
     .min(1, { message: 'phone' })
     .regex(patternPhone, { message: 'incorrect_phone' })
-    .transform(value=>  formatPhoneNumber(value,true)),
+    .transform(value=>  formatPhoneNumber(value, true)),
 
     city: z.string()
     .trim()
@@ -85,7 +94,7 @@ export const PartakerSchema = z
     .min(1, { message: 'motivation' })
     .min(5, { message: 'motivation_min' })
     .max(50, { message: 'motivation_max' })
-    .regex(patternText, { message: 'incorrect_motivation' }),
+    .regex(patternText, { message: 'incorrect_motivation'}),
 
     sawQuestionnaire: z.string()
     .trim()

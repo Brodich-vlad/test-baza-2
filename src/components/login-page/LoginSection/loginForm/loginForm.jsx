@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginDefaultValues, loginSchema } from './loginScheme';
-import InputField from '../../../shared/InputField/InputField';
+import InputField from '../../../shared/inputs/InputField/InputField';
 import MainButton from '../../../shared/MainButton/MainButton';
 import { Icon } from '../../../shared/Icon/Icon';
+import { credentialslocalStorage, credentialsSessionStorage } from '@/src/state/stateCredentials';
 
 export default function LoginForm({ handleMutate }) {
 
@@ -19,24 +20,17 @@ export default function LoginForm({ handleMutate }) {
     reset
   } = useForm({ defaultValues: {...loginDefaultValues}, resolver: zodResolver(loginSchema), mode: 'onBlur'});
 
-  //   "email": "user@example.com",
-  //   "password": "password123"
-
-  const [ visible, setVisible ] = useState(false);
   const [ remember, setRemember ] = useState(false);
 
   const resetForm = () => {
-    setVisible(false)
     setRemember(false)
     reset();
   }
 
   useEffect(() => {
-    const credentials = localStorage.getItem('credentials');
+    const credentials = credentialslocalStorage.get()
     if (credentials) {
-      const { email, password, remember } = JSON.parse(
-        credentials
-      );
+      const { email, password, remember } = credentials
       setValue('email', email);
       setValue('password', password);
       setRemember( remember);
@@ -47,16 +41,11 @@ export default function LoginForm({ handleMutate }) {
     handleMutate(data)
     resetForm()
     if (remember) {
-      localStorage.setItem(
-        'credentials',
-        JSON.stringify({...data, remember:remember})
-      );
+      credentialslocalStorage.set({...data, remember:remember})
     } else {
-      localStorage.removeItem('credentials');
+      credentialslocalStorage.reset()
     }
-
-    sessionStorage.setItem('credentials',
-      JSON.stringify({...data}))
+    credentialsSessionStorage.set({...data})
   };
 
 
@@ -65,9 +54,6 @@ export default function LoginForm({ handleMutate }) {
       return true;
     } else return false;
   };
-
-  //   "email": "user@example.com",
-  //   "password": "password123"
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -78,35 +64,27 @@ export default function LoginForm({ handleMutate }) {
             maxLength={55}
             className={styles.item}
             required={false}
-            
-            //type='email'
-            placeholder={"Електронна пошта"}
+            placeholder={"Логін"}
             registerOptions={register("email", { ...loginSchema.email })}
             isError={errors.email}
             isValid={isValid}
-            version={"input"}
-            label={'Електронна пошта'}
+            version={"input_admin"}
+            label={'Логін'}
           />
-          {errors.email && <p className={styles.error_modal}>{errors.email.message}</p>}
         </li>
-        <li className={styles.list_item} >
+        <li>
           <InputField
             id={"password"}
             required={false}
-            maxLength={55}
+            maxLength={15}
             className={styles.item}
-            type={visible?'text':'password'}
             placeholder={"Пароль"}
             registerOptions={register("password", { ...loginSchema.password })}
             isError={errors.password}
             isValid={isValid}
-            version={"input"}
+            version={"password"}
             label={'Пароль'}
           />
-          <button type='button' className={styles.btn} onClick={()=>{setVisible(!visible)}}>
-            <Icon width={24} height={24} name={visible?'open_eye':'closed_eye'}/>
-          </button>
-          {errors.password && <p className={styles.error_modal}>{errors.password.message}</p>}
         </li>
 
         <li>

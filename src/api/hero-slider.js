@@ -25,12 +25,8 @@ import instanceBaza2 from "./config/instance-baza2"
 const herosliderEndpoint = '/heroslider'
 
 export async function getAllSliders(){
-	try {
-		const res = await instanceBaza2.get(herosliderEndpoint)
-		return res.data.results
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
+	const res = await instanceBaza2.get(herosliderEndpoint)
+		return res.data
 }
 // Example Value Schema
 // {
@@ -44,33 +40,26 @@ export async function getAllSliders(){
 //     "pl": "string",
 //     "ua": "string"
 //   },
-//   "imageUrl": "string"
+//   "file": file($binary)
 // }
-export async function createNewSliders(newSlider){
-	try {
-		const res = await instanceBaza2.post(herosliderEndpoint, newSlider, {
-      headers: { 'Content-Type': 'multipart/form-data' }})
+export async function createNewSlide(newSlider){
+	const res = await instanceBaza2.post(herosliderEndpoint, newSlider, {
+    headers: { 'Content-Type': 'multipart/form-data' }})
 		return res
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
 }
 
-export async function getById(id){
-	try {
-		const res = await instanceBaza2.get(`${herosliderEndpoint}/${id}`);
+export async function getSlideById(id){
+	const res = await instanceBaza2.get(`${herosliderEndpoint}/${id}`);
 		return res.data
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
 }
 
-export async function updateSlideById(id,updSlide){
-	try {
-		const res = await instanceBaza2.patch(`${herosliderEndpoint}/${id}`, updSlide, {
-      headers: { 'Content-Type': 'multipart/form-data' }});
+export async function updateSlideById(id, updSlide){
+	const res = await instanceBaza2.patch(`${herosliderEndpoint}/${id}`, updSlide, {
+    headers: { 'Content-Type': 'multipart/form-data' }});
 		return res
-	} catch (error) {
-		throw new Error(error?.response?.data?.message)
-	}
+}
+
+export async function deleteSlideById(id){
+	const res = await instanceBaza2.delete(`${herosliderEndpoint}/${id}`);
+		return res
 }

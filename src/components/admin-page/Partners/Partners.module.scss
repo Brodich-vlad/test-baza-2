@@ -1,0 +1,11 @@
+@use "../../../styles/mixins" as mix;
+@use "../../../styles/variables" as var;
+
+.btn{
+  min-width: 240px;
+  min-height: 55px;
+  margin-bottom: 24px;
+  font-weight: 600;
+  font-size: 18px;
+  gap: 5px;
+}

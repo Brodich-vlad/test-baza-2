@@ -16,49 +16,17 @@ export default function LoginSection() {
   //   "email": "user@example.com",
   //   "password": "password123"
 
-  const logInUser = async (data) => {
-    const response = await fetch(
-      `https://baza2.crabdance.com/api/v1/auth//login`,
-      { method: "POST",
-        body: JSON.stringify(data),
-        //credentials: "include", // include
-        headers: {
-          "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        }
-      },
-    );
-    if (response.ok) {
-
-      console.log(response)
-      return response.token
-      //router.push('/admin');
-      //setIsShow(true);
-    } else {
-      //router.push('/');
-    }
-    console.log(response)
-  };
-
-
-  const { mutate, isPending, isError, data, error } = useMutation({
+  const { mutate, isPending, reset } = useMutation({
     mutationFn: (data) => {
       return logIn(data)
-    },
-  })
-
-  useEffect(() => {
-    if (isError) {
-      console.log( error?.message)
+    },onSuccess:()=>{
+      router.replace('/admin')
+      reset()
+    },onError:()=>{
       open('error', false)
     }
-  },[isError]);
+  })
 
-  useEffect(() => {
-    if (token.get()) {
-      router.replace('/admin');
-    }
-  });
 
   return (
     <Section title={'Вхід'} text={ 'Введіть дані для входу' }>

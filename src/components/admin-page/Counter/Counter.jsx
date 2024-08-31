@@ -1,72 +1,55 @@
 "use client";
 
-import styles from './Counter.module.scss'
-import HeaderAdmin from '../HeaderAdmin/HeaderAdmin'
+import { useCallback, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { getEmployed, updateEmployed } from '@/src/api/achievements'
-import { useEffect } from 'react';
-import { getInfoUser } from '@/src/api/auth';
+import { getData, updateEmployed } from '@/src/api/achievements'
+import stateUseAlert from '@/src/state/stateUseAlert';
+import Loader from '../../shared/loader/Loader';
+import SectionAdmin from '../SectionAdmin/SectionAdmin';
+import CounterForm from './CounterForm/CounterForm';
+import AdminModal from '../../modals/AdminModal/AdminModal';
+import UseAlert from '../../shared/UseAlert/UseAlert';
 
 export default function Counter() {
-  const { mutate, isPending, isError, data, error } = useMutation({
+  const[ modalOpen, setmodalOpen ] = useState(false);
+  const open = stateUseAlert(state => state.open);
+
+  const employed = useQuery({ 
+    queryKey: ['employed'], 
+    queryFn: getData,
+    onError:()=>{
+      open('error', false)
+    }});
+
+  const { mutate, isPending } = useMutation({
     mutationFn:(data) => {
       return updateEmployed(data)
+    },onSuccess: () => {
+      setmodalOpen(true)
+      employed.refetch()
+    },onError:()=>{
+      open('error', false)
     }})
 
-    // useEffect(() => {
-    //   const getUser = async () => {
-    //     const response = await fetch(
-    //       `https://baza2.crabdance.com/api/v1/auth/user`,
-    //       { cache: 'no-store' }
-    //     );
-    //     if (response.ok) {
-    //       //router.push('/admin');
-    //       //setIsShow(true);
-    //     } else {
-    //       //router.push('/');
-    //     }
-    //     console.log(response)
-    //   };
-     
-    //   getUser();
-    // }, []);
-  
-  //   useEffect(() => {
-  //     const getUser = async () => {
-  //       const response = await fetch('https://baza2.crabdance.com/api/v1/auth/login', {
-  //   method: "POST",
-  //   credentials: "same-origin", 
-  //   body: JSON.stringify({"email": "user@example.com",
-  // "password": "password123"}),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // }).then((response) => {
-  //   return response.json();
-  // }).then((data) => {
-  //   console.log(data);
-  // })
-  //     };
-     
-  //     getUser();
-  //   }, []);
-  // const employed = useQuery({ 
-  //   queryKey: ['InfoUser'], 
-  //   queryFn: getInfoUser
-  // });
+  const closeModal = useCallback(()=>{
+    setmodalOpen(false)
+  })
 
-  //console.log(employed.data)
-
-// if(!employed.data){return null}
-  //console.log(employed.data)
 
   return (
-    <section className={styles.section}>
-      <HeaderAdmin title={'Каунтер'}/>
-      <div className={styles.srroll_wrapper}>
+    <SectionAdmin title={'Каунтер'}>
+      <CounterForm defaultValues={employed.data} hendleMutate={mutate}/>
+  
+      {isPending && <Loader/>}
 
-      {/* {<h1>employed: {employed.data.employed}</h1>}  */}
-      </div>
-    </section>
+      <AdminModal 
+        isOpen={modalOpen} 
+        handleCallback={closeModal} 
+        title={'Дані успішно збережено'} 
+        btn={true}>
+      </AdminModal>
+
+      <UseAlert/>
+    </SectionAdmin>
   )
 }

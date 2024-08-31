@@ -1,36 +1,15 @@
 "use client";
-import { useEffect } from 'react';
-import HeaderAdmin from '../HeaderAdmin/HeaderAdmin'
-import styles from './Settings.module.scss'
+
+import SectionAdmin from '../SectionAdmin/SectionAdmin';
+import ChangePasswordForm from './ChangePasswordForm/ChangePasswordForm';
 import SettingsForm from './SettingsForm/SettingsForm'
 
-export default function Settings() {
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     const response = await fetch(
-  //       `https://baza-trainee.tech/api/v1/auth/user`,
-  //       // {credentials: "include",}
-  //       // { cache: 'no-store' }
-  //     );
-  //     if (response.ok) {
-  //       //router.push('/admin');
-  //       //setIsShow(true);
-  //     } else {
-  //       //router.push('/');
-  //     }
-  //     console.log(response)
-  //   };
-   
-  //   getUser();
-  // }, []);
-
-
+export default function Settings({variant='settings'}) {
+const title = variant==='settings'&&'Налаштування'||variant==='edit'&&'Змінити пароль'
   return (
-    <section className={styles.section}>
-      <HeaderAdmin title={'Налаштування'}/>
-      <div className={styles.srroll_wrapper}>
-        <SettingsForm/>
-      </div>
-    </section>
+    <SectionAdmin title={title}>
+     {variant==='settings' && <SettingsForm/>}
+     {variant==='edit' && <ChangePasswordForm/>}
+    </SectionAdmin>
   )
 }

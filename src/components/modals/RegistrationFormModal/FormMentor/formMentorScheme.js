@@ -14,6 +14,13 @@ export const mentorDefaultValues= {
   agree: false,
 }
 
+const validatePhone=(value)=>{
+  if(value === '+380'){
+    return false
+  }else true
+}
+
+
 export const MentorSchema = z
 	.object({
 		firstName: z.string()
@@ -39,13 +46,22 @@ export const MentorSchema = z
     .min(2, { message: 'email' })
     .email({ message: 'incorrect_email' })
     .regex(patternEmail, { message: 'incorrect_email' })
-    .regex(patternEmailNonRu, { message: 'invalid_ru' }),
+    .refine(
+      (value) => value.split('@')[0].length > 1,
+      {
+        message: 'incorrect_email',
+      })
+    .refine(
+      (value) => !/(.ru|.by)$/.test(value.split('@')[1]),
+      {
+        message: 'invalid_ru',
+      }),
 
     phone: z.string()
     .trim()
     .min(1, { message: 'phone' })
-    .regex(patternPhone, { message: 'incorrect_phone' })
-    .transform(value=>  formatPhoneNumber(value,true)),
+    .regex(patternPhone, { message: 'incorrect_phone' }),
+    // .transform(value=>  formatPhoneNumber(value, true)),
 
     discord: z.string()
     .trim()

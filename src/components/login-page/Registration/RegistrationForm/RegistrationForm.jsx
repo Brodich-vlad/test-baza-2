@@ -1,39 +1,35 @@
 "use client";
 import styles from './RegistrationForm.module.scss';
-import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import InputField from '../../../shared/InputField/InputField';
-import MainButton from '../../../shared/MainButton/MainButton';
-import { Icon } from '../../../shared/Icon/Icon';
 import { registrationDefaultValues, registrationSchema } from './registrationScheme';
+import InputField from '../../../shared/inputs/InputField/InputField';
+import MainButton from '../../../shared/MainButton/MainButton';
+import TooltipText from '@/src/components/shared/TooltipText/TooltipText';
 
-export default function RegistrationForm({ onSubmit, isSuccess }) {
+export default function RegistrationForm({ onSubmit }) {
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
-    reset
+    setValue,
+    formState: {isError, errors, isValid, isDirty },
   } = useForm({ defaultValues: {...registrationDefaultValues}, resolver: zodResolver(registrationSchema), mode: 'onBlur'});
 
-  const [ visible, setVisible ] = useState(false);
-  const [ visible1, setVisible1 ] = useState(false);
-
-  const resetForm = () => {
-    setVisible(false)
-    setVisible1(false)
-    reset();
-  }
-
-  if(isSuccess){ resetForm() }
-
   const isDisabled = () => {
-    if (Object.keys(errors).length > 0) {
+    if (isError) {
       return true;
-    } else return false;
+    } else 
+    if (!isDirty) {
+      return true;
+    } else if(!isValid){
+      return true
+    }else return false
   };
+
+  const resetValue=()=>{
+    setValue("confirmPassword",'')
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -41,6 +37,7 @@ export default function RegistrationForm({ onSubmit, isSuccess }) {
         <li>
           <InputField
             id={"email"}
+            type='email'
             maxLength={55}
             className={styles.item}
             required={false}
@@ -48,52 +45,40 @@ export default function RegistrationForm({ onSubmit, isSuccess }) {
             registerOptions={register("email", { ...registrationSchema.email })}
             isError={errors.email}
             isValid={isValid}
-            version={"input"}
+            version={"input_admin"}
             label={'Електронна пошта'}
           />
-          {errors.email && <p className={styles.error_modal}>{errors.email.message}</p>}
         </li>
-        <li className={styles.list_item} >
+        <li className={styles.tooltip} >
           <InputField
             id={"password"}
-            maxLength={55}
             required={false}
+            maxLength={15}
             className={styles.item}
-            type={visible?'text':'password'}
             placeholder={"Пароль"}
+            onChange={resetValue}
             registerOptions={register("password", { ...registrationSchema.password })}
             isError={errors.password}
             isValid={isValid}
-            version={"input"}
+            version={"password"}
             label={'Пароль'}
           />
-          <button type='button' className={styles.btn} onClick={()=>{setVisible(!visible)}}>
-            <Icon width={24} height={24} name={visible?'open_eye':'closed_eye'}/>
-          </button>
-          {errors.password && <p className={styles.error_modal}>{errors.password.message}</p>}
+           <TooltipText className={styles._active} text={"Пароль обов'язково має містити принаймні одну цифру та одну латинську літеру. Він може також містити символи !@#$%^&*. Довжина пароля повинна бути від 8 до 14 символів."} position='right'/>
         </li>
-        <li className={styles.list_item}>
+        <li>
           <InputField
             id={"confirm_password"}
             required={false}
-            maxLength={55}
+            maxLength={15}
             className={styles.item}
-            type={visible1?'text':'password'}
             placeholder={"Пароль"}
             registerOptions={register("confirmPassword", { ...registrationSchema.confirmPassword })}
-            isError={errors.confirmPassword?.message}
+            isError={errors.confirmPassword}
             isValid={isValid}
-            version={"input"}
+            version={"password"}
             label={'Підтвердіть пароль'}
           />
-          <button type='button' className={styles.btn} onClick={()=>{setVisible1(!visible1)}}>
-            <Icon width={24} height={24} name={visible1?'open_eye':'closed_eye'}/>
-          </button>
-         
-          {errors.confirmPassword && <p className={styles.error_modal}>{errors.confirmPassword.message}</p>}
         </li>
-
-
       </ul>
 
       <MainButton

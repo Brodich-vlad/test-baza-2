@@ -1,15 +1,17 @@
 "use client";
 
+import clsx from "clsx";
 import styles from "./LoadMore.module.scss";
 
-const LoadMore = ({onClick}) => {
+const LoadMore = ({ onClick, className, disabled, text = "Load more" }) => {
   return (
     <button
       onClick={onClick}
-      className={styles.btn}
+      className={clsx(styles.btn, className)}
+      disabled={disabled}
       type="button"
     >
-      Load more
+      {text}
     </button>
   );
 };

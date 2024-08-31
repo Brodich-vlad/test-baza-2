@@ -1,33 +1,30 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useRouter } from '@/src/navigation';
-import { getInfoUser, token } from '@/src/api/auth';
-import { useQuery } from '@tanstack/react-query';
+import { usePathname, useRouter } from '@/src/navigation';
+import { token } from '@/src/api/auth';
+import Loader from '../shared/loader/Loader';
 
 export default function WithAuthProvider({
   children,
 }) {
-
-  const router = useRouter();
+  const router = useRouter()
+  const pathname = usePathname()
   const [isShow, setIsShow] = useState();
 
     // Розкоментувати під час розробки
     //return <>{ children }</>
-    const isAuth = useQuery({ 
-      queryKey: ['InfoUser'], 
-      queryFn: getInfoUser 
-    });
-    console.log(isAuth)
+
   useEffect(() => {
-    const getAdmin = () => {
+    const  getAdmin = async () => {
       if (!token.get()) {
-        router.replace('/admin/login');
-      } else setIsShow(true);
+        setIsShow(false)
+        router.replace('/admin/login')
+      } else {
+        setIsShow(true)
+      };
     };
     getAdmin();
+  }, [pathname]);
 
-
-  }, [router]);
-
-  return <>{isShow && children}</>;
+  return <>{isShow ? children : <Loader/>}</>;
 };

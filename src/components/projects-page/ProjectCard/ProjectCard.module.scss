@@ -1,0 +1,125 @@
+@use "../../../styles/variables" as var;
+@use "../../../styles/_mixins.scss" as mx;
+
+.article {
+  padding: 16px;
+  border: 2px solid var.$primary-hover;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  @media (min-width: 810px) {
+    padding: 24px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+    top: 0;
+    left: 0;
+    background: linear-gradient(
+      222deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    transition: all 0.3s ease 0s;
+  }
+  @media (any-hover: hover) {
+    &:hover {
+      &::before {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+  &.hideBg {
+    &::before {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+.imgContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    background: linear-gradient(
+      226deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.4) 54.85%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+  & > img {
+    object-fit: cover;
+  }
+}
+.content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 6;
+  justify-content: space-between;
+  opacity: 1;
+  transition: opacity var.$transition-duration-base var.$transition-timing-base
+    0s;
+  @media (min-width: 810px) {
+    gap: 50px;
+  }
+  &.hidden {
+    opacity: 0;
+  }
+}
+.title {
+  @include mx.apply-font-styles(var.$h4-font);
+  font-size: 20px;
+  margin: 10px 0;
+  @media (min-width: 810px) {
+    font-size: 24px;
+  }
+}
+
+.button {
+  align-self: flex-start;
+  @include mx.apply-font-styles(var.$h4-font);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #fff;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  &.show {
+    pointer-events: all;
+    opacity: 1;
+    visibility: visible;
+  }
+  & > svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+  @media (min-width: 810px) {
+    font-size: 24px;
+    & > svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+}
