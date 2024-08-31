@@ -1,7 +1,7 @@
 import instanceBaza2 from "./config/instance-baza2";
 // Пошта адміністратора !! змінити на актуальну .env !!
 // export const EMAIL_ADMIN ='brodich_vlad@ukr.net';
-const EMAIL_ADMIN = process.env.NEXT_PUBLIC_EMAIL_ADMIN
+const EMAIL_ADMIN = process.env.EMAIL_ADMIN
 
 export async function ContactFormService(data){
 
