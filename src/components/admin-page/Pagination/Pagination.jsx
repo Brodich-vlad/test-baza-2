@@ -17,10 +17,38 @@ const{ currentPage, totalPages } = pagination;
     }else return
   }
 
+  const firstPage=()=>{
+    hendleSetPage(1)
+  }
+
+  const lastPage=()=>{
+    hendleSetPage(totalPages)
+  }
+
   return (
     <div className={styles.pagination}>
-      <button type='button' disabled={currentPage === 1} className={clsx(styles.btn)} onClick={prevtPage}>  
-        <Icon name={'carousel-arrow'} className={styles.icon_prev} width={30} height={30}/>
+      <button type='button' 
+        disabled={currentPage === 1} 
+        className={clsx(styles.btn)} 
+        onClick={firstPage}>  
+        <Icon 
+          name={'carousel-arrow'} 
+          className={styles.icon_prev} 
+          width={20} height={30}/>
+        <Icon 
+          name={'carousel-arrow'} 
+          className={styles.icon_prev} 
+          width={20} height={30}/>
+      </button>
+
+      <button type='button' 
+        disabled={currentPage === 1} 
+        className={clsx(styles.btn)} 
+        onClick={prevtPage}>  
+        <Icon 
+          name={'carousel-arrow'} 
+          className={styles.icon_prev} 
+          width={30} height={30}/>
       </button>
 
       <div className={styles.info}>
@@ -29,8 +57,28 @@ const{ currentPage, totalPages } = pagination;
         <p>{totalPages}</p>
       </div>
 
-      <button type='button' disabled={currentPage === totalPages} className={styles.btn} onClick={nextPage}>  
-        <Icon name={'carousel-arrow'} className={styles.icon_next} width={30} height={30}/>
+      <button type='button' 
+        disabled={currentPage === totalPages} 
+        className={styles.btn} 
+        onClick={nextPage}>  
+        <Icon 
+          name={'carousel-arrow'} 
+          className={styles.icon_next} 
+          width={30} height={30}/>
+      </button>
+
+      <button type='button' 
+        disabled={currentPage === totalPages} 
+        className={styles.btn} 
+        onClick={lastPage}>  
+        <Icon 
+          name={'carousel-arrow'} 
+          className={styles.icon_next} 
+          width={20} height={30}/>
+        <Icon 
+          name={'carousel-arrow'} 
+          className={styles.icon_next} 
+          width={20} height={30}/>
       </button>
     </div>
   )

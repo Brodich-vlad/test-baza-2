@@ -25,19 +25,22 @@ export default function HeaderAdmin({ title, hendleSearch, lang, nav }) {
       <div className={styles.header}>
         <h1>{title}</h1>
         <div className={clsx(styles.options)}>
-          {hendleSearch && <InputSearch onSubmit={hendleSearch} className={styles.inputSearch} placeholder='Введіть ключюве слово для пошуку'/>}
+          {hendleSearch && <InputSearch onSubmit={hendleSearch} className={styles.inputSearch} placeholder='Введіть ключове слово для пошуку'/>}
           {lang && <LangDropdown type={isActiveProject('projects') ? '':'admin'}/>}
         </div>
       </div>
       {nav && <div className={styles.nav}>
-          <button type="button" className={clsx(styles.link, isActive('description') && styles._active)} onClick={()=>{
-            switchName('description')
-          }}>
+          <button type="button" 
+            className={clsx(styles.link, isActive('description') && styles._active)} 
+              onClick={()=>{
+                switchName('description')
+              }}>
             <span className={styles.text}>{'Опис'}</span> 
             <Icon name={'press_about'} className={styles.icon}/>
           </button>
 
-          <button type="button" className={clsx(styles.link, isActive('team') && styles._active)} onClick={()=>{
+          <button type="button" 
+            className={clsx(styles.link, isActive('team') && styles._active)} onClick={()=>{
             switchName('team')
           }}>
             <span className={styles.text}>{'Команда'}</span> 

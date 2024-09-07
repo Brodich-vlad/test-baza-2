@@ -4,7 +4,7 @@ import { createKey } from "@/src/lib/utils/createKey";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import LoadMore from "../shared/LoadMore/LoadMore";
-import { createImageUrlBaza1 } from "@/src/lib/hooks/createImageUrl";
+import { createImageUrl } from "@/src/lib/hooks/createImageUrl";
 import { getAllProjects } from "@/src/api/projects";
 import ProjectCard from "./ProjectCard/ProjectCard";
 import InputSearch from "../shared/inputs/InputSearch/InputSearch";
@@ -14,6 +14,7 @@ import Loader from "../shared/loader/Loader";
 import stateSorryModal from "@/src/state/stateSorryModal";
 import styles from "./Projects.module.scss";
 import SorryModal from "../modals/SorryModal/SorryModal";
+import MessageErrorLoading from "../shared/MessageErrorLoading/MessageErrorLoading";
 
 const Projects = () => {
   const t = useTranslations("Projects");
@@ -59,7 +60,7 @@ const Projects = () => {
     <section className={styles.section}>
       <div className={styles.projectsContainer}>
         {isLoading && <Loader />}
-        {isError && <p>Something went wrong!</p>}
+        {isError && <MessageErrorLoading/>}
         <h1 className={styles.title}>{t("title")}</h1>
         <InputSearch
           className={styles.search}
@@ -75,7 +76,7 @@ const Projects = () => {
                   key={createKey()}
                   project={project}
                   locale={locale}
-                  coverImgUrl={createImageUrlBaza1(project.imageUrl)}
+                  coverImgUrl={createImageUrl(project.imageUrl)}
                 />
               ))}
             </div>

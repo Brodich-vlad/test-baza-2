@@ -27,7 +27,8 @@ export default function TeamForm({
 
   // Шукаємо учасника в базі
   const { data } = useQuery({ queryKey: ['members', search], 
-    queryFn:()=>{return getAllMembers({search:search})}, keepPreviousData: true });
+    queryFn:()=>{return getAllMembers({ search:search, limit:100 })}, keepPreviousData: true 
+  });
   // Валідація данних
   const {
     register,
@@ -36,7 +37,11 @@ export default function TeamForm({
     reset,
     trigger,
     setValue,
-  } = useForm({ defaultValues: {...teamDefaultValues}, resolver: zodResolver(TeamScheme), mode: 'onChange'});
+  } = useForm({ 
+    defaultValues: {...teamDefaultValues}, 
+    resolver: zodResolver(TeamScheme), 
+    mode: 'onChange'
+  });
 
   const resetForm = () => {
     reset();
@@ -101,7 +106,7 @@ export default function TeamForm({
         <li className={clsx(styles.list_item, styles.grid1)}>
           <InputField
             id={"name_ua"}
-            maxLength={100}
+            maxLength={52}
             className={styles.item}
             required={false}
             placeholder={"Ім’я та Прізвище"}
@@ -122,7 +127,7 @@ export default function TeamForm({
         <li className={clsx(styles.list_item, styles.grid2)}>
           <InputField
             id={"name_en"}
-            maxLength={100}
+            maxLength={52}
             className={styles.item}
             required={false}
             placeholder={"Ім’я та Прізвище"}
@@ -138,7 +143,7 @@ export default function TeamForm({
         <li className={clsx(styles.list_item, styles.grid3)}>
           <InputField
             id={"name_pl"}
-            maxLength={100}
+            maxLength={52}
             className={styles.item}
             required={false}
             placeholder={"Ім’я та Прізвище"}
@@ -162,7 +167,7 @@ export default function TeamForm({
               isValid && styles._success
             )}
               onChange={handleOptionSelect}
-              //value={selectedRoleId}
+              value={selectedRoleId}
             >
             {!selectedRoleId && <option value="" className={styles.option} readOnly>Оберіть спеціалізацію</option>}
             {roles &&
@@ -202,7 +207,7 @@ export default function TeamForm({
               return <p key={createKey()} onClick={()=>{
                 setMember(el)
               }
-              }>{el.name[locale]}</p>
+              }>{el.name['ua']}</p>
             })}</> : 
             <>
               <h4>Такого учасника не знайдено. </h4>
