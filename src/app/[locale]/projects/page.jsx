@@ -16,7 +16,8 @@ const metadataProjectsPage ={
   }, 
 }
 
-export const generateMetadata = ({ params }) => {
+export async function generateMetadata({ params }){
+
   return {
     title: metadataProjectsPage[params.locale].title,
     description: metadataProjectsPage[params.locale].description,

@@ -1,8 +1,8 @@
 {
 	"TitlePage": {
-		"title_main": "Baza Trainee Ukraine",
-		"title_internship": "Стажування",
-		"title_blog": "Блог"
+		"title_main": "Baza Trainee Ukraine – стажування для trainee і junior розробників",
+		"title_internship": "Baza Trainee Ukraine Стажування – єдине практичне стажування в розробці",
+		"title_blog": "Блог: тільки корисне і цікаве про розробку і практику"
 	},
 	"Header": {
 		"main": "Головна",
@@ -317,6 +317,7 @@
 	"Blog": {
 		"btn_read_article": "Читати матеріал",
 		"load_more": "Показати ще",
+		"back_btn": "Повернутись до статей",
 		"placeholder": "Введіть ключове слово"
 	},
 	"Projects": {
