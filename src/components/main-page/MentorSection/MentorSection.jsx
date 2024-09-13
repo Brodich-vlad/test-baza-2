@@ -20,11 +20,11 @@ const MentorSection = () => {
 
           <div className={styles.wrapper_img}>
             <Image
+              alt={t("alt_img") ?? 'Немає опису'}
               className={styles.image}
               src={"/images/mentor_section/mentor.png"}
               fill
               sizes="100%"
-              alt={t("alt_img")}
               quality={80}
             />
           </div>
