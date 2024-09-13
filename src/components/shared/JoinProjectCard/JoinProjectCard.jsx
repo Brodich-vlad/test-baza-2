@@ -2,7 +2,7 @@
 
 import styles from './JoinProjectCard.module.scss';
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
 import React, { useRef, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Icon } from '../Icon/Icon';
@@ -36,7 +36,7 @@ export default function JoinProjectCard({ item = {}, i, progress, range, targetS
           <img
             className={styles.iconNumber}
             src={icon}
-            alt={name}
+            alt={t(name)}
           />
         </div>
         <div className={styles.textCard}>
