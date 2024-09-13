@@ -2,6 +2,8 @@ import BlogArticleSection from "@/src/components/blog-page/BlogArticleSection/Bl
 import { getTranslations } from "next-intl/server";
 import { truncateString } from "@/src/lib/utils/truncateString";
 
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.NEXT_PUBLIC_BASE_URL;
+
 export async function generateMetadata({ params }) {
   const t = await getTranslations({
     locale:params.locale, 
@@ -9,7 +11,7 @@ export async function generateMetadata({ params }) {
   });
 
   const id = params.id;
-  const canonicalUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/${params.locale}/blog/${id}`;
+  const canonicalUrl = `${baseUrl}/${params.locale}/blog/${id}`;
   const defaultTitle = `${t('article_title')}-${params.id}`
   // fetch data
   const article = await fetch(`${process.env.NEXT_PUBLIC_API2_URL}/blog/${id}`)
