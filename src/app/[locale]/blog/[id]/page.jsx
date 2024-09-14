@@ -35,9 +35,9 @@ export async function generateMetadata({ params }) {
   // Формуємо метадані
   const metadata = {
     title: article?.title? truncateString(article?.title, 57) : defaultTitle,
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    // alternates: {
+    //   canonical: canonicalUrl,
+    // },
   };
 
   // Додаємо description тільки якщо є текст

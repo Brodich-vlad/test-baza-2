@@ -15,9 +15,9 @@ export async function generateMetadata({ params }){
   return {
     title: t('projects_title'),
     description: t('projects_description'),
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    // alternates: {
+    //   canonical: canonicalUrl,
+    // },
   };
 };
 
