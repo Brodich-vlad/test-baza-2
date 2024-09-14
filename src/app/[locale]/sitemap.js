@@ -1,12 +1,28 @@
 import { getLocale } from "next-intl/server";
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.NEXT_PUBLIC_BASE_URL;
+// const baseUrl = process.env.VERCEL_URL ? 
+//   `https://${process.env.VERCEL_URL}` : 
+//   process.env.NEXT_PUBLIC_BASE_URL;
 
-export default async function sitemap(){
+
+
+export default async function sitemap(req){
+  const host = req?.headers?.host; // Отримання хоста з заголовка
+
+  const baseApiUrl = process.env.NEXT_PUBLIC_API2_URL ? 
+    process.env.NEXT_PUBLIC_API2_URL : 
+  '';  
+ 
+  const baseUrl = host ? 
+    `https://${host}` : 
+    process.env.NEXT_PUBLIC_BASE_URL;
+
   const locale = await getLocale();
+  
   let blogs = null;
+
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API2_URL}/blog`);
+    const response = await fetch(`${baseApiUrl}/blog`);
     blogs = await response.json();
   } catch (error) {
     console.error('Failed to fetch blogs:', error);

@@ -1,9 +1,11 @@
 import Projects from "@/src/components/projects-page/Projects";
 import { getTranslations } from "next-intl/server";
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : process.env.NEXT_PUBLIC_BASE_URL;
-
 export async function generateMetadata({ params }){
+  const baseUrl = process.env.VERCEL_URL ? 
+    `https://${process.env.VERCEL_URL}` : 
+    process.env.NEXT_PUBLIC_BASE_URL;
+
   const t = await getTranslations({
     locale:params.locale, 
     namespace: 'Metadata'
