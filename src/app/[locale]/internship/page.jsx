@@ -19,9 +19,9 @@ export async function generateMetadata({ params }){
   return {
     title: t('internship_title'),
     description: t('internship_description'),
-    // alternates: {
-    //   canonical: canonicalUrl,
-    // },
+    alternates: {
+      canonical: canonicalUrl,
+    },
   };
 };
 
