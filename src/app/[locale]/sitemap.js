@@ -38,7 +38,7 @@ export default async function sitemap(req){
 
   return [
     {
-      url: `${baseUrl}/${locale}`,
+      url: `${baseUrl}`,
       lastModified: new Date(),
       alternates: {
         languages: {
