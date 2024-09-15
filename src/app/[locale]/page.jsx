@@ -22,14 +22,14 @@ export  async function generateMetadata({ params }){
     namespace: 'Metadata'
   });
 
-  //const canonicalUrl = `${baseUrl}/${params.locale}`; 
-  const canonicalUrl = `${baseUrl}`; 
+  const canonicalUrl = `${baseUrl}/${params.locale}`; 
+
   return {
     title: t('main_title'),
     description: t('main_description'),
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    // alternates: {
+    //   canonical: canonicalUrl,
+    // },
   };
 };
 

@@ -28,7 +28,7 @@ export default async function sitemap(req){
     lastModified: new Date(),
     alternates: {
       languages: {
-        'uk-UA': `${baseUrl}/uk/blog/${_id}`,
+        uk: `${baseUrl}/uk/blog/${_id}`,
         en: `${baseUrl}/en/blog/${_id}`,
         pl: `${baseUrl}/pl/blog/${_id}`,
       },
@@ -38,7 +38,7 @@ export default async function sitemap(req){
 
   return [
     {
-      url: `${baseUrl}`,
+      url: `${baseUrl}/${locale}`,
       lastModified: new Date(),
       alternates: {
         languages: {
@@ -53,7 +53,7 @@ export default async function sitemap(req){
       lastModified: new Date(),
       alternates: {
         languages: {
-         'uk-UA': `${baseUrl}/uk/internship`,
+          uk: `${baseUrl}/uk/internship`,
           en: `${baseUrl}/en/internship`,
           pl: `${baseUrl}/pl/internship`,
         },
@@ -64,7 +64,7 @@ export default async function sitemap(req){
       lastModified: new Date(),
       alternates: {
         languages: {
-          'uk-UA': `${baseUrl}/uk/projects`,
+          uk: `${baseUrl}/uk/projects`,
           en: `${baseUrl}/en/projects`,
           pl: `${baseUrl}/pl/projects`,
         },
@@ -75,7 +75,7 @@ export default async function sitemap(req){
       lastModified: new Date(),
       alternates: {
         languages: {
-          'uk-UA': `${baseUrl}/uk/blog`,
+          uk: `${baseUrl}/uk/blog`,
           en: `${baseUrl}/en/blog`,
           pl: `${baseUrl}/pl/blog`,
         },
