@@ -22,8 +22,8 @@ export  async function generateMetadata({ params }){
     namespace: 'Metadata'
   });
 
-  const canonicalUrl = `${baseUrl}/${params.locale}`; 
-  
+  //const canonicalUrl = `${baseUrl}/${params.locale}`; 
+  const canonicalUrl = `${baseUrl}`; 
   return {
     title: t('main_title'),
     description: t('main_description'),
