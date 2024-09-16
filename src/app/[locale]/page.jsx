@@ -13,7 +13,6 @@ import HiddenTtitlePage from "@/src/components/shared/HiddenTtitlePage/HiddenTti
 import { getTranslations } from "next-intl/server";
 
 export  async function generateMetadata({ params }){
-
   const t = await getTranslations({
     locale:params.locale, 
     namespace: 'Metadata'

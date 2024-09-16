@@ -5,7 +5,6 @@ import React from "react";
 import styles from "./ProjectCardTeam.module.scss";
 import { createKey } from "@/src/lib/utils/createKey";
 import { useTranslations } from "next-intl";
-import { localeUkToUa } from "@/src/lib/utils/localeUkToUa";
 
 const orderList = [
   "Product Owner",
@@ -64,7 +63,7 @@ const ProjectCardTeam = ({ project, handleClose, isShowed }) => {
                   href={teamMember?.profileUrl}
                   target="_blank"
                 >
-                  {teamMember.name[localeUkToUa(locale)]}
+                  {teamMember.name[locale]}
                 </Link>
               ))}
             </div>

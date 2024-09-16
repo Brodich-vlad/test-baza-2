@@ -15,7 +15,6 @@ import stateSorryModal from "@/src/state/stateSorryModal";
 import styles from "./Projects.module.scss";
 import SorryModal from "../modals/SorryModal/SorryModal";
 import MessageErrorLoading from "../shared/MessageErrorLoading/MessageErrorLoading";
-import { localeUkToUa } from "@/src/lib/utils/localeUkToUa";
 
 const Projects = () => {
   const t = useTranslations("Projects");
@@ -76,7 +75,7 @@ const Projects = () => {
                 <ProjectCard
                   key={createKey()}
                   project={project}
-                  locale={localeUkToUa(locale)}
+                  locale={locale}
                   coverImgUrl={createImageUrl(project.imageUrl)}
                 />
               ))}
