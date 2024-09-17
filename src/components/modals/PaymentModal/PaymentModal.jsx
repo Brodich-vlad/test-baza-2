@@ -60,14 +60,13 @@ export default function PaymentModal() {
     if(isError){
       return <MessageCard handleClose={handleClose} isError={isError}/>
     }else if(isSuccess){
-      if(!isMobile){
+      if(isMobile){
         if(processing){
           return <FormPayment handleSubmit={handleSubmit}/>
         }
-      if(isThanks){
-        return <MessageCard handleClose={handleClose} isThanks={isThanks}/>
-      }
-
+        if(isThanks){
+          return <MessageCard handleClose={handleClose} isThanks={isThanks}/>
+        }
       }else return <MessageCard handleClose={handleClose} isThanks={isSuccess}/>
     }
     else return <FormPayment handleSubmit={handleSubmit}/>
