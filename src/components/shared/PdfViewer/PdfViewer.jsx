@@ -5,9 +5,9 @@ import { Document, Page, pdfjs } from "react-pdf";
 import Loader from "../loader/Loader";
 import { createKey } from "@/src/lib/utils/createKey";
 import downloadPdf from "@/src/lib/hooks/downloadPdf";
+import MessageErrorLoading from "../MessageErrorLoading/MessageErrorLoading";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.mjs`;
 
 export default function PDFViewer({file, onClose}) {
 
@@ -43,6 +43,9 @@ export default function PDFViewer({file, onClose}) {
     downloadPdf(file)
     onClose()
   }
+
+  // Як що помилка завантаження або невірний формат.
+  if(!file){return <MessageErrorLoading/>}
 
   return (
     <Document className={styles.document}

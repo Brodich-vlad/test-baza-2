@@ -11,7 +11,6 @@ import { Navigation, Pagination } from "swiper/modules";
 import CarouselButton from "../../shared/Carousel/CarouselButton/CarouselButton";
 import CarouselPagination from "../../shared/Carousel/CarouselPagination/CarouselPagination";
 import MessageErrorLoading from "../../shared/MessageErrorLoading/MessageErrorLoading";
-import { localeUkToUa } from "@/src/lib/utils/localeUkToUa";
 
 const ReviewsSection = () => {
   const t = useTranslations("Main.reviews_section");
@@ -58,7 +57,7 @@ const ReviewsSection = () => {
             items={sortData(data)}
             prevEl={".feedback-prevBtn"}
             nextEl={".feedback-nextBtn"}
-            renderItem={(item) => <FeedbackCard {...item} locale={localeUkToUa(locale)}/>}
+            renderItem={(item) => <FeedbackCard {...item} locale={locale}/>}
           />
           }
           {isError && <MessageErrorLoading/>}
