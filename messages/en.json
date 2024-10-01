@@ -96,7 +96,7 @@
       },
       "question_2": {
         "title": "How to submit an application?",
-        "text": "On our website, on the Internship page, under the 'Join the Community' button, there is a form to apply for participation in the organization's work. To participate, you will need an account on the Discord social network. If you don't have one, please open one and stay in touch with us."
+        "text": "On our website, on the Internship page, under the 'Join the project' button, there is a form to apply for participation in the organization's work. To participate, you will need an account on the Discord social network. If you don't have one, please open one and stay in touch with us."
       },
       "question_3": {
         "title": "Where can I find the participation terms?",
@@ -163,9 +163,11 @@
   },
   "Alert": {
     "title_error": "Sorry, something went wrong",
+    "title_errorUser": "A user with this email address is already registered.",
     "title_success": "Your data has been sent successfully",
     "title_info": "Sorry, site under development",
     "text_error": "Try again later",
+    "text_errorUser": "Use a different email address.",
     "title_infoMiui": "This browser does not support some features.",
     "text_infoMiui": "Use a different browser for the correct operation of the site.",
     "btn_home": "Try again"
@@ -238,13 +240,18 @@
       "phone": "Enter a phone number",
       "incorrect_phone": "Please enter a valid phone number",
       "discord": "Enter your Discord username",
+      "discord_min": "Username must have at least 2 characters",
+      "discord_max": "Username must not exceed 30 characters",
       "incorrect_discord": "Enter a valid Discord username",
       "linkedin": "Enter your Linkedin profile",
       "invalid_url": "Enter a valid Linkedin profile link",
       "convenient_time": "Choose a convenient consultation time",
+      "country": "Enter the name of your country",
+      "country_min": "The name of the country must contain at least 4 characters",
       "country_max": "The name of the country should not exceed 30 characters",
       "incorrect_country": "Enter the correct country name",
-      "city": "Enter the city",
+      "city": "Enter the name of your city",
+      "city_min": "The name of the city must be at least 2 characters long",
       "city_max": "The name of the city should not exceed 30 characters",
       "incorrect_city": "Enter the correct city name",
       "experience": "Choose the availability of experience",
